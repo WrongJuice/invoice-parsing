@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mpapws:
+    build: 
+      context: ./build/mpapws
+    image: iutlr-info-apache-symfony4-mpapws
+    container_name: iutlr-info2-projet-mpapws
+    ports:
+      - "9999:80"
+    volumes:
+      - "./mpapws/:/var/www/html/mpapws"
+    networks:
+      - mpapws-network
+  mysql_mpapws:
+    build:
+      context: build/mysql
+    image: iutlr-info-mysql-mpapws
+    container_name: iutlr-info2-mysql-mpapws
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./mysql/:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: db-mpapws
+      MYSQL_USER: mpapws
+      MYSQL_PASSWORD: mpapws
+      MYSQL_ROOT_PASSWORD: mpapws
+    networks:
+      - mpapws-network
+networks:
+  mpapws-network:
+    driver: bridge
+
