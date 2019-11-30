@@ -1,13 +1,5 @@
-**Projet MPAPWS**
+**Projet Biblio**
 =====================
-
-# Objectif 
-
-Ce document fournit une architecture type pour votre projet MPAPWS. Cette architecture se base sur une conception basée sur des images logicielles de type docker gérées par le programme de composition des services, nommé « docker-compose ». 
-
-Nous considérons alors un projet nommé **MPAPWS**. 
-
-Ce nom doit être remplacé par le nom de votre projet réel. 
 
 # Architecture
 
@@ -50,54 +42,110 @@ Ces deux images docker sont instanciées pour démarrer deux conteneurs respecti
 
 # Mise en oeuvre
 
+## Supprimer les images existantes (optionnel)
+
+* Vérification que les containers sont bien arrêtés 
+```
+docker ps
+```
+S'il y a les container _biblio_ et _biblio-mysql_ qui tournent, faire les commandes suivantes
+```
+docker stop biblio
+docker stop biblio-mysql
+```
+
+* Vérification que les conatainers n'existent pas
+```
+docker ps -a
+```
+S'il y a les container _biblio_ et _biblio-mysql_, faire les commandes suivantes
+```
+docker container rm biblio
+docker container rm biblio-mysql
+```
+
+* Suppression des images
+```
+docker image ls
+```
+S’il y a _iutlr-info-apache-symfony4-mpapws_ et _iutlr-info-mysql-mpapws_, faire les commandes suivantes
+```
+docker image rm iutlr-info-apache-symfony4-mpapws
+docker image rm iutlr-info-mysql-mpapws
+```
+
 ## Construction et démarrage 
 
 * Vérifier que le programme docker est démarré 
 
-* Ouvir un terminal et se déplacer dans le dossier du projet 
+* Ouvrir un terminal et se déplacer dans le dossier du projet 
 ``` 
-cd projet_mpapws/
+cd projet-mpapws/
+```
+* Cloner le projet
+```
+git clone https://forge.iut-larochelle.fr/kmary/2019-2020-info2-mpapws-biblio.git
+cd 2019-2020-info2-mpapws-biblio
 ```
 
-* Construire les images docker du projet : 
-``` 
-docker-compose build 
+* Construire les images
+```
+docker-compose build
 ```
 
-* Démarrer les conteneurs docker du projet :
-``` 
+* Lancer les containers (ajouter -d si vous voulez l'executer en mode daemon)
+```
 docker-compose up
 ```
-Remarque : ne pas fermer ce terminal après le démarrage des conteneurs 
+
+* Dans le terminal PHP Storm, se connecter au container
+```
+docker exec -it biblio bash
+```
+
+* Installer les dépendances du projet
+```
+cd mpapws
+composer install
+```
+
+* Lancer le serveur web
+```
+php bin/console server:start 0.0.0.0:80
+```
+
+Si vous avez bien ajouté le lien entre _127.0.0.1_ et _mpapws.loc_ dans le fichier _hosts_ comme expliqué à la fin du README, vous pourrez accéder à votre page via l'URL http://mpapws.loc:9999 !
+
+/!\ Attention : Ne pas executer la commande à la fin, celle qui commence par ```composer create-project``` /!\
 
 ## Gérer les images/conteneurs docker du projet 
 
-* Ouvir un terminal et se déplacer dans le dossier du projet 
+* Ouvrir un terminal et se déplacer dans le dossier du projet 
 ``` 
 cd projet_mpapws/
 ```
 
-* Consulter le status des conteneurs : 
+* Consulter le status des conteneurs
 ```
 docker-compose ps 
 ```
 
-* Consulter quelques informations sur les images et les conteneurs du projet : 
+* Consulter quelques informations sur les images et les conteneurs du projet
 ```
 docker-compose images
 ```
 
-* Arrêter les conteneurs : 
+* Arrêter les conteneurs
 ```
 docker-compose stop 
 ```
 
-* Supprimer les conteneurs :
+* Supprimer les conteneurs
 ```
 docker-compose rm 
 ```
 
-* Se connecter en bash sur un conteneur démarré : 
+* Se connecter en bash sur un conteneur démarré
 ```
 docker exec -it (nom du conteneur ou id) bash 
 ```
@@ -108,12 +156,12 @@ docker-compose exec (nom du service) bash
 
 # Déclaration des hosts côté client
 
-* Le conteneur **iutlr-info2-projet-mpapws** est accessible en http sur le port 9999 via son virtual host attaché à ce conteneur :
+* Le conteneur _biblio_ est accessible en http sur le port 9999 via son virtual host attaché à ce conteneur :
     * http://mpapws.loc:9999 
 
 * La configuration du virtual host se trouve dans le dossier « vhosts » dans « build/mpapws/vhosts ». 
 
-* Par conséquence, le client qui souhaite accéder à ce host dpoit déclarer le vhost dans le fichier « hosts » de sa machine comme suite :
+* Par conséquence, le client qui souhaite accéder à ce host doit déclarer le vhost dans le fichier « hosts » de sa machine comme suite :
 ```
 127.0.0.1     mpapws.loc
 ```
