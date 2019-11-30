@@ -4,7 +4,7 @@ services:
     build: 
       context: ./build/mpapws
     image: iutlr-info-apache-symfony4-mpapws
-    container_name: iutlr-info2-projet-mpapws
+    container_name: biblio
     ports:
       - "9999:80"
     volumes:
@@ -15,7 +15,7 @@ services:
     build:
       context: build/mysql
     image: iutlr-info-mysql-mpapws
-    container_name: iutlr-info2-mysql-mpapws
+    container_name: biblio-mysql
     ports:
       - "3306:3306"
     volumes:
