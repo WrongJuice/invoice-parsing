@@ -17,7 +17,7 @@ services:
     image: iutlr-info-mysql-mpapws
     container_name: biblio-mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - "./mysql/:/var/lib/mysql"
     environment:
