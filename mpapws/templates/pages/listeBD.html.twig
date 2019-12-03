@@ -1,0 +1,12 @@
+{%  extends 'base.html.twig' %}
+
+{% block body  %}
+
+    <ul>
+        {% for BandeDessinee in BandeDessinees  %}
+            <li> {{ BandeDessinee.getTitre() }}</li>
+        {% endfor %}
+    </ul>
+    <img src="/img/image.jpg">
+
+{% endblock %}

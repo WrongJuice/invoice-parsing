@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
         // Crée 10 BD de type Comics
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('Bande Dessinée '.$i);
+            $BandeDessinee->setTitre('Comics '.$i);
             $BandeDessinee->setDescription('Description '.$i);
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
@@ -71,11 +71,11 @@ class AppFixtures extends Fixture
         // Crée 10 BD de type Manga
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('Bande Dessinée '.$i);
+            $BandeDessinee->setTitre('Manga '.$i);
             $BandeDessinee->setDescription('Description '.$i);
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
-            $BandeDessinee->setGenre('Manga');
+            $BandeDessinee->setGenre('Mangas');
             $BandeDessinee->setSousGenre('Divers');
             $manager->persist($BandeDessinee);
 
