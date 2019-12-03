@@ -24,13 +24,26 @@ class HomeController extends AbstractController{
 
 
     /**
-     * @Route("/listeBD/{genre}", name="listeBD")
+     * @Route("/listeBD/{genre}", name="listeBDGenre")
      */
 
-    public function listeBD($genre)
+    public function listeBDGenre($genre)
     {
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->findBy(array('Genre' => $genre));
+        return $this->render('pages/listeBD.html.twig', [
+            'BandeDessinees' => $BandeDessinees
+        ]);
+    }
+
+    /**
+     * @Route("/listeBD/{genre}/{sousGenre}", name="listeBDSousGenre")
+     */
+
+    public function listeBDSousGenre($genre, $sousGenre)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
+        $BandeDessinees = $repository->findBy(array('Genre' => $genre, 'SousGenre' => $sousGenre));
         return $this->render('pages/listeBD.html.twig', [
             'BandeDessinees' => $BandeDessinees
         ]);
