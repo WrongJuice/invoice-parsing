@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="/style.css">
         <title>{% block title %}Biblio{% endblock %}</title>
         {% block stylesheets %} {% endblock %}
     </head>
@@ -30,7 +31,7 @@
                         <a class="dropdown-item text-light" href="#">Divers</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-light" href="#">Les tendances </a>
-                        <a class="dropdown-item text-light" href="listeBD/BD">Voir tout </a>
+                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/BD">Voir tout </a>
                     </div>
                 </li>
 
@@ -49,7 +50,7 @@
                         <a class="dropdown-item text-light" href="#">Divers</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-light" href="#">Les tendances </a>
-                        <a class="dropdown-item text-light" href="listeBD/Mangas">Voir tout </a>
+                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Mangas">Voir tout </a>
                     </div>
                 </li>
 
@@ -68,7 +69,7 @@
                         <a class="dropdown-item text-light" href="#">Divers</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-light" href="#">Les tendances </a>
-                        <a class="dropdown-item text-light" href="listeBD/Comics">Voir tout </a>
+                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Comics">Voir tout </a>
                     </div>
                 </li>
 
@@ -76,7 +77,7 @@
             <button type="button" class="btn btn-light" style="margin-right: 30px;"> Ajouter votre BD</button>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Cherchez une BD" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Valider</button>
+                <button id="search-button" class="btn btn-outline-light my-2 my-sm-0" type="submit"> <img id="search-icon" src="/img/search.png"></button>
             </form>
         </div>
     </nav>
