@@ -3,13 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
         <title>{% block title %}Biblio{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %} {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Biblio</a>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #23374D;">
+        <a class="navbar-brand text-light" href="#">Biblio</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -17,47 +16,67 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Bandes dessinées
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Aventure</a>
-                        <a class="dropdown-item" href="#">Humour</a>
-                        <a class="dropdown-item" href="#">Héroïque fantaisie</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #23374D;">
+                        <a class="dropdown-item text-light" href="#" >Aventure</a>
+                        <a class="dropdown-item text-light" href="#">Humour</a>
+                        <a class="dropdown-item text-light" href="#">Super-Héros</a>
+                        <a class="dropdown-item text-light" href="#" >Policier</a>
+                        <a class="dropdown-item text-light" href="#">Science-Fiction</a>
+                        <a class="dropdown-item text-light" href="#">Historique</a>
+                        <a class="dropdown-item text-light" href="#" >Fantasy</a>
+                        <a class="dropdown-item text-light" href="#">Divers</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Les tendances !</a>
+                        <a class="dropdown-item text-light" href="#">Les tendances </a>
+                        <a class="dropdown-item text-light" href="#">Voir tout </a>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Mangas
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Les classiques</a>
-                        <a class="dropdown-item" href="#">Shôjo Romance</a>
-                        <a class="dropdown-item" href="#">Shônen Nekketsu</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #23374D;">
+                        <a class="dropdown-item text-light" href="#" >Aventure</a>
+                        <a class="dropdown-item text-light" href="#">Humour</a>
+                        <a class="dropdown-item text-light" href="#">Super-Héros</a>
+                        <a class="dropdown-item text-light" href="#" >Policier</a>
+                        <a class="dropdown-item text-light" href="#">Science-Fiction</a>
+                        <a class="dropdown-item text-light" href="#">Historique</a>
+                        <a class="dropdown-item text-light" href="#" >Fantasy</a>
+                        <a class="dropdown-item text-light" href="#">Divers</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Les tendances !</a>
+                        <a class="dropdown-item text-light" href="#">Les tendances </a>
+                        <a class="dropdown-item text-light" href="#">Voir tout </a>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Comics
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Super-héros</a>
-                        <a class="dropdown-item" href="#">Français</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #23374D;">
+                        <a class="dropdown-item text-light" href="#" >Aventure</a>
+                        <a class="dropdown-item text-light" href="#">Humour</a>
+                        <a class="dropdown-item text-light" href="#">Super-Héros</a>
+                        <a class="dropdown-item text-light" href="#" >Policier</a>
+                        <a class="dropdown-item text-light" href="#">Science-Fiction</a>
+                        <a class="dropdown-item text-light" href="#">Historique</a>
+                        <a class="dropdown-item text-light" href="#" >Fantasy</a>
+                        <a class="dropdown-item text-light" href="#">Divers</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Les tendances !</a>
+                        <a class="dropdown-item text-light" href="#">Les tendances </a>
+                        <a class="dropdown-item text-light" href="#">Voir tout </a>
                     </div>
                 </li>
 
             </ul>
+            <button type="button" class="btn btn-light" style="margin-right: 30px;"> Ajouter votre BD</button>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Cherchez une BD" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Valider</button>
             </form>
         </div>
     </nav>
