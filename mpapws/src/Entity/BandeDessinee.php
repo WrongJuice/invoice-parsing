@@ -53,6 +53,11 @@ class BandeDessinee
      */
     private $sesNotes;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $DateDeParution;
+
     public function __construct()
     {
         $this->sesCommentaires = new ArrayCollection();
@@ -182,6 +187,18 @@ class BandeDessinee
                 $sesNote->setSaBandeDessinee(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateDeParution(): ?\DateTimeInterface
+    {
+        return $this->DateDeParution;
+    }
+
+    public function setDateDeParution(\DateTimeInterface $DateDeParution): self
+    {
+        $this->DateDeParution = $DateDeParution;
 
         return $this;
     }
