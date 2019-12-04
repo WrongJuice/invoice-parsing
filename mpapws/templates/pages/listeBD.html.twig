@@ -1,12 +1,30 @@
 {%  extends 'base.html.twig' %}
 
 {% block body  %}
-
-    <ul>
-        {% for BandeDessinee in BandeDessinees  %}
-            <li> {{ BandeDessinee.getTitre() }}</li>
-        {% endfor %}
-    </ul>
-    <img src="/img/image.jpg">
+    <div class="d-flex card bg-light col-10">
+        <div class="card-header">Les événements</div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Date de publication</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for BandeDessinee in BandeDessinees  %}
+                    <tr>
+                        <th scope="row">{{ BandeDessinee.getTitre() }}</th>
+                        <td>{{ BandeDessinee.getAuteur() }}</td>
+                        <td>{{ BandeDessinee.getNote() }}</td>
+                        <td>{{ BandeDessinee.getAuteur() }}</td>
+                    </tr>
+                {%  endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 {% endblock %}
