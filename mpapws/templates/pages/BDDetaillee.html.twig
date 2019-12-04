@@ -1,27 +1,39 @@
 {%  extends 'base.html.twig' %}
 
 {% block body  %}
+    </br>
+    <div class="row justify-content-between align-items-center">
+        <div class="column">
+            <img src="/img/affiche_test.jpg" style="width: 200px;">
+            <p class="ml-5"> Note :  {{ Note }} / 5</p>
+        </div>
+        <div class="column mx-auto text-center">
+            <p> AUTEUR {{ BandeDessinee.getAuteur() }} • PARUTION {{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} • THEME {{ BandeDessinee.getGenre() }} {{ BandeDessinee.getSousGenre() }}</p>
+            <h1> {{ BandeDessinee.getTitre() }} </h1>
+            <p> Description : {{ BandeDessinee.getDescription() }} </p>
 
-    <h1> {{ BandeDessinee.getTitre() }} </h1>
-    <p> par {{ BandeDessinee.getAuteur() }} </p>
-    <p> Description : {{ BandeDessinee.getDescription() }} </p>
-    <p> Date de parution :  {{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} </p>
-    <p> Note :  {{ Note }} </p>
+        </div>
+        <div class="column">
+            <button type="button" class="btn button-download"> Ouvrir la BD</button>
+        </div>
+    </div>
 
 
 
     </br> </br>
     <section class="comments">
+        <h4> Commentaires : </h4>
+        </br>
         {% for Commentaire in Commentaires  %}
         <article class="comment">
             <a class="comment-img" href="#non">
                 <img src="https://pbs.twimg.com/profile_images/444197466133385216/UA08zh-B.jpeg" alt="" width="50" height="50">
             </a>
             <div class="comment-body">
-                <div class="text">
+                <div class="text comment-border">
                     <p class="comment-content"> {{ Commentaire.getContenu() }} </p>
                 </div>
-                <p class="attribution">par {{ Commentaire.getAuteur() }}</p>
+                <p class="attribution">par {{ Commentaire.getAuteur() }} le {{ Commentaire.getDate() |date("d/m/Y")}} a {{ Commentaire.getDate() |date("H:i:s")}}</p>
             </div>
         </article>
         {% endfor %}

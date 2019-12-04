@@ -28,6 +28,7 @@ class AppFixtures extends Fixture
                   $commentaire= new Commentaire();
                   $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                   $commentaire->setContenu('Commentaire '.$i.$y);
+                  $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
                   $commentaire->setSaBandeDessinee($BandeDessinee);
                   $manager->persist($commentaire);
               }
@@ -58,6 +59,7 @@ class AppFixtures extends Fixture
                 $commentaire= new Commentaire();
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
+                $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
                 $commentaire->setSaBandeDessinee($BandeDessinee);
                 $manager->persist($commentaire);
             }
@@ -88,6 +90,7 @@ class AppFixtures extends Fixture
                 $commentaire= new Commentaire();
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
+                $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
                 $commentaire->setSaBandeDessinee($BandeDessinee);
                 $manager->persist($commentaire);
             }

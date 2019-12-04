@@ -1,4 +1,4 @@
-/* HEADER */
+/* --------------------- HEADER  ----------------------*/
 
 
 #search-button:hover #search-icon {
@@ -15,7 +15,32 @@
     transition: 0.3s;
 }
 
+/* ----------------------------------------------------------*/
+
+
+
+/* --------------------- PAGE D'UNE BD ----------------------*/
+
+/* Bouton download */
+.button-download {
+    background-color: #1089FF;
+    color: white;
+    transition: 0.5s;
+}
+
+.button-download:hover {
+    background-color: white;
+    color: #1089FF;
+    border : solid 1px #1089FF;
+    transition: 0.5s;
+}
+
+
 /* Section commentaire */
+
+.comment-border:hover{
+    border: solid 1px #1089FF;
+}
 
 .comment-content{
     margin: 0 0 1em;
@@ -48,6 +73,13 @@
     border: 1px solid #e5e5e5;
     border-radius: 5px;
     background: #fff;
+    transition: 0.3s;
+}
+
+.comment-border:hover{
+    border: solid 1px #1089FF;
+    border-radius: 5px;
+    transition: 0.3s;
 }
 
 
@@ -67,7 +99,6 @@
 .comments:before,
 .comment:before,
 .comment .text:before {
-    content: "";
     position: absolute;
     top: 0;
     left: 65px;
@@ -108,3 +139,5 @@
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
 }​
+
+/* ----------------------------------------------------------*/
