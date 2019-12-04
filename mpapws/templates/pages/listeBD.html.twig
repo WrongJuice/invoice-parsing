@@ -4,7 +4,7 @@
 
     <ul>
         {% for BandeDessinee in BandeDessinees  %}
-            <li> {{ BandeDessinee.getTitre() }}</li>
+            <li> <a href="http://mpapws.loc:9999/BD/{{ BandeDessinee.getId() }}"> {{ BandeDessinee.getTitre() }} </a></li>
         {% endfor %}
     </ul>
     <img src="/img/image.jpg">

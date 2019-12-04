@@ -1,0 +1,21 @@
+{%  extends 'base.html.twig' %}
+
+{% block body  %}
+
+    <h1> {{ BandeDessinee.getTitre() }} </h1>
+    <p> par {{ BandeDessinee.getAuteur() }} </p>
+    <p> Description : {{ BandeDessinee.getDescription() }} </p>
+    <p> Date de parution :  {{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} </p>
+    <p> Note :  {{ Note }} </p>
+    <ul>
+        {% for Commentaire in Commentaires  %}
+            <li> {{ Commentaire.getAuteur() }} : {{ Commentaire.getContenu() }}</li>
+        {% endfor %}
+    </ul>
+    <ul>
+        {% for Note in Notes  %}
+            <li> {{ Note.getValeur() }} </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

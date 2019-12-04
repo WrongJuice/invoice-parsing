@@ -33,11 +33,13 @@ class AppFixtures extends Fixture
               }
 
               // Crée 4 notes pour la BD et les lie
-            for($y = 0; $y < 4; $y++)
-              $note = new Notes();
-              $note->setValeur($y);
-              $note->setSaBandeDessinee($BandeDessinee);
-              $manager->persist($note);
+            for($y = 0; $y < 4; $y++){
+                $note = new Notes();
+                $note->setValeur($y);
+                $note->setSaBandeDessinee($BandeDessinee);
+                $manager->persist($note);
+            }
+
         }
 
         // Crée 10 BD de type Comics
@@ -61,11 +63,13 @@ class AppFixtures extends Fixture
             }
 
             // Crée 4 notes pour la BD et les lie
-            for($y = 0; $y < 4; $y++)
+            for($y = 0; $y < 4; $y++) {
                 $note = new Notes();
-            $note->setValeur($y);
-            $note->setSaBandeDessinee($BandeDessinee);
-            $manager->persist($note);
+                $note->setValeur($y);
+                $note->setSaBandeDessinee($BandeDessinee);
+                $manager->persist($note);
+            }
+
         }
 
         // Crée 10 BD de type Manga
@@ -89,11 +93,13 @@ class AppFixtures extends Fixture
             }
 
             // Crée 4 notes pour la BD et les lie
-            for($y = 0; $y < 4; $y++)
+            for($y = 0; $y < 4; $y++) {
                 $note = new Notes();
-            $note->setValeur($y);
-            $note->setSaBandeDessinee($BandeDessinee);
-            $manager->persist($note);
+                $note->setValeur($y);
+                $note->setSaBandeDessinee($BandeDessinee);
+                $manager->persist($note);
+            }
+
         }
 
         $manager->flush();
