@@ -7,10 +7,23 @@
     <p> Description : {{ BandeDessinee.getDescription() }} </p>
     <p> Date de parution :  {{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} </p>
     <p> Note :  {{ Note }} </p>
-    <ul>
+
+
+
+    </br> </br>
+    <section class="comments">
         {% for Commentaire in Commentaires  %}
-            <li> {{ Commentaire.getAuteur() }} : {{ Commentaire.getContenu() }}</li>
+        <article class="comment">
+            <a class="comment-img" href="#non">
+                <img src="https://pbs.twimg.com/profile_images/444197466133385216/UA08zh-B.jpeg" alt="" width="50" height="50">
+            </a>
+            <div class="comment-body">
+                <div class="text">
+                    <p class="comment-content"> {{ Commentaire.getContenu() }} </p>
+                </div>
+                <p class="attribution">par {{ Commentaire.getAuteur() }}</p>
+            </div>
+        </article>
         {% endfor %}
-    </ul>
 
 {% endblock %}
