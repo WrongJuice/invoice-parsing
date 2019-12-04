@@ -12,10 +12,5 @@
             <li> {{ Commentaire.getAuteur() }} : {{ Commentaire.getContenu() }}</li>
         {% endfor %}
     </ul>
-    <ul>
-        {% for Note in Notes  %}
-            <li> {{ Note.getValeur() }} </li>
-        {% endfor %}
-    </ul>
 
 {% endblock %}
