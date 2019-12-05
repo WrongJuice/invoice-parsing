@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\QueryBuilder;
 
 class HomeController extends AbstractController{
 
@@ -16,9 +17,42 @@ class HomeController extends AbstractController{
 
     }
 
+
     public function index():Response{
 
-        return new Response($this->twig->render('pages/home.html.twig'));
+        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
+
+        $now = new \DateTime();
+
+        $BDTendances = $repository->getBDRecentes('BD');
+
+        $BDTendances2 = [];
+
+        foreach ($BDTendances as $BDTendance)
+        {
+            $NoteMoyenne = 0;
+            $i = 0;
+            $Notes = $BDTendance->getSesNotes();
+            foreach($Notes as $Note)
+            {
+                $NoteMoyenne += $Note->getValeur();
+                $i++;
+            }
+            $NoteMoyenne = $NoteMoyenne / $i;
+            if($NoteMoyenne >= 4)
+            {
+                array_push($BDTendances2, $BDTendance);
+            }
+
+        }
+
+        $MangasTendances = $repository->getBDRecentes('Mangas');
+        $ComicsTendances = $repository->getBDRecentes('Comics');
+
+        return $this->render('pages/home.html.twig', [
+            'BDTendances' => $BDTendances2, 'MangasTendances' => $MangasTendances, 'ComicsTendances' => $ComicsTendances
+        ]);
+
 
     }
 
