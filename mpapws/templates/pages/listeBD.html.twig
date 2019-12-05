@@ -1,11 +1,17 @@
 {%  extends 'base.html.twig' %}
 
 {% block body  %}
+    <br/> <br/>
 
     <ul>
         {% for BandeDessinee in BandeDessinees  %}
             <li> <a href="http://mpapws.loc:9999/BD/{{ BandeDessinee.getId() }}"> {{ BandeDessinee.getTitre() }} </a></li>
         {% endfor %}
+
+        {% if BandeDessinees == NULL %}
+
+            <p> y'a r</p>
+        {% endif %}
     </ul>
 
 {% endblock %}

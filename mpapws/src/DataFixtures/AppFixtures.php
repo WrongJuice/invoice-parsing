@@ -16,7 +16,8 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
             $BandeDessinee->setTitre('Bande Dessinée '.$i);
-            $BandeDessinee->setDescription('Description '.$i);
+            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $BandeDessinee->setGenre('BD');
@@ -47,7 +48,8 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
             $BandeDessinee->setTitre('Comics '.$i);
-            $BandeDessinee->setDescription('Description '.$i);
+            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire !'.$i);
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $BandeDessinee->setGenre('Comics');
@@ -78,7 +80,8 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
             $BandeDessinee->setTitre('Manga '.$i);
-            $BandeDessinee->setDescription('Description '.$i);
+            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $BandeDessinee->setGenre('Mangas');
