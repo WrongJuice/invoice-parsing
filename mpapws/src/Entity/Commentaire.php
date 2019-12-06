@@ -32,6 +32,11 @@ class Commentaire
      */
     private $saBandeDessinee;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $Date;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Commentaire
     public function setSaBandeDessinee(?BandeDessinee $saBandeDessinee): self
     {
         $this->saBandeDessinee = $saBandeDessinee;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->Date;
+    }
+
+    public function setDate(\DateTimeInterface $Date): self
+    {
+        $this->Date = $Date;
 
         return $this;
     }

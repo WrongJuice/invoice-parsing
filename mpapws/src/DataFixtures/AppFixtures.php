@@ -16,7 +16,8 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
             $BandeDessinee->setTitre('Bande Dessinée '.$i);
-            $BandeDessinee->setDescription('Description '.$i);
+            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $BandeDessinee->setGenre('BD');
@@ -28,23 +29,27 @@ class AppFixtures extends Fixture
                   $commentaire= new Commentaire();
                   $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                   $commentaire->setContenu('Commentaire '.$i.$y);
+                  $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
                   $commentaire->setSaBandeDessinee($BandeDessinee);
                   $manager->persist($commentaire);
               }
 
               // Crée 4 notes pour la BD et les lie
-            for($y = 0; $y < 4; $y++)
-              $note = new Notes();
-              $note->setValeur($y);
-              $note->setSaBandeDessinee($BandeDessinee);
-              $manager->persist($note);
+            for($y = 0; $y < 4; $y++){
+                $note = new Notes();
+                $note->setValeur($y);
+                $note->setSaBandeDessinee($BandeDessinee);
+                $manager->persist($note);
+            }
+
         }
 
         // Crée 10 BD de type Comics
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
             $BandeDessinee->setTitre('Comics '.$i);
-            $BandeDessinee->setDescription('Description '.$i);
+            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire !'.$i);
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $BandeDessinee->setGenre('Comics');
@@ -56,23 +61,27 @@ class AppFixtures extends Fixture
                 $commentaire= new Commentaire();
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
+                $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
                 $commentaire->setSaBandeDessinee($BandeDessinee);
                 $manager->persist($commentaire);
             }
 
             // Crée 4 notes pour la BD et les lie
-            for($y = 0; $y < 4; $y++)
+            for($y = 0; $y < 4; $y++) {
                 $note = new Notes();
-            $note->setValeur($y);
-            $note->setSaBandeDessinee($BandeDessinee);
-            $manager->persist($note);
+                $note->setValeur($y);
+                $note->setSaBandeDessinee($BandeDessinee);
+                $manager->persist($note);
+            }
+
         }
 
         // Crée 10 BD de type Manga
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
             $BandeDessinee->setTitre('Manga '.$i);
-            $BandeDessinee->setDescription('Description '.$i);
+            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $BandeDessinee->setGenre('Mangas');
@@ -84,16 +93,19 @@ class AppFixtures extends Fixture
                 $commentaire= new Commentaire();
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
+                $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
                 $commentaire->setSaBandeDessinee($BandeDessinee);
                 $manager->persist($commentaire);
             }
 
             // Crée 4 notes pour la BD et les lie
-            for($y = 0; $y < 4; $y++)
+            for($y = 0; $y < 4; $y++) {
                 $note = new Notes();
-            $note->setValeur($y);
-            $note->setSaBandeDessinee($BandeDessinee);
-            $manager->persist($note);
+                $note->setValeur($y);
+                $note->setSaBandeDessinee($BandeDessinee);
+                $manager->persist($note);
+            }
+
         }
 
         $manager->flush();
