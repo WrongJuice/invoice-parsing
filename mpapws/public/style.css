@@ -28,6 +28,19 @@
 
 /*----------------------- LISTE DES BD ----------------------*/
 
+.BDlist-link{
+    text-decoration: none;
+    transition: 0.3s;
+    color : #23374D;
+}
+
+.BDlist-link:hover{
+    color: blue;
+    text-decoration: none;
+    transition: 0.3s;
+    color : #1089FF;
+}
+
 
 /* ---- Aucun Résultat ---- */
 

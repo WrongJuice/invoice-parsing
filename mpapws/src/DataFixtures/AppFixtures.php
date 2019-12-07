@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
             $BandeDessinee->setAuteur('Auteur '.$i);
             $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $BandeDessinee->setGenre('Comics');
-            $BandeDessinee->setSousGenre('Heros');
+            $BandeDessinee->setSousGenre('Super-Heros');
             $manager->persist($BandeDessinee);
 
             // Crée 4 commentaires pour la BD et les lie
@@ -131,7 +131,7 @@ class AppFixtures extends Fixture
             }
 
             // Crée 4 notes pour la BD et les lie
-            for($y = 0; $y < 4; $y++) {
+            for($y = 0; $y < 15; $y++) {
                 $note = new Notes();
                 $note->setValeur(5);
                 $note->setSaBandeDessinee($BandeDessinee);
@@ -162,8 +162,8 @@ class AppFixtures extends Fixture
                 $manager->persist($commentaire);
             }
 
-            // Crée 4 notes pour la BD et les lie
-            for($y = 0; $y < 4; $y++) {
+            // Crée 15 notes pour la BD et les lie
+            for($y = 0; $y < 15; $y++) {
                 $note = new Notes();
                 $note->setValeur(5);
                 $note->setSaBandeDessinee($BandeDessinee);

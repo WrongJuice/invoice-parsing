@@ -3,12 +3,21 @@
 {% block body  %}
     <br/> <br/>
 
-    <ul>
+    <ul class="list-unstyled">
         {% for BandeDessinee in BandeDessinees  %}
-            <li> <a href="http://mpapws.loc:9999/BD/{{ BandeDessinee.getId() }}"> {{ BandeDessinee.getTitre() }} </a></li>
+            <li class="media my-4">
+                <a href="/BD/{{ BandeDessinee.getId() }}"> <img src="/img/affiche_test.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                <div class="media-body">
+                    <a href="/BD/{{ BandeDessinee.getId() }}" class="BDlist-link"><h5 class="mt-0 mb-1">{{ BandeDessinee.getTitre() }}</h5></a>
+                    <p class="font-weight-bold">{{ BandeDessinee.getDateDeParution()|date("m/d/Y") }}</p>
+                    <p>{{ BandeDessinee.getDescription() }}</p>
+                </div>
+            </li>
         {% endfor %}
+    </ul>
 
-        {% if BandeDessinees == NULL %}
+
+    {% if BandeDessinees == NULL %}
             <div class="row justify-content-between align-items-center" style="width: 600px;">
                 <img src="/img/noresult.png" style="width: 200px;">
                 <div class=column">
@@ -19,6 +28,6 @@
             <br/>
             <button type="button" class="btn button-download" onclick="window.location.href='http://mpapws.loc:9999/'"> Retour à la page d'accueil</button>
         {% endif %}
-    </ul>
+
 
 {% endblock %}
