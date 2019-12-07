@@ -1,17 +1,24 @@
 {%  extends 'base.html.twig' %}
 
 {% block body  %}
-    <br/> <br/>
 
-    <ul>
+    <ul class="list-unstyled">
         {% for BandeDessinee in BandeDessinees  %}
-            <li> <a href="http://mpapws.loc:9999/BD/{{ BandeDessinee.getId() }}"> {{ BandeDessinee.getTitre() }} </a></li>
+        <li class="media my-4">
+            <img src="/img/affiche_test.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg">
+            <div class="media-body">
+                <a href="/BD/{{ BandeDessinee.getId() }}"><h5 class="mt-0 mb-1">{{ BandeDessinee.getTitre() }}</h5></a>
+                <p class="font-weight-bold">{{ BandeDessinee.getDateDeParution()|date("m/d/Y") }}</p>
+                <p>{{ BandeDessinee.getDescription() }}</p>
+            </div>
+        </li>
         {% endfor %}
-
-        {% if BandeDessinees == NULL %}
-
-            <p> y'a r</p>
-        {% endif %}
     </ul>
+
+    {% if BandeDessinees == NULL %}
+        <div class="alert alert-danger mt-5" role="alert">
+            Aucun résultat n'a été trouvé. Vous pouvez <a href="/" class="alert-link">revenir à l'accueil</a>.
+        </div>
+    {% endif %}
 
 {% endblock %}
