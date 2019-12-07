@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\QueryBuilder;
 
 class HomeController extends AbstractController{
 
@@ -16,10 +17,52 @@ class HomeController extends AbstractController{
 
     }
 
+
     public function index():Response{
 
-        return new Response($this->twig->render('pages/home.html.twig'));
+        /* Une fois les BD récentes récupérées, Trie parmi ces BD les notes moyennes > 4 */
 
+        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
+
+        $BDRecentes = $repository->getBDRecentes('BD');
+        $BDTendances = [];
+        foreach ($BDRecentes as $BDRecente)
+        {
+            $Notes = $BDRecente->getSesNotes();
+            list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
+            if($NoteMoyenne >= 4 && $nbNotes > 10)
+            {
+                array_push($BDTendances,$BDRecente);
+            }
+        }
+
+        $MangasRecents = $repository->getBDRecentes('Mangas');
+        $MangasTendances = [];
+        foreach ($MangasRecents as $MangaRecent)
+        {
+            $Notes = $MangaRecent->getSesNotes();
+            list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
+            if($NoteMoyenne >= 4 && $nbNotes > 10)
+            {
+                array_push($MangasTendances, $MangaRecent);
+            }
+        }
+
+        $ComicsRecents = $repository->getBDRecentes('Comics');
+        $ComicsTendances = [];
+        foreach ($ComicsRecents as $ComicRecent)
+        {
+            $Notes = $ComicRecent->getSesNotes();
+            list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
+            if($NoteMoyenne >= 4 && $nbNotes > 10)
+            {
+                array_push($ComicsTendances, $ComicRecent);
+            }
+        }
+
+        return $this->render('pages/home.html.twig', [
+            'BDTendances' => $BDTendances, 'MangasTendances' => $MangasTendances, 'ComicsTendances' => $ComicsTendances
+        ]);
     }
 
 
@@ -60,16 +103,29 @@ class HomeController extends AbstractController{
         $Commentaires = $BandeDessinee->getSesCommentaires();
         $Notes = $BandeDessinee->getSesNotes();
 
+        list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
+
+        return $this->render('pages/BDDetaillee.html.twig', [
+            'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'Note' => $NoteMoyenne
+        ]);
+    }
+
+    public function getNoteMoyenne($Notes){
+
+        /* Fonction qui récupère une note moyenne à partir d'une liste de notes */
+
         $NoteMoyenne = 0;
         $i = 0;
-        foreach ($Notes as $Note)
+
+        foreach($Notes as $Note)
         {
             $NoteMoyenne += $Note->getValeur();
             $i++;
         }
         $NoteMoyenne = $NoteMoyenne / $i;
-        return $this->render('pages/BDDetaillee.html.twig', [
-            'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'Note' => $NoteMoyenne, 'Notes' => $Notes
-        ]);
+
+        return array($NoteMoyenne, $i);
     }
+
 }
+

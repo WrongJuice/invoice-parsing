@@ -26,6 +26,46 @@
 /* ----------------------------------------------------------*/
 
 
+/*----------------------- LISTE DES BD ----------------------*/
+
+.BDlist-link{
+    text-decoration: none;
+    transition: 0.3s;
+    color : #23374D;
+}
+
+.BDlist-link:hover{
+    color: blue;
+    text-decoration: none;
+    transition: 0.3s;
+    color : #1089FF;
+}
+
+
+/* ---- Aucun Résultat ---- */
+
+.noresult-title{
+    font-family: 'Acme', sans-serif;
+    color : #1089FF;
+}
+
+.noresult-home{
+    text-decoration: none;
+    font-style: normal;
+    color: black;
+    transition: 0.2s;
+}
+
+.return-home:hover{
+    color : #1089FF;
+    transition: 0.2s;
+}
+
+
+/*------------------------------------------------------------*/
+
+
+
 
 /* --------------------- PAGE D'UNE BD ----------------------*/
 
