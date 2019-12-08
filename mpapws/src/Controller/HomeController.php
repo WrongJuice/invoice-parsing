@@ -26,37 +26,43 @@ class HomeController extends AbstractController{
 
         $BDRecentes = $repository->getBDRecentes('BD');
         $BDTendances = [];
+        $i = 0;
         foreach ($BDRecentes as $BDRecente)
         {
             $Notes = $BDRecente->getSesNotes();
             list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
-            if($NoteMoyenne >= 4 && $nbNotes > 10)
+            if($NoteMoyenne >= 4 && $nbNotes > 10 && $i < 5)
             {
                 array_push($BDTendances,$BDRecente);
+                $i = $i + 1;
             }
         }
 
         $MangasRecents = $repository->getBDRecentes('Mangas');
         $MangasTendances = [];
+        $i = 0;
         foreach ($MangasRecents as $MangaRecent)
         {
             $Notes = $MangaRecent->getSesNotes();
             list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
-            if($NoteMoyenne >= 4 && $nbNotes > 10)
+            if($NoteMoyenne >= 4 && $nbNotes > 10 && $i < 5)
             {
                 array_push($MangasTendances, $MangaRecent);
+                $i = $i + 1;
             }
         }
 
         $ComicsRecents = $repository->getBDRecentes('Comics');
         $ComicsTendances = [];
+        $i = 0;
         foreach ($ComicsRecents as $ComicRecent)
         {
             $Notes = $ComicRecent->getSesNotes();
             list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
-            if($NoteMoyenne >= 4 && $nbNotes > 10)
+            if($NoteMoyenne >= 4 && $nbNotes > 10 && $i < 5)
             {
                 array_push($ComicsTendances, $ComicRecent);
+                $i = $i + 1;
             }
         }
 
@@ -80,6 +86,31 @@ class HomeController extends AbstractController{
     }
 
     /**
+     * @Route("/listeBD/{genre}/Tendances", name="listeBDTendances")
+     */
+
+    public function listeBDTendances($genre)
+    {
+        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
+
+        $BDRecentes = $repository->getBDRecentes($genre);
+        $BDTendances = [];
+        foreach ($BDRecentes as $BDRecente)
+        {
+            $Notes = $BDRecente->getSesNotes();
+            list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
+            if($NoteMoyenne >= 4 && $nbNotes > 10)
+            {
+                array_push($BDTendances,$BDRecente);
+            }
+        }
+
+        return $this->render('pages/listeBDTendances.html.twig', [
+            'BDTendances' => $BDTendances
+        ]);
+    }
+
+    /**
      * @Route("/listeBD/{genre}/{sousGenre}", name="listeBDSousGenre")
      */
 
@@ -91,6 +122,9 @@ class HomeController extends AbstractController{
             'BandeDessinees' => $BandeDessinees
         ]);
     }
+
+
+
 
     /**
      * @Route("/BD/{id}/", name="BDDetaillee")

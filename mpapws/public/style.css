@@ -26,6 +26,47 @@
 /* ----------------------------------------------------------*/
 
 
+
+
+
+/*------------------------HOME BD TENDANCES -------------------*/
+
+.home-title{
+    margin: 20px;
+}
+
+
+.tendance-zone{
+    margin: 20px;
+}
+
+
+.bdtendance-title{
+    width: 150px;
+    font-weight: bold;
+}
+
+.bdtendance-title-link{
+    text-decoration: none;
+    color: black;
+    transition: 0.2s;
+}
+
+.bdtendance-title-link:hover{
+    text-decoration: none;
+    color : #1089FF;
+    transition: 0.2s;
+}
+
+.bdtendance-author{
+    margin-top: -20px;
+}
+/* ----------------------------------------------------------*/
+
+
+
+
+
 /*----------------------- LISTE DES BD ----------------------*/
 
 .BDlist-link{
@@ -35,7 +76,6 @@
 }
 
 .BDlist-link:hover{
-    color: blue;
     text-decoration: none;
     transition: 0.3s;
     color : #1089FF;

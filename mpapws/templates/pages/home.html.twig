@@ -2,45 +2,41 @@
 
 {% block body  %}
 
-    <div class="card mx-auto" style="margin-top: 20px;">
-        <div class="card-header">
-            BD Tendances
-        </div>
 
-        <ul class="list-group list-group-horizontal-lg d-flex justify-content-around">
+
+
+        <h2 class="home-title"> Tendances</h2>
+
+        <div class="row justify-content-between tendance-zone">
             {% for  BDTendance in BDTendances%}
-            <li class="list-group-item d-flex justify-content-between align-items-center" style="margin: 5px;">
-                {{ BDTendance.getTitre() }}
-            </li>
+                <div class="column align-items-center">
+                     <a href="/BD/{{ BDTendance.getId() }}"> <img src="/img/affiche_testBD.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                    <a href="/BD/{{ BDTendance.getId() }}" class="bdtendance-title-link"> <p class="bdtendance-title"> {{ BDTendance.getTitre() }}</p> </a>
+                     <p class="bdtendance-author"> par {{ BDTendance.getAuteur() }}</p>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
+
+    <div class="row justify-content-between tendance-zone">
+        {% for  MangaTendance in MangasTendances%}
+            <div class="column align-items-center">
+                <a href="/BD/{{ MangaTendance.getId() }}"> <img src="/img/affiche_test.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                <a href="/BD/{{ MangaTendance.getId() }}" class="bdtendance-title-link"> <p class="bdtendance-title"> {{ MangaTendance.getTitre() }}</p> </a>
+                <p class="bdtendance-author"> par {{ MangaTendance.getAuteur() }}</p>
+            </div>
+        {% endfor %}
     </div>
 
-    <div class="card mx-auto" style="margin-top: 20px;">
-        <div class="card-header">
-            Comics Tendances
-        </div>
-        <ul class="list-group list-group-horizontal-lg d-flex justify-content-around">
-            {% for ComicTendance in ComicsTendances%}
-                <li class="list-group-item d-flex justify-content-between align-items-center" style="margin: 5px;">
-                    {{ ComicTendance.getTitre() }}
-                </li>
-            {% endfor %}
-        </ul>
+    <div class="row justify-content-between tendance-zone">
+        {% for  ComicTendance in ComicsTendances%}
+            <div class="column align-items-center">
+                <a href="/BD/{{ ComicTendance.getId() }}"> <img src="/img/affiche_testComics.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                <a href="/BD/{{ ComicTendance.getId() }}" class="bdtendance-title-link">  <p class="bdtendance-title"> {{ ComicTendance.getTitre() }} </p> </a>
+                <p class="bdtendance-author"> par {{ ComicTendance.getAuteur() }}</p>
+            </div>
+        {% endfor %}
     </div>
 
-    <div class="card mx-auto" style="margin-top: 20px;">
-        <div class="card-header">
-            Mangas Tendances
-        </div>
-        <ul class="list-group list-group-horizontal-lg d-flex justify-content-around">
-            {% for MangaTendance in MangasTendances%}
-                <li class="list-group-item d-flex justify-content-between align-items-center" style="margin: 5px;">
-                    {{ MangaTendance.getTitre() }}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
 
 
 {% endblock %}
