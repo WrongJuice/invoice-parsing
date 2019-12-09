@@ -6,7 +6,7 @@
         {% for BandeDessinee in BandeDessinees  %}
 
             <li class="media my-4">
-                <a href="/BD/{{ BandeDessinee.getId() }}"> <img src="/img/affiche_test.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                <a href="/BD/{{ BandeDessinee.getId() }}"> <img src="{{ BandeDessinee.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                 <div class="media-body">
                     <a href="/BD/{{ BandeDessinee.getId() }}" class="BDlist-link"><h5 class="mt-0 mb-1">{{ BandeDessinee.getTitre() }}</h5></a>
                     <p class="font-weight-bold">{{ BandeDessinee.getDateDeParution()|date("m/d/Y") }}</p>

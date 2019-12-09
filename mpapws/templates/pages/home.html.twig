@@ -10,7 +10,7 @@
         <div class="row justify-content-between tendance-zone">
             {% for  BDTendance in BDTendances%}
                 <div class="column align-items-center">
-                     <a href="/BD/{{ BDTendance.getId() }}"> <img src="/img/affiche_testBD.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                     <a href="/BD/{{ BDTendance.getId() }}"> <img src="{{ BDTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                     <a href="/BD/{{ BDTendance.getId() }}" class="bdtendance-title-link"> <p class="bdtendance-title"> {{ BDTendance.getTitre() }}</p> </a>
                      <p class="bdtendance-author"> par {{ BDTendance.getAuteur() }}</p>
                 </div>
@@ -20,7 +20,7 @@
     <div class="row justify-content-between tendance-zone">
         {% for  MangaTendance in MangasTendances%}
             <div class="column align-items-center">
-                <a href="/BD/{{ MangaTendance.getId() }}"> <img src="/img/affiche_test.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                <a href="/BD/{{ MangaTendance.getId() }}"> <img src="{{ MangaTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                 <a href="/BD/{{ MangaTendance.getId() }}" class="bdtendance-title-link"> <p class="bdtendance-title"> {{ MangaTendance.getTitre() }}</p> </a>
                 <p class="bdtendance-author"> par {{ MangaTendance.getAuteur() }}</p>
             </div>
@@ -30,7 +30,7 @@
     <div class="row justify-content-between tendance-zone">
         {% for  ComicTendance in ComicsTendances%}
             <div class="column align-items-center">
-                <a href="/BD/{{ ComicTendance.getId() }}"> <img src="/img/affiche_testComics.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                <a href="/BD/{{ ComicTendance.getId() }}"> <img src="{{ ComicTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                 <a href="/BD/{{ ComicTendance.getId() }}" class="bdtendance-title-link">  <p class="bdtendance-title"> {{ ComicTendance.getTitre() }} </p> </a>
                 <p class="bdtendance-author"> par {{ ComicTendance.getAuteur() }}</p>
             </div>

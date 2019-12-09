@@ -58,6 +58,41 @@ class BandeDessinee
      */
     private $DateDeParution;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $LivrePDF;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Planche1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Planche2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Planche3;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Planche4;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Planche5;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Affiche;
+
     public function __construct()
     {
         $this->sesCommentaires = new ArrayCollection();
@@ -199,6 +234,90 @@ class BandeDessinee
     public function setDateDeParution(\DateTimeInterface $DateDeParution): self
     {
         $this->DateDeParution = $DateDeParution;
+
+        return $this;
+    }
+
+    public function getLivrePDF(): ?string
+    {
+        return $this->LivrePDF;
+    }
+
+    public function setLivrePDF(string $LivrePDF): self
+    {
+        $this->LivrePDF = $LivrePDF;
+
+        return $this;
+    }
+
+    public function getPlanche1(): ?string
+    {
+        return $this->Planche1;
+    }
+
+    public function setPlanche1(?string $Planche1): self
+    {
+        $this->Planche1 = $Planche1;
+
+        return $this;
+    }
+
+    public function getPlanche2(): ?string
+    {
+        return $this->Planche2;
+    }
+
+    public function setPlanche2(?string $Planche2): self
+    {
+        $this->Planche2 = $Planche2;
+
+        return $this;
+    }
+
+    public function getPlanche3(): ?string
+    {
+        return $this->Planche3;
+    }
+
+    public function setPlanche3(?string $Planche3): self
+    {
+        $this->Planche3 = $Planche3;
+
+        return $this;
+    }
+
+    public function getPlanche4(): ?string
+    {
+        return $this->Planche4;
+    }
+
+    public function setPlanche4(?string $Planche4): self
+    {
+        $this->Planche4 = $Planche4;
+
+        return $this;
+    }
+
+    public function getPlanche5(): ?string
+    {
+        return $this->Planche5;
+    }
+
+    public function setPlanche5(?string $Planche5): self
+    {
+        $this->Planche5 = $Planche5;
+
+        return $this;
+    }
+
+    public function getAffiche(): ?string
+    {
+        return $this->Affiche;
+    }
+
+    public function setAffiche(string $Affiche): self
+    {
+        $this->Affiche = $Affiche;
 
         return $this;
     }

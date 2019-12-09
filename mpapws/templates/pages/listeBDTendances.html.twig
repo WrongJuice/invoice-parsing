@@ -9,7 +9,7 @@
         <div class="row tendance-zone">
             {% for  BDTendance in BDTendances%}
                 <li class="media my-4">
-                    <a href="/BD/{{ BDTendance.getId() }}"> <img src="/img/affiche_test.jpg" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                    <a href="/BD/{{ BDTendance.getId() }}"> <img src="{{ BDTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                     <div class="media-body">
                         <a href="/BD/{{ BDTendance.getId() }}" class="BDlist-link"><h5 class="mt-0 mb-1">{{ BDTendance.getTitre() }}</h5></a>
                         <p class="font-weight-bold">{{ BDTendance.getDateDeParution()|date("m/d/Y") }}</p>

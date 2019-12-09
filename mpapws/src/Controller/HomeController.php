@@ -20,11 +20,14 @@ class HomeController extends AbstractController{
 
     public function index():Response{
 
-        /* Une fois les BD récentes récupérées, Trie parmi ces BD les notes moyennes > 4 */
+        /* Récupère les BD récentes grâce au Repository */
 
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
 
         $BDRecentes = $repository->getBDRecentes('BD');
+
+        /* Récupère seulement les BD qui ont plus de 4 en note avec au moins 10 notes */
+
         $BDTendances = [];
         $i = 0;
         foreach ($BDRecentes as $BDRecente)
@@ -78,6 +81,8 @@ class HomeController extends AbstractController{
 
     public function listeBDGenre($genre)
     {
+        /* Récupère la liste des BD selon un genre */
+        
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->findBy(array('Genre' => $genre));
         return $this->render('pages/listeBD.html.twig', [
@@ -91,6 +96,8 @@ class HomeController extends AbstractController{
 
     public function listeBDTendances($genre)
     {
+        /* Récupère la liste des BD tendances selon un genre */
+
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
 
         $BDRecentes = $repository->getBDRecentes($genre);
@@ -116,6 +123,8 @@ class HomeController extends AbstractController{
 
     public function listeBDSousGenre($genre, $sousGenre)
     {
+        /* Récupère la liste des BD selon un genre et un sous genre */
+
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->findBy(array('Genre' => $genre, 'SousGenre' => $sousGenre));
         return $this->render('pages/listeBD.html.twig', [
@@ -137,10 +146,34 @@ class HomeController extends AbstractController{
         $Commentaires = $BandeDessinee->getSesCommentaires();
         $Notes = $BandeDessinee->getSesNotes();
 
-        list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
+        $Planches = [];
+
+        /* Ajoute les planches seulement si elles existent */
+
+        if($BandeDessinee->getPlanche1()){
+            array_push($Planches, $BandeDessinee->getPlanche1());
+        }
+
+        if($BandeDessinee->getPlanche2()){
+            array_push($Planches, $BandeDessinee->getPlanche2());
+        }
+
+        if($BandeDessinee->getPlanche3()){
+            array_push($Planches, $BandeDessinee->getPlanche3());
+        }
+
+        if($BandeDessinee->getPlanche4()){
+            array_push($Planches, $BandeDessinee->getPlanche4());
+        }
+
+        if($BandeDessinee->getPlanche5()){
+            array_push($Planches, $BandeDessinee->getPlanche5());
+        }
+
+        list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes); /* Récupère la note moyenne d'une BD et son nombre de notes */
 
         return $this->render('pages/BDDetaillee.html.twig', [
-            'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'Note' => $NoteMoyenne
+            'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'Note' => $NoteMoyenne, 'Planches' => $Planches
         ]);
     }
 
