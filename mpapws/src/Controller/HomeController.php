@@ -85,8 +85,17 @@ class HomeController extends AbstractController{
         
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->findBy(array('Genre' => $genre));
+        $notesMoyennes = [];
+
+        foreach ($BandeDessinees as $bandeDessinee) {
+            $notes = $bandeDessinee->getSesNotes();
+            list($noteMoyenne, $nbNotes) = $this->getNoteMoyenne($notes);
+            array_push($notesMoyennes, $noteMoyenne);
+        }
+
         return $this->render('pages/listeBD.html.twig', [
-            'BandeDessinees' => $BandeDessinees
+            'BandeDessinees' => $BandeDessinees,
+            'NotesMoyennes' => $notesMoyennes
         ]);
     }
 
