@@ -84,9 +84,8 @@ class HomeController extends AbstractController{
 
         foreach ($BandeDessinees as $bandeDessinee) {
             $notes = $bandeDessinee->getSesNotes();
-            $noteMoyenne = $this->getNoteMoyenne($notes);
-            $notesMoyennes += [ $bandeDessinee.getId() => $noteMoyenne ];
-            //array_push($notesMoyennes, $noteMoyenne);
+            list($noteMoyenne, $nbNotes) = $this->getNoteMoyenne($notes);
+            array_push($notesMoyennes, $noteMoyenne);
         }
 
         return $this->render('pages/listeBD.html.twig', [
