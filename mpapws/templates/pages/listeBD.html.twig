@@ -2,6 +2,12 @@
 
 {% block body  %}
 
+    {% if BandeDessinees != NULL %}
+        <br/>
+        <h2 class="text-center liste-title"> Vous consultez la liste des {{ GenreConsulte }}</h2>
+        <br/>
+    {% endif %}
+
     <ul class="list-unstyled">
         {% set i = 0 %}
         {% for BandeDessinee in BandeDessinees  %}

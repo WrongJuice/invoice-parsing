@@ -1,27 +1,42 @@
 /* --------------------- HEADER  ----------------------*/
 
-.logo-biblio:hover{
+.header{ /* Fond du header */
+    background-color: #23374D;
+    transition: 0.4s;
+}
+
+.header:hover{ /* Fond du header lorsque l'on passe le curseur dessus */
+    background-color: #1089FF;
+    transition: 0.4s;
+}
+
+.header-sousmenu{ /* Fond du sous menu du header */
+    background-color: #1089FF;
+}
+
+.logo-biblio{ /* Logo du header */
+    transition: 0.3s;
+}
+
+.logo-biblio:hover{ /* Logo du header lorsque l'on passe le curseur dessus */
     opacity: 80%;
     transition: 0.3s;
 }
-
-.logo-biblio{
-    transition: 0.3s;
-}
-
-#search-button:hover #search-icon {
+#search-button:hover #search-icon { /* Loupe de recherche */
     filter: invert(100%); /* Rend la loupe noir au :hover du bouton */
 }
 
-    /* Transition sur les hover */
+    /* Transition sur les hover des sous genre */
+.dropdown-item{
+    transition: 0.3s;
+}
+
+
 .dropdown-item:hover{
     background-color: white;
     transition: 0.3s;
 }
 
-.dropdown-item{
-    transition: 0.3s;
-}
 
 /* ----------------------------------------------------------*/
 
@@ -31,36 +46,53 @@
 
 /*------------------------HOME BD TENDANCES -------------------*/
 
-.home-title{
+.home-title{ /* Titre de la page */
     margin: 20px;
 }
 
 
-.tendance-zone{
+.tendance-zone{ /* Zone des BD tendances */
     margin: 20px;
 }
 
 
-.bdtendance-title{
+.bdtendance-title{ /* Titre de chaque BD tendance */
     width: 150px;
     font-weight: bold;
 }
 
-.bdtendance-title-link{
+.bdtendance-title-link{ /* Lien de chaque BD tendance */
     text-decoration: none;
     color: black;
     transition: 0.2s;
 }
 
-.bdtendance-title-link:hover{
+.bdtendance-title-link:hover{ /* Lien de chaque BD tendance lorsque l'on passe le curseur dessus */
     text-decoration: none;
     color : #1089FF;
     transition: 0.2s;
 }
 
-.bdtendance-author{
+.bdtendance-author{ /* Nom de l'auteur de chaque BD tendance */
     margin-top: -20px;
 }
+
+
+.bdtendance-voirplus{ /* Bouton voir plus de chaque section de BD tendance */
+    background-color: white;
+    color: #1089FF;
+    border : solid 1px #1089FF;
+    margin-top: 80px;
+    transition: 0.5s;
+}
+
+.bdtendance-voirplus:hover { /* Bouton voir plus de chaque section de BD tendance lorsque l'on passe le curseur dessus */
+    background-color: #1089FF;
+    color: white;
+    transition: 0.5s;
+}
+
+
 /* ----------------------------------------------------------*/
 
 
@@ -69,34 +101,35 @@
 
 /*----------------------- LISTE DES BD ----------------------*/
 
-.BDlist-link{
+.BDlist-link{ /* Liens de chaque BD dans les listes */
     text-decoration: none;
     transition: 0.3s;
     color : #23374D;
 }
 
-.BDlist-link:hover{
+.BDlist-link:hover{ /* Liens de chaque BD dans les listes lorsque l'on passe le curseur dessus*/
     text-decoration: none;
     transition: 0.3s;
     color : #1089FF;
 }
 
 
+
 /* ---- Aucun Résultat ---- */
 
-.noresult-title{
+.noresult-title{ /* Titre de la section aucun résultat */
     font-family: 'Acme', sans-serif;
     color : #1089FF;
 }
 
-.noresult-home{
+.noresult-home{ /* Bouton de retour de la section aucun résultat */
     text-decoration: none;
     font-style: normal;
     color: black;
     transition: 0.2s;
 }
 
-.return-home:hover{
+.return-home:hover{ /* Bouton de retour de la section aucun résultat lorsque l'on passe le curseur dessus */
     color : #1089FF;
     transition: 0.2s;
 }
@@ -111,7 +144,11 @@
 
 /* Affichage des infos de la BD */
 
-.BD-Description{
+.BD-Description{ /* Description d'une BD */
+    width: 500px;
+}
+
+.BD-title{ /* Titre d'une BD */
     width: 500px;
 }
 
@@ -122,7 +159,7 @@
     transition: 0.5s;
 }
 
-.button-download:hover {
+.button-download:hover { /* Lorsque l'on passe le curseur dessus */
     background-color: white;
     color: #1089FF;
     border : solid 1px #1089FF;
@@ -130,47 +167,33 @@
 }
 /* Section planche */
 
-.div-planche{
+.div-planche{ /* Div contenant toutes les planches */
     border: none;
 }
 
-.planche-img{
+.planche-img{ /* Images individuelles sur chaque planche */
     width: 200px;
     transition: 0.3s;
 }
-.planche-img:hover{
+.planche-img:hover{ /* Zoom sur une image individuelle lorsque l'on passe le curseur dessus */
     width: 300px;
     transition: 0.3s;
 }
+
 /* Section commentaire */
 
-.comment-border:hover{
-    border: solid 1px #1089FF;
-}
-
-.comment-content{
+.comment-content{ /* Contenu des commentaires */
     margin: 0 0 1em;
 }
 
-.comment {
+.comment { /* Tout le commentaire */
     overflow: hidden;
     padding: 0 0 1em;
     margin: 0 0 1em;
     *zoom: 1;
 }
 
-.comment-img {
-    float: left;
-    margin-right: 33px;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.comment-img img {
-    display: block;
-}
-
-.comment-body {
+.comment-body { /* Corps du commentaire */
     overflow: hidden;
 }
 
@@ -182,7 +205,7 @@
     transition: 0.3s;
 }
 
-.comment-border:hover{
+.comment-border:hover{ /* Changement de couleur des bordures de commentaire lorsque l'on passe le curseur dessus */
     border: solid 1px #1089FF;
     border-radius: 5px;
     transition: 0.3s;

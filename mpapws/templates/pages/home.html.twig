@@ -15,6 +15,11 @@
                      <p class="bdtendance-author"> par {{ BDTendance.getAuteur() }}</p>
                 </div>
             {% endfor %}
+            {% if BDTendances != null %}
+                <div class="column text-right align-items-end justify-content-end">
+                    <button type="button" onclick="window.location.href='/listeBD/BD/Tendances'" class="btn btn-outline-primary bdtendance-voirplus">Voir plus</button>
+                </div>
+            {% endif %}
         </div>
 
     <div class="row justify-content-between tendance-zone">
@@ -25,6 +30,11 @@
                 <p class="bdtendance-author"> par {{ MangaTendance.getAuteur() }}</p>
             </div>
         {% endfor %}
+        {% if BDTendances != null %}
+            <div class="column text-right align-items-end justify-content-end">
+                <button type="button" onclick="window.location.href='/listeBD/Mangas/Tendances'" class="btn btn-outline-primary bdtendance-voirplus">Voir plus</button>
+            </div>
+        {% endif %}
     </div>
 
     <div class="row justify-content-between tendance-zone">
@@ -35,6 +45,11 @@
                 <p class="bdtendance-author"> par {{ ComicTendance.getAuteur() }}</p>
             </div>
         {% endfor %}
+        {% if BDTendances != null %}
+            <div class="column text-right align-items-end justify-content-end">
+                <button type="button" onclick="window.location.href='/listeBD/Comics/Tendances'" class="btn btn-outline-primary bdtendance-voirplus">Voir plus</button>
+            </div>
+        {% endif %}
     </div>
 
 

@@ -85,8 +85,9 @@ class HomeController extends AbstractController{
         
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->findBy(array('Genre' => $genre));
-        $notesMoyennes = [];
 
+        /* Récupère les notes moyennes des BD */
+        $notesMoyennes = [];
         foreach ($BandeDessinees as $bandeDessinee) {
             $notes = $bandeDessinee->getSesNotes();
             list($noteMoyenne, $nbNotes) = $this->getNoteMoyenne($notes);
@@ -95,7 +96,7 @@ class HomeController extends AbstractController{
 
         return $this->render('pages/listeBD.html.twig', [
             'BandeDessinees' => $BandeDessinees,
-            'NotesMoyennes' => $notesMoyennes
+            'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genre
         ]);
     }
 
@@ -109,9 +110,9 @@ class HomeController extends AbstractController{
 
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
 
-        $BDRecentes = $repository->getBDRecentes($genre);
+        $BDRecentes = $repository->getBDRecentes($genre); // Récupère les BD Récentes
         $BDTendances = [];
-        foreach ($BDRecentes as $BDRecente)
+        foreach ($BDRecentes as $BDRecente) // Récupère seulement les BD Récentes avec plus de 10 notes et une moyenne de note supérieure ou égale à 4
         {
             $Notes = $BDRecente->getSesNotes();
             list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes);
@@ -121,8 +122,20 @@ class HomeController extends AbstractController{
             }
         }
 
-        return $this->render('pages/listeBDTendances.html.twig', [
-            'BDTendances' => $BDTendances
+        /* Récupère la note moyenne des BD */
+        $notesMoyennes = [];
+        foreach ($BDTendances as $bandeDessinee) { // Récupère les notes moyennes de chaque BD
+            $notes = $bandeDessinee->getSesNotes();
+            list($noteMoyenne, $nbNotes) = $this->getNoteMoyenne($notes);
+            array_push($notesMoyennes, $noteMoyenne);
+        }
+
+        // Permet d'afficher le genre consulté
+        $genreConsulté = $genre;
+        $genreConsulté .= ' Tendances';
+
+        return $this->render('pages/listeBD.html.twig', [
+            'BandeDessinees' => $BDTendances, 'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genreConsulté
         ]);
     }
 
@@ -136,8 +149,22 @@ class HomeController extends AbstractController{
 
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->findBy(array('Genre' => $genre, 'SousGenre' => $sousGenre));
+
+        $notesMoyennes = [];
+
+        foreach ($BandeDessinees as $bandeDessinee) {
+            $notes = $bandeDessinee->getSesNotes();
+            list($noteMoyenne, $nbNotes) = $this->getNoteMoyenne($notes);
+            array_push($notesMoyennes, $noteMoyenne);
+        }
+
+        // Permet d'afficher le genre consulté
+        $genreConsulté = $genre;
+        $genreConsulté .= ' ';
+        $genreConsulté .= $sousGenre;
+
         return $this->render('pages/listeBD.html.twig', [
-            'BandeDessinees' => $BandeDessinees
+            'BandeDessinees' => $BandeDessinees, 'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genreConsulté
         ]);
     }
 

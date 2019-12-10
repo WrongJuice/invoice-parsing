@@ -9,7 +9,7 @@
         </div>
         <div class="column mx-auto text-center">
             <p> AUTEUR {{ BandeDessinee.getAuteur() }} • PARUTION {{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} • THEME {{ BandeDessinee.getGenre() }} {{ BandeDessinee.getSousGenre() }}</p>
-            <h1> {{ BandeDessinee.getTitre() }} </h1>
+            <h1 class="BD-title"> {{ BandeDessinee.getTitre() }} </h1>
             <p class="BD-Description"> {{ BandeDessinee.getDescription() }} </p>
 
         </div>
@@ -37,9 +37,6 @@
         </br>
         {% for Commentaire in Commentaires  %}
         <article class="comment">
-            <a class="comment-img" href="#">
-                <img src="https://pbs.twimg.com/profile_images/444197466133385216/UA08zh-B.jpeg" alt="" width="50" height="50">
-            </a>
             <div class="comment-body">
                 <div class="text comment-border">
                     <p class="comment-content"> {{ Commentaire.getContenu() }} </p>
