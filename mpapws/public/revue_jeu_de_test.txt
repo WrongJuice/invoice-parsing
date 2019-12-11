@@ -1,0 +1,43 @@
+Les BD : 
+
+La Marche sur la Lune
+BD Aventure
+Parue le jour même
+6 note à 4 sur 5
+5 notes à 5 sur 5
+3 Commentaires
+5 planches
+=> C'est une BD Tendance
+
+La Marche sur la Lune
+BD Fantasy
+Parue il y a 7 mois
+6 note à 4 sur 5
+5 notes à 5 sur 5
+3 Commentaire
+5 planches
+=> C'est une BD trop vieille pour les tendances
+
+2nd Guerre Mondiale
+BD Historique
+Parue aujourd'hui
+8 notes de 4
+0 commentaires
+3 planches
+=> C'est une BD qui n'a pas assez de notes pour les tendances
+
+Tattoo Passion
+BD Divers
+Parue aujourd'hui
+20 notes de 1
+1 commentaire
+0 planches
+=> C'est une BD qui n'a pas de note assez bonne pour les tendances
+
+Totoche
+BD Humour
+Parue aujourd'hui
+15 notes de 4
+3 commentaire
+4 planches
+=> C'est une BD Tendance
