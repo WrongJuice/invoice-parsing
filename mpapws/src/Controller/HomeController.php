@@ -230,5 +230,37 @@ class HomeController extends AbstractController{
         return array($NoteMoyenne, $i);
     }
 
+    /**
+     * @Route("/formulaire", name="formulaire")
+     */
+
+    public function formulaire(Request $request, EntityManagerInterface $entityManager){
+
+        $BD = new BandeDessinee();
+        $form = $this->createFormBuilder($BD)
+            ->add('titre', TextType::class)
+            ->add('save', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $BD = $form->getData();
+            dump($BD);
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            $entityManager->persist($BD);
+            $entityManager->flush();
+
+            //return $this->redirectToRoute('task_success');
+        }
+        return $this->render('pages/formulaire.html.twig', [
+            'form'=> $form->createView(),
+        ]);
+
+    }
+
 }
 
