@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\DomCrawler\Field\TextareaFormField;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -245,10 +247,25 @@ class HomeController extends AbstractController{
 
         // On créé notre BD
         $BD = new BandeDessinee();
+        $BD->setDateDeParution(new \DateTime('now'));
 
         // On créé notre FormBuilder et on lui ajoute directement les champs
         $form = $this->createFormBuilder($BD)
             ->add('titre', TextType::class)
+            ->add('auteur', TextType::class)
+            ->add('description', TextType::class)
+            ->add('genre', TextType::class)
+            ->add('sousGenre', TextType::class)
+            ->add('LivrePDF', FileType::class)
+            ->add('Planche1', FileType::class)
+            ->add('Planche2', FileType::class)
+            ->add('Planche3', FileType::class)
+            ->add('Planche4', FileType::class)
+            ->add('Planche5', FileType::class)
+            ->add('Affiche', FileType::class)
+
+
+
             ->add('save', SubmitType::class)
             ->getForm();
 
