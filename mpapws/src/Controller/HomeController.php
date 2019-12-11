@@ -2,11 +2,16 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class HomeController extends AbstractController{
 
@@ -236,7 +241,10 @@ class HomeController extends AbstractController{
 
     public function formulaire(Request $request, EntityManagerInterface $entityManager){
 
+        // On créé notre BD
         $BD = new BandeDessinee();
+
+        // On créé notre FormBuilder et on lui ajoute directement les champs
         $form = $this->createFormBuilder($BD)
             ->add('titre', TextType::class)
             ->add('save', SubmitType::class)
