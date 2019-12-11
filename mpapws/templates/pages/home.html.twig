@@ -7,51 +7,45 @@
 
         <h2 class="home-title"> Tendances</h2>
 
-        <div class="row justify-content-between tendance-zone">
+        <div class="tendance-zone">
             {% for  BDTendance in BDTendances%}
-                <div class="column align-items-center">
-                     <a href="/BD/{{ BDTendance.getId() }}"> <img src="{{ BDTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+                <div class="uneBdTendance">
+                    <p class="sousGenre"> {{ BDTendance.getSousGenre() }}</p>
+                     <a href="/BD/{{ BDTendance.getId() }}"> <img src="{{ BDTendance.getAffiche() }}" class="mr-3" style="height: 200px; width: 100%;" alt="affiche_test.jpg"> </a>
                     <a href="/BD/{{ BDTendance.getId() }}" class="bdtendance-title-link"> <p class="bdtendance-title"> {{ BDTendance.getTitre() }}</p> </a>
                      <p class="bdtendance-author"> par {{ BDTendance.getAuteur() }}</p>
-                    <p class="sousGenre"> {{ BDTendance.getSousGenre() }}</p>
                 </div>
             {% endfor %}
             {% if BDTendances != null %}
-                <div class="column text-right align-items-end justify-content-end">
-                    <button type="button" onclick="window.location.href='/listeBD/BD/Tendances'" class="btn btn-outline-primary bdtendance-voirplus">Voir plus</button>
-                </div>
+            <button type="button" onclick="window.location.href='/listeBD/BD/Tendances'" class="bdtendance-voirplus">Voir plus</button>
             {% endif %}
         </div>
 
-    <div class="row justify-content-between tendance-zone">
+    <div class="tendance-zone">
         {% for  MangaTendance in MangasTendances%}
-            <div class="column align-items-center">
-                <a href="/BD/{{ MangaTendance.getId() }}"> <img src="{{ MangaTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+            <div class="uneBdTendance">
+                <p class="sousGenre"> {{ MangaTendance.getSousGenre() }}</p>
+                <a href="/BD/{{ MangaTendance.getId() }}" style="display: inline;"> <img src="{{ MangaTendance.getAffiche() }}" class="mr-3" style="height: 200px; width: 100%; margin-right: 10;" alt="affiche_test.jpg"> </a>
                 <a href="/BD/{{ MangaTendance.getId() }}" class="bdtendance-title-link"> <p class="bdtendance-title"> {{ MangaTendance.getTitre() }}</p> </a>
                 <p class="bdtendance-author"> par {{ MangaTendance.getAuteur() }}</p>
-                <p class="sousGenre"> {{ MangaTendance.getSousGenre() }}</p>
             </div>
         {% endfor %}
         {% if BDTendances != null %}
-            <div class="column text-right align-items-end justify-content-end">
-                <button type="button" onclick="window.location.href='/listeBD/Mangas/Tendances'" class="btn btn-outline-primary bdtendance-voirplus">Voir plus</button>
-            </div>
+         <button type="button" onclick="window.location.href='/listeBD/Mangas/Tendances'" class="bdtendance-voirplus">Voir plus</button>
         {% endif %}
     </div>
 
-    <div class="row justify-content-between tendance-zone">
+    <div class="tendance-zone">
         {% for  ComicTendance in ComicsTendances%}
-            <div class="column align-items-center">
-                <a href="/BD/{{ ComicTendance.getId() }}"> <img src="{{ ComicTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
+            <div class="uneBdTendance">
+                <p class="sousGenre"> {{ ComicTendance.getSousGenre() }}</p>
+                <a href="/BD/{{ ComicTendance.getId() }}"> <img src="{{ ComicTendance.getAffiche() }}" class="mr-3" style="height: 200px; width: 100%;" alt="affiche_test.jpg"> </a>
                 <a href="/BD/{{ ComicTendance.getId() }}" class="bdtendance-title-link">  <p class="bdtendance-title"> {{ ComicTendance.getTitre() }} </p> </a>
                 <p class="bdtendance-author"> par {{ ComicTendance.getAuteur() }}</p>
-                <p class="sousGenre"> {{ ComicTendance.getSousGenre() }}</p>
             </div>
         {% endfor %}
         {% if BDTendances != null %}
-            <div class="column text-right align-items-end justify-content-end">
-                <button type="button" onclick="window.location.href='/listeBD/Comics/Tendances'" class="btn btn-outline-primary bdtendance-voirplus">Voir plus</button>
-            </div>
+         <button type="button" onclick="window.location.href='/listeBD/Comics/Tendances'" class="bdtendance-voirplus">Voir plus</button>
         {% endif %}
     </div>
 

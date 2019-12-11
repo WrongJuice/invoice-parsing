@@ -93,9 +93,31 @@
 }
 
 .sousGenre{
-    color: #1089FF;
+    background-color: #1089FF;
+    color: white;
+    border : solid 1px #1089FF;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
+.tendance-zone{
+    display: flex;
+    flex-direction: row;
+}
+
+.uneBdTendance{
+    margin: 1.47em;
+}
+
+.bdtendance-voirplus{
+    margin: 0;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-bottom: 13em;
+    margin-top: 7em;
+    transition: 0.5s;
+}
 
 /* ----------------------------------------------------------*/
 
