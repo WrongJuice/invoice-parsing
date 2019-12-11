@@ -2,16 +2,10 @@
 
 .header{ /* Fond du header */
     background-color: #23374D;
-    transition: 0.4s;
-}
-
-.header:hover{ /* Fond du header lorsque l'on passe le curseur dessus */
-    background-color: #1089FF;
-    transition: 0.4s;
 }
 
 .header-sousmenu{ /* Fond du sous menu du header */
-    background-color: #1089FF;
+    background-color: #23374D;
 }
 
 .logo-biblio{ /* Logo du header */
