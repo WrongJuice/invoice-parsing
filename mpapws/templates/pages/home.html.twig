@@ -13,6 +13,7 @@
                      <a href="/BD/{{ BDTendance.getId() }}"> <img src="{{ BDTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                     <a href="/BD/{{ BDTendance.getId() }}" class="bdtendance-title-link"> <p class="bdtendance-title"> {{ BDTendance.getTitre() }}</p> </a>
                      <p class="bdtendance-author"> par {{ BDTendance.getAuteur() }}</p>
+                    <p class="sousGenre"> {{ BDTendance.getSousGenre() }}</p>
                 </div>
             {% endfor %}
             {% if BDTendances != null %}
@@ -28,6 +29,7 @@
                 <a href="/BD/{{ MangaTendance.getId() }}"> <img src="{{ MangaTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                 <a href="/BD/{{ MangaTendance.getId() }}" class="bdtendance-title-link"> <p class="bdtendance-title"> {{ MangaTendance.getTitre() }}</p> </a>
                 <p class="bdtendance-author"> par {{ MangaTendance.getAuteur() }}</p>
+                <p class="sousGenre"> {{ MangaTendance.getSousGenre() }}</p>
             </div>
         {% endfor %}
         {% if BDTendances != null %}
@@ -43,6 +45,7 @@
                 <a href="/BD/{{ ComicTendance.getId() }}"> <img src="{{ ComicTendance.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                 <a href="/BD/{{ ComicTendance.getId() }}" class="bdtendance-title-link">  <p class="bdtendance-title"> {{ ComicTendance.getTitre() }} </p> </a>
                 <p class="bdtendance-author"> par {{ ComicTendance.getAuteur() }}</p>
+                <p class="sousGenre"> {{ ComicTendance.getSousGenre() }}</p>
             </div>
         {% endfor %}
         {% if BDTendances != null %}
