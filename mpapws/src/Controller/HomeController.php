@@ -271,17 +271,15 @@ class HomeController extends AbstractController{
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
+
+
             $BD = $form->getData();
             dump($BD);
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
             $entityManager->persist($BD);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('task_success');
+            return $this->redirectToRoute('task_success.html.twig');
         }
         return $this->render('pages/formulaire.html.twig', [
             'form'=> $form->createView(),
