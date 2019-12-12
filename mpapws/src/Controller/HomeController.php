@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -251,22 +252,22 @@ class HomeController extends AbstractController{
 
         // On créé notre FormBuilder et on lui ajoute directement les champs
         $form = $this->createFormBuilder($BD)
-            ->add('titre', TextType::class)
-            ->add('auteur', TextType::class)
-            ->add('description', TextType::class)
-            ->add('genre', TextType::class)
-            ->add('sousGenre', TextType::class)
-            ->add('LivrePDF', FileType::class)
-            ->add('Planche1', FileType::class)
-            ->add('Planche2', FileType::class)
-            ->add('Planche3', FileType::class)
-            ->add('Planche4', FileType::class)
-            ->add('Planche5', FileType::class)
-            ->add('Affiche', FileType::class)
-
-
-
-            ->add('save', SubmitType::class)
+            ->add('titre', TextType::class,['label'  => 'Titre du livre',])
+            ->add('auteur', TextType::class, ['label'  => 'Auteur',])
+            ->add('description', TextType::class,['label'  => 'Description',])
+            ->add('genre', ChoiceType::class, [
+                'choices' => ['Bande dessinée' => 'BD', 'Comic' => 'Comics', 'Manga' => 'Mangas'],], ['label'  => 'Genre',])
+            ->add('sousGenre', ChoiceType::class, [
+                'choices' => ['Aventure' => 'Aventure', 'Humour' => 'Humour', 'Super-Héros' => 'Super-Héros', 'Policier' => 'Policier', 'Science-Fiction' => 'Science-Fiction',
+                    'Historique'=>'Historique', 'Fantaisy' => 'Fantaisy', 'Divers' => 'Divers' ],], ['label'  => 'Sous-genre',])
+            ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF',])
+            ->add('Planche1', FileType::class, ['label'  => 'Planche 1',])
+            ->add('Planche2', FileType::class, ['label'  => 'Planche 2',])
+            ->add('Planche3', FileType::class, ['label'  => 'Planche 3',])
+            ->add('Planche4', FileType::class, ['label'  => 'Planche 4',])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5',])
+            ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre',])
+            ->add('save', SubmitType::class, ['label'  => 'Envoyer !',])
             ->getForm();
 
         $form->handleRequest($request);
