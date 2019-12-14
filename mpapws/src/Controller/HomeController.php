@@ -229,8 +229,8 @@ class HomeController extends AbstractController{
 
         $form = $this->createFormBuilder($Commentaire)
             ->add('Auteur', TextType::class,['label'  => 'Auteur',])
-            ->add('Contenu', TextType::class, ['label' => 'Contenu'])
-            ->add('save', SubmitType::class, ['label'  => 'Envoyer',])
+            ->add('Contenu', TextType::class, ['attr' => ['placeholder' => 'Ajouter un commentaire public...', 'label'  => 'Contenu',]])
+            ->add('save', SubmitType::class, ['label'  => 'Ajouter un commentaire',])
             ->getForm();
 
         $form->handleRequest($request);

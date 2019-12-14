@@ -226,6 +226,18 @@ html, body{
     transition: 0.3s;
 }
 
+
+/* Ajouter un commentaire */
+
+#form_Auteur{
+    width: 200px;
+}
+
+#form_Contenu{
+    width: 400px;
+    height: 80px;
+}
+
 /* Section commentaire */
 
 .comment-content{ /* Contenu des commentaires */
