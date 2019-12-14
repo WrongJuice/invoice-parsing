@@ -32,11 +32,23 @@
 
 
     </br> </br>
-    <section class="comments">
-        <h4> Commentaires : </h4>
-        </br>
+    <div class="detailcomment-separator"> </div>
+    </br>
+    <p> {{ nbCommentaires }} Commentaires</p>
+    </br>
 
-        {{ form(form) }}
+    <section class="comments">
+        <div class="form-comment">
+            {{ form_start(formComment) }}
+                {{ form_row(formComment.Auteur) }}
+                <div class="form-comment2 row  align-items-center">
+                    {{ form_row(formComment.Contenu) }}
+                    {{ form_row(formComment.save) }}
+                </div>
+            {{ form_end(formComment) }}
+        </div>
+
+        </br>
 
         {% for Commentaire in Commentaires  %}
         <article class="comment">

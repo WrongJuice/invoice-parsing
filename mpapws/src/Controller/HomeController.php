@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -220,6 +221,7 @@ class HomeController extends AbstractController{
         }
 
         list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes); /* Récupère la note moyenne d'une BD et son nombre de notes */
+        $nbCommentaires = $this->getNbCommentaires($BandeDessinee);
 
         /* On s'occupe du formulaire d'envoi de commentaires */
 
@@ -227,17 +229,19 @@ class HomeController extends AbstractController{
         $Commentaire->setSaBandeDessinee($BandeDessinee);
         $Commentaire->setDate(new \DateTime('now'));
 
-        $form = $this->createFormBuilder($Commentaire)
-            ->add('Auteur', TextType::class,['label'  => 'Auteur',])
-            ->add('Contenu', TextType::class, ['attr' => ['placeholder' => 'Ajouter un commentaire public...', 'label'  => 'Contenu',]])
-            ->add('save', SubmitType::class, ['label'  => 'Ajouter un commentaire',])
+        $formComment = $this->createFormBuilder($Commentaire)
+            ->add('Auteur', TextType::class,['attr' => ['placeholder' => 'Pseudonyme',]])
+            ->add('Contenu', TextareaType::class, ['attr' => ['placeholder' => 'Ajouter un commentaire public...',]])
+            ->add('save', SubmitType::class, ['label'  => 'Valider',])
             ->getForm();
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $formComment->handleRequest($request);
+
+        /* Si le commentaire est envoyé, recharge la page */
+        if ($formComment->isSubmitted() && $formComment->isValid()) {
 
 
-            $Commentaire = $form->getData();
+            $Commentaire = $formComment->getData();
             dump($Commentaire);
 
             $entityManager->persist($Commentaire);
@@ -247,7 +251,7 @@ class HomeController extends AbstractController{
         }
 
         return $this->render('pages/BDDetaillee.html.twig', [
-            'form'=> $form->createView(), 'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'Note' => $NoteMoyenne, 'nbNotes' => $nbNotes,'Planches' => $Planches
+            'formComment'=> $formComment->createView(), 'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'nbCommentaires' => $nbCommentaires, 'Note' => $NoteMoyenne, 'nbNotes' => $nbNotes,'Planches' => $Planches
         ]);
     }
 
@@ -266,6 +270,21 @@ class HomeController extends AbstractController{
         $NoteMoyenne = $NoteMoyenne / $i;
 
         return array($NoteMoyenne, $i);
+    }
+
+    public function getNbCommentaires($BandeDessinee){
+
+        /* Fonction qui récupère le nombre de commentaires pour une BD */
+
+        $Commentaires = $BandeDessinee->getSesCommentaires();
+        $nbCommentaires = 0;
+
+        foreach($Commentaires as $Commentaire)
+        {
+            $nbCommentaires += 1;
+        }
+
+        return $nbCommentaires;
     }
 
     /**

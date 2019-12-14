@@ -227,7 +227,27 @@ html, body{
 }
 
 
+
+.detailcomment-separator{ /* Ligne séparant la BD des commentaires */
+    border-bottom: solid #E5E5E5 2px;
+}
+
 /* Ajouter un commentaire */
+
+.form-comment .required{ /* Fait disparaître les label */
+    display: none;
+}
+
+.form-comment2{ /* Décale vers la droite le contenu commentaire et le bouton */
+    margin-left: 0.5px;
+}
+
+.form-comment2 .btn{ /* Décale vers la droite le bouton */
+    margin-left: 20px;
+}
+
+
+/* Diminue la largeur des input auteur et contenu */
 
 #form_Auteur{
     width: 200px;
@@ -242,6 +262,7 @@ html, body{
 
 .comment-content{ /* Contenu des commentaires */
     margin: 0 0 1em;
+    word-wrap: break-word;
 }
 
 .comment { /* Tout le commentaire */
