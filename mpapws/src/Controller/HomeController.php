@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -185,16 +186,18 @@ class HomeController extends AbstractController{
      * @Route("/BD/{id}/", name="BDDetaillee")
      */
 
-    public function BDDetaillee($id)
+    public function BDDetaillee($id, Request $request, EntityManagerInterface $entityManager)
     {
+        /*Récupère les infos de la BD */
+
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinee = $repository->find($id);
         $Commentaires = $BandeDessinee->getSesCommentaires();
         $Notes = $BandeDessinee->getSesNotes();
 
-        $Planches = [];
-
         /* Ajoute les planches seulement si elles existent */
+
+        $Planches = [];
 
         if($BandeDessinee->getPlanche1()){
             array_push($Planches, $BandeDessinee->getPlanche1());
@@ -218,8 +221,33 @@ class HomeController extends AbstractController{
 
         list($NoteMoyenne, $nbNotes) = $this->getNoteMoyenne($Notes); /* Récupère la note moyenne d'une BD et son nombre de notes */
 
+        /* On s'occupe du formulaire d'envoi de commentaires */
+
+        $Commentaire = new Commentaire();
+        $Commentaire->setSaBandeDessinee($BandeDessinee);
+        $Commentaire->setDate(new \DateTime('now'));
+
+        $form = $this->createFormBuilder($Commentaire)
+            ->add('Auteur', TextType::class,['label'  => 'Auteur',])
+            ->add('Contenu', TextType::class, ['label' => 'Contenu'])
+            ->add('save', SubmitType::class, ['label'  => 'Envoyer',])
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+            $Commentaire = $form->getData();
+            dump($Commentaire);
+
+            $entityManager->persist($Commentaire);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('BDDetaillee', ['id' => $BandeDessinee->getId()]);
+        }
+
         return $this->render('pages/BDDetaillee.html.twig', [
-            'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'Note' => $NoteMoyenne, 'nbNotes' => $nbNotes,'Planches' => $Planches
+            'form'=> $form->createView(), 'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'Note' => $NoteMoyenne, 'nbNotes' => $nbNotes,'Planches' => $Planches
         ]);
     }
 
