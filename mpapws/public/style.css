@@ -1,5 +1,6 @@
-html, body{
+html{
     min-height: 100%; /* Une page prend au moins 100% de la place, sert à fixer le footer en bas */
+    position: relative;
 }
 
 /* --------------------- HEADER  ----------------------*/
@@ -60,6 +61,9 @@ html, body{
 #sticky-footer{
     background-color: #23374D;
     margin-top: auto;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 /* ----------------------------------------------------------*/
@@ -124,13 +128,20 @@ html, body{
 .tendance-zone{
     display: flex;
     flex-direction: row;
+    justify-content: start;
 }
 
-.uneBdTendance{
+.uneBdTendance{ /* La BD Tendance */
     margin: 1.47em;
+    width: 150px; /* Limite la taille d'une BD si il y en a moins de 5 */
 }
 
-.bdtendance-voirplus{
+.bdtendance-affiche{ /* L'affiche de la BD tendance */
+    height: 200px;
+    width: 100%;
+}
+
+.bdtendance-voirplus{ /* Bouton voir plus */
     margin: 0;
     padding-left: 2em;
     padding-right: 2em;

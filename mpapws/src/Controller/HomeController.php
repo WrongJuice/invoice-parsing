@@ -268,6 +268,7 @@ class HomeController extends AbstractController{
             $i++;
         }
         $NoteMoyenne = $NoteMoyenne / $i;
+        $NoteMoyenne = number_format($NoteMoyenne, 2, ',', ' ');
 
         return array($NoteMoyenne, $i);
     }

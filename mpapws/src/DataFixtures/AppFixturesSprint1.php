@@ -113,7 +113,7 @@ class AppFixturesSprint1 extends Fixture
             $note->setSaBandeDessinee($BandeDessinee);
             $manager->persist($note);
         }
-        for($y = 0; $y < 4; $y++){
+        for($y = 0; $y < 5; $y++){
             $note = new Notes();
             $note->setValeur(5);
             $note->setSaBandeDessinee($BandeDessinee);
@@ -174,7 +174,7 @@ class AppFixturesSprint1 extends Fixture
             $manager->persist($note);
         }
 
-        // Crée 1 BD humour Tendance
+         //Crée 1 BD humour Tendance
         $BandeDessinee= new BandeDessinee();
         $BandeDessinee->setTitre('Totoche');
         $BandeDessinee->setDescription("Voici les aventures foloches de Totoche");

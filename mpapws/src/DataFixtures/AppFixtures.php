@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
 
         /* ----------------------LES BD --------------------------*/
 
-        // Crée 10 BD de type BD Humour avec 5 planches
+         //Crée 10 BD de type BD Humour avec 5 planches
         for ($i = 0; $i < 10; $i++){
             $BandeDessinee= new BandeDessinee();
             $BandeDessinee->setTitre('BD Humour avec 5 planches '.$i);
@@ -286,5 +286,5 @@ class AppFixtures extends Fixture
 
         $manager->flush();
 
-    }
+      }
 }
