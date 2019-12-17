@@ -209,6 +209,11 @@ html{
     width: 500px;
 }
 
+/* Ajouter une note */
+
+.form-note .required{ /* Fait disparaître les label */
+    display: none;
+}
 /* Bouton download */
 .button-download {
     background-color: #1089FF;

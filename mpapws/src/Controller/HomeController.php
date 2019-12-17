@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commentaire;
+use App\Entity\Notes;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -250,8 +251,35 @@ class HomeController extends AbstractController{
             return $this->redirectToRoute('BDDetaillee', ['id' => $BandeDessinee->getId()]);
         }
 
+        /* On s'occupe du formulaire d'envoi de note */
+
+        $Note = new Notes();
+        $Note->setSaBandeDessinee($BandeDessinee);
+
+        $formNote = $this->createFormBuilder($Note)
+            ->add('Valeur', ChoiceType::class, [
+                'choices' => [0 => '0', 1 => '1', 2 => '2', 3 => '3', 4 => '4',
+                    5  =>'5'],],['choice-label' => 'Ajouter une note',], ['placeholder' => 'Salut'])
+            ->add('save', SubmitType::class, ['label'  => 'Valider',])
+            ->getForm();
+
+        $formNote->handleRequest($request);
+
+        /* Si la note envoyé, recharge la page */
+        if ($formNote->isSubmitted() && $formNote->isValid()) {
+
+
+            $Note = $formNote->getData();
+            dump($Note);
+
+            $entityManager->persist($Note);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('BDDetaillee', ['id' => $BandeDessinee->getId()]);
+        }
+
         return $this->render('pages/BDDetaillee.html.twig', [
-            'formComment'=> $formComment->createView(), 'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'nbCommentaires' => $nbCommentaires, 'Note' => $NoteMoyenne, 'nbNotes' => $nbNotes,'Planches' => $Planches
+            'formComment'=> $formComment->createView(), 'formNote'=> $formNote->createView(), 'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'nbCommentaires' => $nbCommentaires, 'Note' => $NoteMoyenne, 'nbNotes' => $nbNotes,'Planches' => $Planches
         ]);
     }
 

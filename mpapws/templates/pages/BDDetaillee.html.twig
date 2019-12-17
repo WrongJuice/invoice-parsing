@@ -6,6 +6,14 @@
         <div class="column">
             <img src="{{ BandeDessinee.getAffiche() }}" style="width: 200px;">
             <p class="ml-2"> Note :  {{ Note }} / 5 sur {{ nbNotes }} notes</p>
+            <p> Ajouter une note</p>
+            {{ form_start(formNote) }}
+            <div class="column text-center form-note">
+                {{ form_row(formNote.Valeur) }}
+                {{ form_row(formNote.save) }}
+            </div>
+            {{ form_end(formNote) }}
+
         </div>
         <div class="column mx-auto text-center">
             <p> AUTEUR {{ BandeDessinee.getAuteur() }} • PARUTION {{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} • THEME {{ BandeDessinee.getGenre() }} {{ BandeDessinee.getSousGenre() }}</p>
