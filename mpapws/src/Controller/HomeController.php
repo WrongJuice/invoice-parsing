@@ -96,7 +96,7 @@ class HomeController extends AbstractController{
         /* Récupère la liste des BD selon un genre */
         
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $BandeDessinees = $repository->findBy(array('Genre' => $genre), array('DateDeParution', 'DESC'));
+        $BandeDessinees = $repository->findBy(array('Genre' => $genre), array('DateDeParution'=> 'ASC'));
 
         /* Récupère les notes moyennes des BD */
         $notesMoyennes = [];
