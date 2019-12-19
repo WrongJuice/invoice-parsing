@@ -359,6 +359,11 @@ class HomeController extends AbstractController{
 
             $entityManager->persist($BD);
             $entityManager->flush();
+
+            echo 'DEBUG -> id de la BD ajoutée ->' . $BD->getId();
+            mkdir('data/' . $BD->getId(), 755);
+
+            return $this->render('pages/task_success.html.twig');
         }
         return $this->render('pages/formulaire.html.twig', [
             'form'=> $form->createView(),
