@@ -295,8 +295,12 @@ class HomeController extends AbstractController{
             $NoteMoyenne += $Note->getValeur();
             $i++;
         }
-        $NoteMoyenne = $NoteMoyenne / $i;
-        $NoteMoyenne = number_format($NoteMoyenne, 2, ',', ' ');
+        if ($i != 0){
+            $NoteMoyenne = $NoteMoyenne / $i;
+            $NoteMoyenne = number_format($NoteMoyenne, 2, ',', ' ');
+        }else $NoteMoyenne = null;
+
+
 
         return array($NoteMoyenne, $i);
     }
@@ -355,8 +359,6 @@ class HomeController extends AbstractController{
 
             $entityManager->persist($BD);
             $entityManager->flush();
-
-            return $this->redirectToRoute('task_success.html.twig');
         }
         return $this->render('pages/formulaire.html.twig', [
             'form'=> $form->createView(),
