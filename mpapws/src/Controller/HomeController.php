@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Commentaire;
 use App\Entity\Notes;
+use App\Entity\BandeDessinee;
+
+use App\Repository\BandeDessineeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -18,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use App\Entity\BandeDessinee;
 
 
 class HomeController extends AbstractController{
@@ -185,15 +187,13 @@ class HomeController extends AbstractController{
 
 
     /**
-     * @Route("/BD/{id}/", name="BDDetaillee")
+     * @Route("/BD/{BandeDessinee}/", name="BDDetaillee")
      */
 
-    public function BDDetaillee($id, Request $request, EntityManagerInterface $entityManager)
+    public function BDDetaillee(BandeDessinee $BandeDessinee, Request $request, EntityManagerInterface $entityManager, BandeDessineeRepository $repository)
     {
         /*Récupère les infos de la BD */
 
-        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $BandeDessinee = $repository->find($id);
         $Commentaires = $BandeDessinee->getSesCommentaires();
         $Notes = $BandeDessinee->getSesNotes();
 
@@ -366,5 +366,27 @@ class HomeController extends AbstractController{
 
     }
 
+
+    /**
+     * @Route("/pagination/{page}", requirements={"page" = "\d+"}, name="front_articles_index")
+     */
+
+    public function pagination($page)
+    {
+        $nbArticlesParPage = 5;
+        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
+        $BandeDessinees = $repository->findAllPagineEtTrie($page, $nbArticlesParPage);
+
+        $pagination = array(
+            'page' => $page,
+            'nbPages' => ceil(count($BandeDessinees) / $nbArticlesParPage),
+            'nomRoute' => 'front_articles_index',
+            'paramsRoute' => array()
+        );
+
+        return $this->render('pages/pagination.html.twig', [
+            'BandeDessinees'=> $BandeDessinees, 'pagination' => $pagination,
+        ]);
+    }
 }
 
