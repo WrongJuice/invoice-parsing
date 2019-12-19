@@ -8,6 +8,18 @@
         <br/>
     {% endif %}
 
+    <form method="POST" name="SortForm" class="lpSortForm jsLpForm">
+        <input type="hidden" name="SortForm.BrandLicenseSelectedCategoryPath" value=
+        <span class="lpSelectSortTitle">Trier par</span>
+        <span class="lpSelectSortTitle">:</span>
+        <select class="lpSelectSort" name="SortForm.SelectedSort">
+            <option value="NoteASC" selected="selected">Avis du public négatif</option>
+            <option value="NoteDESC">Avis du public positif</option>
+            <option value="DateASC">Les plus récents</option>
+            <option value="DateDESC">Les moins récents</option>
+        </select>
+    </form>
+
     <ul class="list-unstyled">
         {% set i = 0 %}
         {% for BandeDessinee in BandeDessinees %}
