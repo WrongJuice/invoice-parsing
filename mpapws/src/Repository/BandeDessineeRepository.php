@@ -21,6 +21,7 @@ class BandeDessineeRepository extends ServiceEntityRepository
     }
 
 
+
     public function getBDRecentes(String $genre)
     {
         /* Récupère les BD sorties il y a moins de deux mois et selon un genre*/

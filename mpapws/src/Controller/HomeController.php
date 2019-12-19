@@ -20,7 +20,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\BandeDessinee;
 
-
 class HomeController extends AbstractController{
 
     public function __construct(Environment $twig)
@@ -97,7 +96,7 @@ class HomeController extends AbstractController{
         /* Récupère la liste des BD selon un genre */
         
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $BandeDessinees = $repository->findBy(array('Genre' => $genre));
+        $BandeDessinees = $repository->findBy(array('Genre' => $genre), array('DateDeParution', 'DESC'));
 
         /* Récupère les notes moyennes des BD */
         $notesMoyennes = [];
@@ -351,7 +350,7 @@ class HomeController extends AbstractController{
 
 
             $BD = $form->getData();
-            dump($BD);
+            dump($BD); // Pour les tests ! A enlever plus tard !
 
             $entityManager->persist($BD);
             $entityManager->flush();
