@@ -340,13 +340,24 @@ class HomeController extends AbstractController{
             ->add('sousGenre', ChoiceType::class, [
                 'choices' => ['Aventure' => 'Aventure', 'Humour' => 'Humour', 'Super-Héros' => 'Super-Héros', 'Policier' => 'Policier', 'Science-Fiction' => 'Science-Fiction',
                     'Historique'=>'Historique', 'Fantaisy' => 'Fantaisy', 'Divers' => 'Divers' ],], ['label'  => 'Sous-genre',])
+            /*->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF', 'mapped' => false])
+            ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre', 'mapped' => false])
+            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)','mapped' => false])
+            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)','mapped' => false])
+            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)','mapped' => false])
+            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)','mapped' => false])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)','mapped' => false])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)','mapped' => false])
+            Lorsque la bd sera maj
+            */
             ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF',])
-            ->add('Planche1', FileType::class, ['label'  => 'Planche 1',])
-            ->add('Planche2', FileType::class, ['label'  => 'Planche 2',])
-            ->add('Planche3', FileType::class, ['label'  => 'Planche 3',])
-            ->add('Planche4', FileType::class, ['label'  => 'Planche 4',])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5',])
             ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre',])
+            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)',])
+            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)',])
+            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)',])
+            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)',])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)',])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)',])
             ->add('save', SubmitType::class, ['label'  => 'Envoyer !',])
             ->getForm();
 
@@ -355,13 +366,20 @@ class HomeController extends AbstractController{
 
 
             $BD = $form->getData();
+
             dump($BD);
 
             $entityManager->persist($BD);
             $entityManager->flush();
 
-            echo 'DEBUG -> id de la BD ajoutée ->' . $BD->getId();
-            mkdir('data/' . $BD->getId(), 755);
+            $uploadedPDF = ($form['LivrePDF']->getData());
+            $destination = $this->getParameter('kernel.project_dir').'/public/data/' . $BD->getId();
+
+            echo 'DEBUG -> id de la BD ajoutée ->' . $BD->getId() . ' + Le nom du fichier -> ' . $uploadedPDF->getClientOriginalName();
+
+            $filename = pathinfo($uploadedPDF->getClientOriginalName() . '.pdf' , PATHINFO_FILENAME);
+            $uploadedPDF->move($destination , $filename);
+            rename('./data/' . $BD->getId() . '/' . $uploadedPDF->getClientOriginalName() , './data/' . $BD->getId() .'/Livre.pdf');
 
             return $this->render('pages/task_success.html.twig');
         }
