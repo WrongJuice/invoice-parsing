@@ -352,12 +352,12 @@ class HomeController extends AbstractController{
             */
             ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF',])
             ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre',])
-            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)',])
-            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)',])
-            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)',])
-            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)',])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)',])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)',])
+            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)', 'required' => false])
+            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)', 'required' => false])
+            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)', 'required' => false])
+            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)', 'required' => false])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false])
             ->add('save', SubmitType::class, ['label'  => 'Envoyer !',])
             ->getForm();
 
