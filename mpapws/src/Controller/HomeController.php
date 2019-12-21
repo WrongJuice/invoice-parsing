@@ -164,7 +164,6 @@ class HomeController extends AbstractController{
         $BandeDessinees = $repository->findBy(array('Genre' => $genre, 'SousGenre' => $sousGenre));
 
         $notesMoyennes = [];
-
         foreach ($BandeDessinees as $bandeDessinee) {
             $notes = $bandeDessinee->getSesNotes();
             list($noteMoyenne, $nbNotes) = $this->getNoteMoyenne($notes);

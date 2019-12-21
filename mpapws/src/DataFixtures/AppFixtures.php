@@ -15,25 +15,26 @@ class AppFixtures extends Fixture
 
         /* ----------------------LES BD --------------------------*/
 
+        $repository = $manager->getRepository('App\Entity\BandeDessinee');
+
          //Crée 10 BD de type BD Humour avec 5 planches
         for ($i = 0; $i < 10; $i++){
-            $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('BD Humour avec 5 planches '.$i);
-            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            $uneBandeDessinnee= new BandeDessinee();
+            $uneBandeDessinnee->setTitre('BD Humour avec 5 planches '.$i);
+            $uneBandeDessinnee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
             , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
-            $BandeDessinee->setAuteur('Auteur '.$i);
-            $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
-            $BandeDessinee->setGenre('BD');
-            $BandeDessinee->setSousGenre('Humour');
-            $BandeDessinee->setAffiche('/img/affiche_testBD.jpg');
-            $BandeDessinee->setLivrePDF('/pdf/BD_test.pdf');
-            $BandeDessinee->setPlanche1('/img/planche1.jpg');
-            $BandeDessinee->setPlanche2('/img/planche2.jpg');
-            $BandeDessinee->setPlanche3('/img/planche3.jpg');
-            $BandeDessinee->setPlanche4('/img/planche4.jpg');
-            $BandeDessinee->setPlanche5('/img/planche5.jpg');
-
-            $manager->persist($BandeDessinee);
+            $uneBandeDessinnee->setAuteur('Auteur '.$i);
+            $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
+            $uneBandeDessinnee->setGenre('BD');
+            $uneBandeDessinnee->setSousGenre('Humour');
+            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testBD.jpg');
+            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
+            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
+            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
+            $uneBandeDessinnee->setPlanche3('/data_fixtures/planche3.jpg');
+            $uneBandeDessinnee->setPlanche4('/data_fixtures/planche4.jpg');
+            $uneBandeDessinnee->setPlanche5('/data_fixtures/planche5.jpg');
+            $manager->persist($uneBandeDessinnee);
 
               // Crée 4 commentaires pour la BD et les lie
               for ($y = 0; $y < 4; $y++){
@@ -41,7 +42,7 @@ class AppFixtures extends Fixture
                   $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                   $commentaire->setContenu('Commentaire '.$i.$y);
                   $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
-                  $commentaire->setSaBandeDessinee($BandeDessinee);
+                  $commentaire->setSaBandeDessinee($uneBandeDessinnee);
                   $manager->persist($commentaire);
               }
 
@@ -49,28 +50,29 @@ class AppFixtures extends Fixture
             for($y = 0; $y < 4; $y++){
                 $note = new Notes();
                 $note->setValeur($y);
-                $note->setSaBandeDessinee($BandeDessinee);
+                $note->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($note);
             }
+
 
         }
 
         // Crée 10 BD de type BD Policier avec 3 planches et Tendance
         for ($i = 0; $i < 10; $i++){
-            $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('BD Policier Tendance avec 3 planches '.$i);
-            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            $uneBandeDessinnee= new BandeDessinee();
+            $uneBandeDessinnee->setTitre('BD Policier Tendance avec 3 planches '.$i);
+            $uneBandeDessinnee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
             , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
-            $BandeDessinee->setAuteur('Auteur '.$i);
-            $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
-            $BandeDessinee->setGenre('BD');
-            $BandeDessinee->setSousGenre('Policier');
-            $BandeDessinee->setAffiche('/img/affiche_testBD.jpg');
-            $BandeDessinee->setLivrePDF('/pdf/BD_test.pdf');
-            $BandeDessinee->setPlanche1('/img/planche1.jpg');
-            $BandeDessinee->setPlanche2('/img/planche2.jpg');
-            $BandeDessinee->setPlanche3('/img/planche3.jpg');
-            $manager->persist($BandeDessinee);
+            $uneBandeDessinnee->setAuteur('Auteur '.$i);
+            $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
+            $uneBandeDessinnee->setGenre('BD');
+            $uneBandeDessinnee->setSousGenre('Policier');
+            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testBD.jpg');
+            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
+            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
+            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
+            $uneBandeDessinnee->setPlanche3('/data_fixtures/planche3.jpg');
+            $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
             for ($y = 0; $y < 4; $y++){
@@ -78,7 +80,7 @@ class AppFixtures extends Fixture
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
                 $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
-                $commentaire->setSaBandeDessinee($BandeDessinee);
+                $commentaire->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($commentaire);
             }
 
@@ -86,25 +88,24 @@ class AppFixtures extends Fixture
             for($y = 0; $y < 15; $y++) {
                 $note = new Notes();
                 $note->setValeur(5);
-                $note->setSaBandeDessinee($BandeDessinee);
+                $note->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($note);
             }
-
         }
 
         // Crée 5 BD de type BD Aventure avec 0 planches, Note de 4 Mais trop vieilles : Non tendance
         for ($i = 0; $i < 5; $i++){
-            $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('BD Aventure Trop vieille avec 0 planches '.$i);
-            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            $uneBandeDessinnee= new BandeDessinee();
+            $uneBandeDessinnee->setTitre('BD Aventure Trop vieille avec 0 planches '.$i);
+            $uneBandeDessinnee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
             , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
-            $BandeDessinee->setAuteur('Auteur '.$i);
-            $BandeDessinee->setDateDeParution(new \DateTime('2010-01-01 00:00:00'));
-            $BandeDessinee->setGenre('BD');
-            $BandeDessinee->setSousGenre('Aventure');
-            $BandeDessinee->setAffiche('/img/affiche_testBD.jpg');
-            $BandeDessinee->setLivrePDF('/pdf/BD_test.pdf');
-            $manager->persist($BandeDessinee);
+            $uneBandeDessinnee->setAuteur('Auteur '.$i);
+            $uneBandeDessinnee->setDateDeParution(new \DateTime('2010-01-01 00:00:00'));
+            $uneBandeDessinnee->setGenre('BD');
+            $uneBandeDessinnee->setSousGenre('Aventure');
+            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testBD.jpg');
+            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
+            $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
             for ($y = 0; $y < 4; $y++){
@@ -112,7 +113,7 @@ class AppFixtures extends Fixture
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
                 $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
-                $commentaire->setSaBandeDessinee($BandeDessinee);
+                $commentaire->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($commentaire);
             }
 
@@ -120,10 +121,9 @@ class AppFixtures extends Fixture
             for($y = 0; $y < 15; $y++) {
                 $note = new Notes();
                 $note->setValeur(5);
-                $note->setSaBandeDessinee($BandeDessinee);
+                $note->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($note);
             }
-
         }
 
 
@@ -131,22 +131,22 @@ class AppFixtures extends Fixture
 
         // Crée 10 BD de type Comics Super-Heros avec 5 planches
         for ($i = 0; $i < 10; $i++){
-            $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('Comics Super-Heros avec 5 planches '.$i);
-            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            $uneBandeDessinnee= new BandeDessinee();
+            $uneBandeDessinnee->setTitre('Comics Super-Heros avec 5 planches '.$i);
+            $uneBandeDessinnee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
             , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire !'.$i);
-            $BandeDessinee->setAuteur('Auteur '.$i);
-            $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
-            $BandeDessinee->setGenre('Comics');
-            $BandeDessinee->setSousGenre('Super-Heros');
-            $BandeDessinee->setAffiche('/img/affiche_testComics.jpg');
-            $BandeDessinee->setLivrePDF('/pdf/BD_test.pdf');
-            $BandeDessinee->setPlanche1('/img/planche1.jpg');
-            $BandeDessinee->setPlanche2('/img/planche2.jpg');
-            $BandeDessinee->setPlanche3('/img/planche3.jpg');
-            $BandeDessinee->setPlanche4('/img/planche4.jpg');
-            $BandeDessinee->setPlanche5('/img/planche5.jpg');
-            $manager->persist($BandeDessinee);
+            $uneBandeDessinnee->setAuteur('Auteur '.$i);
+            $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
+            $uneBandeDessinnee->setGenre('Comics');
+            $uneBandeDessinnee->setSousGenre('Super-Heros');
+            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testComics.jpg');
+            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
+            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
+            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
+            $uneBandeDessinnee->setPlanche3('/data_fixtures/planche3.jpg');
+            $uneBandeDessinnee->setPlanche4('/data_fixtures/planche4.jpg');
+            $uneBandeDessinnee->setPlanche5('/data_fixtures/planche5.jpg');
+            $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
             for ($y = 0; $y < 4; $y++){
@@ -154,7 +154,7 @@ class AppFixtures extends Fixture
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
                 $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
-                $commentaire->setSaBandeDessinee($BandeDessinee);
+                $commentaire->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($commentaire);
             }
 
@@ -162,28 +162,27 @@ class AppFixtures extends Fixture
             for($y = 0; $y < 4; $y++) {
                 $note = new Notes();
                 $note->setValeur($y);
-                $note->setSaBandeDessinee($BandeDessinee);
+                $note->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($note);
             }
-
         }
 
 
         // Crée 10 BD de type Comics Historique et Tendance avec 2 planches
         for ($i = 0; $i < 10; $i++){
-            $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('Comics Historique Tendance avec 2 planches '.$i);
-            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            $uneBandeDessinnee= new BandeDessinee();
+            $uneBandeDessinnee->setTitre('Comics Historique Tendance avec 2 planches '.$i);
+            $uneBandeDessinnee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
             , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
-            $BandeDessinee->setAuteur('Auteur '.$i);
-            $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
-            $BandeDessinee->setGenre('Comics');
-            $BandeDessinee->setSousGenre('Historique');
-            $BandeDessinee->setAffiche('/img/affiche_testComics.jpg');
-            $BandeDessinee->setLivrePDF('/pdf/BD_test.pdf');
-            $BandeDessinee->setPlanche1('/img/planche1.jpg');
-            $BandeDessinee->setPlanche2('/img/planche2.jpg');
-            $manager->persist($BandeDessinee);
+            $uneBandeDessinnee->setAuteur('Auteur '.$i);
+            $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
+            $uneBandeDessinnee->setGenre('Comics');
+            $uneBandeDessinnee->setSousGenre('Historique');
+            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testComics.jpg');
+            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
+            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
+            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
+            $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
             for ($y = 0; $y < 4; $y++){
@@ -191,7 +190,7 @@ class AppFixtures extends Fixture
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
                 $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
-                $commentaire->setSaBandeDessinee($BandeDessinee);
+                $commentaire->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($commentaire);
             }
 
@@ -199,31 +198,32 @@ class AppFixtures extends Fixture
             for($y = 0; $y < 15; $y++) {
                 $note = new Notes();
                 $note->setValeur(4);
-                $note->setSaBandeDessinee($BandeDessinee);
+                $note->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($note);
             }
-
         }
+
+
         /* ----------------------Les Mangas --------------------------*/
 
         // Crée 10 BD de type Manga Divers avec 5 planches
         for ($i = 0; $i < 10; $i++){
-            $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('Manga Divers avec 5 planches '.$i);
-            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            $uneBandeDessinnee= new BandeDessinee();
+            $uneBandeDessinnee->setTitre('Manga Divers avec 5 planches '.$i);
+            $uneBandeDessinnee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
             , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
-            $BandeDessinee->setAuteur('Auteur '.$i);
-            $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
-            $BandeDessinee->setGenre('Mangas');
-            $BandeDessinee->setSousGenre('Divers');
-            $BandeDessinee->setAffiche('/img/affiche_testManga.jpg');
-            $BandeDessinee->setLivrePDF('/pdf/BD_test.pdf');
-            $BandeDessinee->setPlanche1('/img/planche1.jpg');
-            $BandeDessinee->setPlanche2('/img/planche2.jpg');
-            $BandeDessinee->setPlanche3('/img/planche3.jpg');
-            $BandeDessinee->setPlanche4('/img/planche4.jpg');
-            $BandeDessinee->setPlanche5('/img/planche5.jpg');
-            $manager->persist($BandeDessinee);
+            $uneBandeDessinnee->setAuteur('Auteur '.$i);
+            $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
+            $uneBandeDessinnee->setGenre('Mangas');
+            $uneBandeDessinnee->setSousGenre('Divers');
+            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testManga.jpg');
+            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
+            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
+            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
+            $uneBandeDessinnee->setPlanche3('/data_fixtures/planche3.jpg');
+            $uneBandeDessinnee->setPlanche4('/data_fixtures/planche4.jpg');
+            $uneBandeDessinnee->setPlanche5('/data_fixtures/planche5.jpg');
+            $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
             for ($y = 0; $y < 4; $y++){
@@ -231,7 +231,7 @@ class AppFixtures extends Fixture
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
                 $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
-                $commentaire->setSaBandeDessinee($BandeDessinee);
+                $commentaire->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($commentaire);
             }
 
@@ -239,27 +239,26 @@ class AppFixtures extends Fixture
             for($y = 0; $y < 4; $y++) {
                 $note = new Notes();
                 $note->setValeur($y);
-                $note->setSaBandeDessinee($BandeDessinee);
+                $note->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($note);
             }
-
         }
 
 
         // Crée 10 BD de type Mangas Fantasy et Tendance avec 1 planche
         for ($i = 0; $i < 10; $i++){
-            $BandeDessinee= new BandeDessinee();
-            $BandeDessinee->setTitre('Manga Fantasy Tendance avec 1 planche '.$i);
-            $BandeDessinee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
+            $uneBandeDessinnee= new BandeDessinee();
+            $uneBandeDessinnee->setTitre('Manga Fantasy Tendance avec 1 planche '.$i);
+            $uneBandeDessinnee->setDescription('Ceci est une description plus longue pour rendre les pages plus réaliste
             , A part ca la BD est tip top, c est ma première alors nhésitez pas a la lire ! '.$i);
-            $BandeDessinee->setAuteur('Auteur '.$i);
-            $BandeDessinee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
-            $BandeDessinee->setGenre('Mangas');
-            $BandeDessinee->setSousGenre('Fantasy');
-            $BandeDessinee->setAffiche('/img/affiche_testManga.jpg');
-            $BandeDessinee->setLivrePDF('/pdf/BD_test.pdf');
-            $BandeDessinee->setPlanche1('/img/planche1.jpg');
-            $manager->persist($BandeDessinee);
+            $uneBandeDessinnee->setAuteur('Auteur '.$i);
+            $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
+            $uneBandeDessinnee->setGenre('Mangas');
+            $uneBandeDessinnee->setSousGenre('Fantasy');
+            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testManga.jpg');
+            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
+            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
+            $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
             for ($y = 0; $y < 4; $y++){
@@ -267,7 +266,7 @@ class AppFixtures extends Fixture
                 $commentaire->setAuteur('Auteur de Commentaire '.$i.$y);
                 $commentaire->setContenu('Commentaire '.$i.$y);
                 $commentaire->setDate(new \DateTime(date("Y-m-d H:i:s")));
-                $commentaire->setSaBandeDessinee($BandeDessinee);
+                $commentaire->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($commentaire);
             }
 
@@ -275,16 +274,81 @@ class AppFixtures extends Fixture
             for($y = 0; $y < 15; $y++) {
                 $note = new Notes();
                 $note->setValeur(4);
-                $note->setSaBandeDessinee($BandeDessinee);
+                $note->setSaBandeDessinee($uneBandeDessinnee);
                 $manager->persist($note);
             }
-
         }
-
-
-
 
         $manager->flush();
 
+        $lesBandeDessinnees = $repository->findBy(array('Genre' => 'BD' , 'SousGenre' => 'Humour'));
+        foreach ($lesBandeDessinnees as $uneBandeDessinnee) {
+            mkdir('public/data/' . $uneBandeDessinnee->getId(),755);
+            copy('public/data_fixtures/affiche_testBD.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/affiche.jpg');
+            copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $uneBandeDessinnee->getId() . '/livre.pdf');
+            copy('public/data_fixtures/planche1.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p1.jpg');
+            copy('public/data_fixtures/planche2.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p2.jpg');
+            copy('public/data_fixtures/planche3.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p3.jpg');
+            copy('public/data_fixtures/planche4.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p4.jpg');
+            copy('public/data_fixtures/planche5.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p5.jpg');
+        }
+
+        $lesBandeDessinnees = $repository->findBy(array('Genre' => 'BD' , 'SousGenre' => 'Policier'));
+        foreach ($lesBandeDessinnees as $uneBandeDessinnee) {
+            mkdir('public/data/' . $uneBandeDessinnee->getId(),755);
+            copy('public/data_fixtures/affiche_testBD.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/affiche.jpg');
+            copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $uneBandeDessinnee->getId() . '/livre.pdf');
+            copy('public/data_fixtures/planche1.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p1.jpg');
+            copy('public/data_fixtures/planche2.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p2.jpg');
+            copy('public/data_fixtures/planche3.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p3.jpg');
+        }
+
+        $lesBandeDessinnees = $repository->findBy(array('Genre' => 'BD' , 'SousGenre' => 'Aventure'));
+        foreach ($lesBandeDessinnees as $uneBandeDessinnee) {
+            mkdir('public/data/' . $uneBandeDessinnee->getId(),755);
+            copy('public/data_fixtures/affiche_testBD.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/affiche.jpg');
+            copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $uneBandeDessinnee->getId() . '/livre.pdf');
+        }
+
+        $lesBandeDessinnees = $repository->findBy(array('Genre' => 'Comics' , 'SousGenre' => 'Super-Heros'));
+        foreach ($lesBandeDessinnees as $uneBandeDessinnee) {
+            mkdir('public/data/' . $uneBandeDessinnee->getId(),755);
+            copy('public/data_fixtures/affiche_testComics.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/affiche.jpg');
+            copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $uneBandeDessinnee->getId() . '/livre.pdf');
+            copy('public/data_fixtures/planche1.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p1.jpg');
+            copy('public/data_fixtures/planche2.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p2.jpg');
+            copy('public/data_fixtures/planche3.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p3.jpg');
+            copy('public/data_fixtures/planche4.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p4.jpg');
+            copy('public/data_fixtures/planche5.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p5.jpg');
+        }
+
+        $lesBandeDessinnees = $repository->findBy(array('Genre' => 'Comics' , 'SousGenre' => 'Historique'));
+        foreach ($lesBandeDessinnees as $uneBandeDessinnee) {
+            mkdir('public/data/' . $uneBandeDessinnee->getId(),755);
+            copy('public/data_fixtures/affiche_testComics.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/affiche.jpg');
+            copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $uneBandeDessinnee->getId() . '/livre.pdf');
+            copy('public/data_fixtures/planche1.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p1.jpg');
+            copy('public/data_fixtures/planche2.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p2.jpg');
+        }
+
+        $lesBandeDessinnees = $repository->findBy(array('Genre' => 'Mangas' , 'SousGenre' => 'Divers'));
+        foreach ($lesBandeDessinnees as $uneBandeDessinnee) {
+            mkdir('public/data/' . $uneBandeDessinnee->getId(),755);
+            copy('public/data_fixtures/affiche_testManga.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/affiche.jpg');
+            copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $uneBandeDessinnee->getId() . '/livre.pdf');
+            copy('public/data_fixtures/planche1.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p1.jpg');
+            copy('public/data_fixtures/planche2.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p2.jpg');
+            copy('public/data_fixtures/planche3.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p3.jpg');
+            copy('public/data_fixtures/planche4.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p4.jpg');
+            copy('public/data_fixtures/planche5.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p5.jpg');
+        }
+
+        $lesBandeDessinnees = $repository->findBy(array('Genre' => 'Mangas' , 'SousGenre' => 'Fantasy'));
+        foreach ($lesBandeDessinnees as $uneBandeDessinnee) {
+            mkdir('public/data/' . $uneBandeDessinnee->getId(),755);
+            copy('public/data_fixtures/affiche_testManga.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/affiche.jpg');
+            copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $uneBandeDessinnee->getId() . '/livre.pdf');
+            copy('public/data_fixtures/planche1.jpg' , 'public/data/' . $uneBandeDessinnee->getId() . '/p1.jpg');
+        }
       }
 }

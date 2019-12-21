@@ -240,7 +240,7 @@ class BandeDessinee
 
     public function getLivrePDF(): ?string
     {
-        return $this->LivrePDF;
+        return '/data/' . $this->getId() . '/livre.pdf';
     }
 
     public function setLivrePDF(string $LivrePDF): self
@@ -252,7 +252,7 @@ class BandeDessinee
 
     public function getPlanche1(): ?string
     {
-        return $this->Planche1;
+        return '/data/' . $this->getId() . '/p1.jpg';
     }
 
     public function setPlanche1(?string $Planche1): self
@@ -264,7 +264,7 @@ class BandeDessinee
 
     public function getPlanche2(): ?string
     {
-        return $this->Planche2;
+        return '/data/' . $this->getId() . '/p2.jpg';
     }
 
     public function setPlanche2(?string $Planche2): self
@@ -276,7 +276,7 @@ class BandeDessinee
 
     public function getPlanche3(): ?string
     {
-        return $this->Planche3;
+        return '/data/' . $this->getId() . '/p3.jpg';
     }
 
     public function setPlanche3(?string $Planche3): self
@@ -288,7 +288,7 @@ class BandeDessinee
 
     public function getPlanche4(): ?string
     {
-        return $this->Planche4;
+        return '/data/' . $this->getId() . '/p4.jpg';
     }
 
     public function setPlanche4(?string $Planche4): self
@@ -300,7 +300,7 @@ class BandeDessinee
 
     public function getPlanche5(): ?string
     {
-        return $this->Planche5;
+        return '/data/' . $this->getId() . '/p5.jpg';
     }
 
     public function setPlanche5(?string $Planche5): self
@@ -312,7 +312,7 @@ class BandeDessinee
 
     public function getAffiche(): ?string
     {
-        return $this->Affiche;
+        return '/data/' . $this->getId() . '/affiche.jpg';
     }
 
     public function setAffiche(string $Affiche): self
