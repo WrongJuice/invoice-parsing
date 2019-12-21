@@ -88,15 +88,25 @@ class HomeController extends AbstractController{
 
 
     /**
-     * @Route("/listeBD/{genre}", name="listeBDGenre")
+     * @Route("/listeBD/{genre}/{tri}", name="listeBDGenre")
      */
 
-    public function listeBDGenre($genre)
+    public function listeBDGenre($genre, $tri)
     {
-        /* Récupère la liste des BD selon un genre */
-        
+        if($tri == 1){
+            echo('1');
+        }
+        elseif($tri == 2){
+            echo('2');
+        }
+        elseif($tri == 3){
+        echo('3');
+        }
+        else{
+            echo('4');
+        }
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $BandeDessinees = $repository->findBy(array('Genre' => $genre), array('DateDeParution'=> 'ASC'));
+        $BandeDessinees = $repository->findBy(array('Genre' => $genre));
 
         /* Récupère les notes moyennes des BD */
         $notesMoyennes = [];
@@ -111,6 +121,10 @@ class HomeController extends AbstractController{
             'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genre
         ]);
     }
+
+//, array('DateDeParution'=> 'ASC')
+
+
 
     /**
      * @Route("/listeBD/{genre}/Tendances", name="listeBDTendances")
