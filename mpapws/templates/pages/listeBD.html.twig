@@ -1,5 +1,6 @@
 {%  extends 'base.html.twig' %}
 
+
 {% block body  %}
 
     {% if BandeDessinees != NULL %}
@@ -16,7 +17,16 @@
                 <a href="/BD/{{ BandeDessinee.getId() }}"> <img src="{{ BandeDessinee.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                 <div class="media-body">
                     <a href="/BD/{{ BandeDessinee.getId() }}" class="BDlist-link"><h5 class="mt-0 mb-1">{{ BandeDessinee.getTitre() }}</h5></a>
-                    <p class="font-weight-bold">{{ BandeDessinee.getDateDeParution()|date("m/d/Y") }} • {{ NotesMoyennes[i] }} / 5</p>
+                    <p class="font-weight-bold">{{ BandeDessinee.getDateDeParution()|date("m/d/Y") }} •
+
+                        {% if NotesMoyennes[i] != NULL %}
+                            {{ NotesMoyennes[i] }} / 5</p>
+                        {% endif %}
+
+                        {% if NotesMoyennes[i] == NULL %}
+                            Aucune note</p>
+                        {% endif %}
+
                     {% set i = i + 1 %}
                     <p>{{ BandeDessinee.getDescription() }}</p>
                 </div>

@@ -6,6 +6,10 @@ use App\Entity\BandeDessinee;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+use InvalidArgumentException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @method BandeDessinee|null find($id, $lockMode = null, $lockVersion = null)
@@ -39,40 +43,49 @@ class BandeDessineeRepository extends ServiceEntityRepository
             return $BandeDessinees;
         }
 
-
-
-    public function getNoteMoyenne($id)
+    /**
+     * Récupère une liste d'articles triés et paginés.
+     *
+     * @param int $page Le numéro de la page
+     * @param int $nbMaxParPage Nombre maximum d'article par page
+     *
+     * @throws InvalidArgumentException
+     * @throws NotFoundHttpException
+     *
+     * @return Paginator
+     */
+    public function findAllPagineEtTrie($page, $nbMaxParPage)
     {
-        /* Une fonction a faire, combinée à getBDRecentes, elle pourrait nous faire gagner enormement de place dans le
-        Controller */
-    }
+        if (!is_numeric($page)) {
+            throw new InvalidArgumentException(
+                'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
+            );
+        }
 
-    // /**
-    //  * @return BandeDessinee[] Returns an array of BandeDessinee objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        if ($page < 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas');
+        }
 
-    /*
-    public function findOneBySomeField($value): ?BandeDessinee
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if (!is_numeric($nbMaxParPage)) {
+            throw new InvalidArgumentException(
+                'La valeur de l\'argument $nbMaxParPage est incorrecte (valeur : ' . $nbMaxParPage . ').'
+            );
+        }
+
+        $qb = $this->createQueryBuilder('BD')
+            ->where('CURRENT_DATE() >= BD.DateDeParution')
+            ->orderBy('BD.DateDeParution', 'DESC');
+
+        $query = $qb->getQuery();
+
+        $premierResultat = ($page - 1) * $nbMaxParPage;
+        $query->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
+        $paginator = new Paginator($query);
+
+        if ( ($paginator->count() <= $premierResultat) && $page != 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
+        }
+
+        return $paginator;
     }
-    */
 }
