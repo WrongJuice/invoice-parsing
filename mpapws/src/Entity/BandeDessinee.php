@@ -58,41 +58,6 @@ class BandeDessinee
      */
     private $DateDeParution;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $LivrePDF;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Planche1;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Planche2;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Planche3;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Planche4;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Planche5;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $Affiche;
-
     public function __construct()
     {
         $this->sesCommentaires = new ArrayCollection();
@@ -243,23 +208,9 @@ class BandeDessinee
         return '/data/' . $this->getId() . '/livre.pdf';
     }
 
-    public function setLivrePDF(string $LivrePDF): self
-    {
-        $this->LivrePDF = $LivrePDF;
-
-        return $this;
-    }
-
     public function getPlanche1(): ?string
     {
         return '/data/' . $this->getId() . '/p1.jpg';
-    }
-
-    public function setPlanche1(?string $Planche1): self
-    {
-        $this->Planche1 = $Planche1;
-
-        return $this;
     }
 
     public function getPlanche2(): ?string
@@ -267,23 +218,9 @@ class BandeDessinee
         return '/data/' . $this->getId() . '/p2.jpg';
     }
 
-    public function setPlanche2(?string $Planche2): self
-    {
-        $this->Planche2 = $Planche2;
-
-        return $this;
-    }
-
     public function getPlanche3(): ?string
     {
         return '/data/' . $this->getId() . '/p3.jpg';
-    }
-
-    public function setPlanche3(?string $Planche3): self
-    {
-        $this->Planche3 = $Planche3;
-
-        return $this;
     }
 
     public function getPlanche4(): ?string
@@ -291,34 +228,13 @@ class BandeDessinee
         return '/data/' . $this->getId() . '/p4.jpg';
     }
 
-    public function setPlanche4(?string $Planche4): self
-    {
-        $this->Planche4 = $Planche4;
-
-        return $this;
-    }
-
     public function getPlanche5(): ?string
     {
         return '/data/' . $this->getId() . '/p5.jpg';
     }
 
-    public function setPlanche5(?string $Planche5): self
-    {
-        $this->Planche5 = $Planche5;
-
-        return $this;
-    }
-
     public function getAffiche(): ?string
     {
         return '/data/' . $this->getId() . '/affiche.jpg';
-    }
-
-    public function setAffiche(string $Affiche): self
-    {
-        $this->Affiche = $Affiche;
-
-        return $this;
     }
 }

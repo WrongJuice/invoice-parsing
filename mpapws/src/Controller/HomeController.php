@@ -95,7 +95,7 @@ class HomeController extends AbstractController{
     public function listeBDGenre($genre)
     {
         /* Récupère la liste des BD selon un genre */
-        
+
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->findBy(array('Genre' => $genre));
 
@@ -164,6 +164,7 @@ class HomeController extends AbstractController{
         $BandeDessinees = $repository->findBy(array('Genre' => $genre, 'SousGenre' => $sousGenre));
 
         $notesMoyennes = [];
+
         foreach ($BandeDessinees as $bandeDessinee) {
             $notes = $bandeDessinee->getSesNotes();
             list($noteMoyenne, $nbNotes) = $this->getNoteMoyenne($notes);
@@ -339,24 +340,16 @@ class HomeController extends AbstractController{
             ->add('sousGenre', ChoiceType::class, [
                 'choices' => ['Aventure' => 'Aventure', 'Humour' => 'Humour', 'Super-Héros' => 'Super-Héros', 'Policier' => 'Policier', 'Science-Fiction' => 'Science-Fiction',
                     'Historique'=>'Historique', 'Fantaisy' => 'Fantaisy', 'Divers' => 'Divers' ],], ['label'  => 'Sous-genre',])
-            /*->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF', 'mapped' => false])
-            ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre', 'mapped' => false])
-            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)','mapped' => false])
-            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)','mapped' => false])
-            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)','mapped' => false])
-            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)','mapped' => false])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)','mapped' => false])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)','mapped' => false])
-            Lorsque la bd sera maj
+            ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF', 'mapped' => false])
+            /*
+            ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre','mapped' => false])
+            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)', 'required' => false, 'mapped' => false])
+            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)', 'required' => false, 'mapped' => false])
+            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)', 'required' => false, 'mapped' => false])
+            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)', 'required' => false, 'mapped' => false])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false, 'mapped' => false])
+            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false, 'mapped' => false])
             */
-            ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF',])
-            ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre',])
-            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)', 'required' => false])
-            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)', 'required' => false])
-            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)', 'required' => false])
-            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)', 'required' => false])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false])
             ->add('save', SubmitType::class, ['label'  => 'Envoyer !',])
             ->getForm();
 
@@ -378,8 +371,8 @@ class HomeController extends AbstractController{
 
             $filename = pathinfo($uploadedPDF->getClientOriginalName() . '.pdf' , PATHINFO_FILENAME);
             $uploadedPDF->move($destination , $filename);
-            rename('./data/' . $BD->getId() . '/' . $uploadedPDF->getClientOriginalName() , './data/' . $BD->getId() .'/Livre.pdf');
-
+            rename('./data/' . $BD->getId() . '/' . $uploadedPDF->getClientOriginalName() , './data/' . $BD->getId() .'/livre.pdf');
+            //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
             return $this->render('pages/task_success.html.twig');
         }
         return $this->render('pages/formulaire.html.twig', [
