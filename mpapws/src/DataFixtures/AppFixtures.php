@@ -27,13 +27,6 @@ class AppFixtures extends Fixture
             $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $uneBandeDessinnee->setGenre('BD');
             $uneBandeDessinnee->setSousGenre('Humour');
-            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testBD.jpg');
-            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
-            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
-            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
-            $uneBandeDessinnee->setPlanche3('/data_fixtures/planche3.jpg');
-            $uneBandeDessinnee->setPlanche4('/data_fixtures/planche4.jpg');
-            $uneBandeDessinnee->setPlanche5('/data_fixtures/planche5.jpg');
             $manager->persist($uneBandeDessinnee);
 
               // Crée 4 commentaires pour la BD et les lie
@@ -67,11 +60,6 @@ class AppFixtures extends Fixture
             $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $uneBandeDessinnee->setGenre('BD');
             $uneBandeDessinnee->setSousGenre('Policier');
-            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testBD.jpg');
-            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
-            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
-            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
-            $uneBandeDessinnee->setPlanche3('/data_fixtures/planche3.jpg');
             $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
@@ -103,8 +91,6 @@ class AppFixtures extends Fixture
             $uneBandeDessinnee->setDateDeParution(new \DateTime('2010-01-01 00:00:00'));
             $uneBandeDessinnee->setGenre('BD');
             $uneBandeDessinnee->setSousGenre('Aventure');
-            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testBD.jpg');
-            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
             $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
@@ -139,13 +125,6 @@ class AppFixtures extends Fixture
             $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $uneBandeDessinnee->setGenre('Comics');
             $uneBandeDessinnee->setSousGenre('Super-Heros');
-            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testComics.jpg');
-            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
-            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
-            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
-            $uneBandeDessinnee->setPlanche3('/data_fixtures/planche3.jpg');
-            $uneBandeDessinnee->setPlanche4('/data_fixtures/planche4.jpg');
-            $uneBandeDessinnee->setPlanche5('/data_fixtures/planche5.jpg');
             $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
@@ -178,10 +157,6 @@ class AppFixtures extends Fixture
             $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $uneBandeDessinnee->setGenre('Comics');
             $uneBandeDessinnee->setSousGenre('Historique');
-            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testComics.jpg');
-            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
-            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
-            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
             $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
@@ -216,13 +191,6 @@ class AppFixtures extends Fixture
             $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $uneBandeDessinnee->setGenre('Mangas');
             $uneBandeDessinnee->setSousGenre('Divers');
-            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testManga.jpg');
-            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
-            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
-            $uneBandeDessinnee->setPlanche2('/data_fixtures/planche2.jpg');
-            $uneBandeDessinnee->setPlanche3('/data_fixtures/planche3.jpg');
-            $uneBandeDessinnee->setPlanche4('/data_fixtures/planche4.jpg');
-            $uneBandeDessinnee->setPlanche5('/data_fixtures/planche5.jpg');
             $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
@@ -255,9 +223,6 @@ class AppFixtures extends Fixture
             $uneBandeDessinnee->setDateDeParution(new \DateTime(date("Y-m-d H:i:s")));
             $uneBandeDessinnee->setGenre('Mangas');
             $uneBandeDessinnee->setSousGenre('Fantasy');
-            $uneBandeDessinnee->setAffiche('/data_fixtures/affiche_testManga.jpg');
-            $uneBandeDessinnee->setLivrePDF('/data_fixtures/BD_test.pdf');
-            $uneBandeDessinnee->setPlanche1('/data_fixtures/planche1.jpg');
             $manager->persist($uneBandeDessinnee);
 
             // Crée 4 commentaires pour la BD et les lie
