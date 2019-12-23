@@ -94,7 +94,7 @@ class DetailController extends AbstractController{
             $entityManager->persist($Commentaire);
             $entityManager->flush();
 
-            return $this->redirectToRoute('BDDetaillee', ['id' => $BandeDessinee->getId()]);
+            return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $BandeDessinee->getId()]);
         }
 
         /* On s'occupe du formulaire d'envoi de note */
@@ -121,7 +121,7 @@ class DetailController extends AbstractController{
             $entityManager->persist($Note);
             $entityManager->flush();
 
-            return $this->redirectToRoute('BDDetaillee', ['id' => $BandeDessinee->getId()]);
+            return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $BandeDessinee->getId()]);
         }
 
         return $this->render('pages/BDDetaillee.html.twig', [

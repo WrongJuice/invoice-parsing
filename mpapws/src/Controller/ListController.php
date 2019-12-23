@@ -43,7 +43,7 @@ class ListController extends AbstractController{
 
         $nbArticlesParPage = 5;
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $BandeDessinees = $repository->findAllPagineEtTrieGenre($page, $nbArticlesParPage, $genre);
+        $BandeDessinees = $repository->getBDGenrePagination($page, $nbArticlesParPage, $genre);
 
         $pagination = array(
             'page' => $page,
@@ -113,21 +113,23 @@ class ListController extends AbstractController{
         $genreConsulté = $genre;
         $genreConsulté .= ' Tendances';
 
+
         return $this->render('pages/listeBD.html.twig', [
-            'BandeDessinees' => $BDRecentes, 'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genreConsulté, 'pagination' => $pagination
+            'BandeDessinees' => $BDRecentes, 'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genreConsulté, 'genre' => $genre, 'pagination' => $pagination
         ]);
     }
 
     /**
-     * @Route("/listeBD/{genre}/{sousGenre}", name="listeBDSousGenre")
+     * @Route("/listeBD/{genre}/{sousGenre}/{page}", name="listeBDSousGenre")
      */
 
-    public function listeBDSousGenre($genre, $sousGenre)
+    public function listeBDSousGenre($genre, $sousGenre, $page)
     {
         /* Récupère la liste des BD selon un genre et un sous genre */
 
+        $nbArticlesParPage = 5;
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $BandeDessinees = $repository->findBy(array('Genre' => $genre, 'SousGenre' => $sousGenre));
+        $BandeDessinees = $repository->getBDSousGenrePagination($page, $nbArticlesParPage, $genre, $sousGenre);
 
         $notesMoyennes = [];
 
@@ -143,7 +145,7 @@ class ListController extends AbstractController{
         $genreConsulté .= $sousGenre;
 
         return $this->render('pages/listeBD.html.twig', [
-            'BandeDessinees' => $BandeDessinees, 'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genreConsulté
+            'BandeDessinees' => $BandeDessinees, 'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genreConsulté, 'genre' => $genre, 'sousGenre' => $sousGenre
         ]);
     }
 

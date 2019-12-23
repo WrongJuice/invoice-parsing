@@ -58,6 +58,11 @@ class BandeDessinee
      */
     private $DateDeParution;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $NoteMoyenne;
+
     public function __construct()
     {
         $this->sesCommentaires = new ArrayCollection();
@@ -175,6 +180,7 @@ class BandeDessinee
             $sesNote->setSaBandeDessinee($this);
         }
 
+        $this->setNoteMoyenne();
         return $this;
     }
 
@@ -188,6 +194,7 @@ class BandeDessinee
             }
         }
 
+        $this->setNoteMoyenne();
         return $this;
     }
 
@@ -274,6 +281,29 @@ class BandeDessinee
 
 
         return array($NoteMoyenne, $i);
+    }
+
+    public function setNoteMoyenne(): self
+    {
+        /* Fonction qui set sa note moyenne */
+
+        $Notes = $this->getSesNotes();
+        $NoteMoyenne = 0;
+        $i = 0;
+
+        foreach($Notes as $Note)
+        {
+            $NoteMoyenne += $Note->getValeur();
+            $i++;
+        }
+        if ($i != 0){
+            $NoteMoyenne = $NoteMoyenne / $i;
+            $NoteMoyenne = number_format($NoteMoyenne, 2, ',', ' ');
+        }else $NoteMoyenne = null;
+
+        $this->NoteMoyenne = $NoteMoyenne;
+
+        return $this;
     }
 
 }

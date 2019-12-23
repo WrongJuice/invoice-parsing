@@ -52,7 +52,6 @@ class Notes
     public function setSaBandeDessinee(?BandeDessinee $saBandeDessinee): self
     {
         $this->saBandeDessinee = $saBandeDessinee;
-
         return $this;
     }
 }
