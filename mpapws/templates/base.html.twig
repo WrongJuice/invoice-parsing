@@ -32,7 +32,7 @@
                         <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/BD/Divers">Divers</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/BD/Tendances">Les tendances </a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/BD">Voir tout </a>
+                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/BD/1">Voir tout </a>
                     </div>
                 </li>
 
@@ -51,7 +51,7 @@
                         <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Mangas/Divers">Divers</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Mangas/Tendances">Les tendances </a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Mangas">Voir tout </a>
+                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Mangas/1">Voir tout </a>
                     </div>
                 </li>
 
@@ -70,7 +70,7 @@
                         <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Comics/Divers">Divers</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Comics/Tendances">Les tendances </a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Comics">Voir tout </a>
+                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/listeBD/Comics/1">Voir tout </a>
                     </div>
                 </li>
 
@@ -87,17 +87,17 @@
         {% block body %}{% endblock %}
 
     {# Ajout d'une zone de pagination pour les pages si besoin est#}
-    {% if pagination.nbPages > 0 %}
+    {% if pagination.nbPages is defined %}
         <ul class="pagination">
             {% if pagination.page > 1 %}
                 <li>
-                    <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1})) }}">
+                    <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1, 'genre': GenreConsulte })) }}">
                         <<
                     </a>
                 </li>
                 <li>
                     <a href="{{ path(pagination.nomRoute,
-                        pagination.paramsRoute|merge({'page': pagination.page-1})) }}">
+                        pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': GenreConsulte })) }}">
                         <
                     </a>
                 </li>
@@ -106,7 +106,7 @@
             {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
             {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
                 <li {% if p == pagination.page %}class="active"{% endif %}>
-                    <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p})) }}">
+                    <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': GenreConsulte})) }}">
                         {{ p }}
                     </a>
                 </li>
@@ -115,13 +115,13 @@
             {% if pagination.page < pagination.nbPages %}
                 <li>
                     <a href="{{ path(pagination.nomRoute,
-                        pagination.paramsRoute|merge({'page': pagination.page+1})) }}">
+                        pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': GenreConsulte })) }}">
                         >
                     </a>
                 </li>
                 <li>
                     <a href="{{ path(pagination.nomRoute,
-                        pagination.paramsRoute|merge({'page': pagination.nbPages})) }}">
+                        pagination.paramsRoute|merge({'page': pagination.nbPages, 'genre': GenreConsulte })) }}">
                         >>
                     </a>
                 </li>

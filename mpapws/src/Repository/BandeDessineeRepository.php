@@ -25,7 +25,7 @@ class BandeDessineeRepository extends ServiceEntityRepository
     }
 
 
-    public function getBDRecentes(String $genre)
+    public function getBDRecentesForHome(String $genre)
     {
         /* Récupère les BD sorties il y a moins de deux mois et selon un genre*/
 
@@ -40,11 +40,37 @@ class BandeDessineeRepository extends ServiceEntityRepository
 
         $BandeDessinees = $QueryBuilder->getQuery()->getResult();
 
-            return $BandeDessinees;
+        return $BandeDessinees;
+    }
+
+    public function getBDRecentesPagination($page, $nbMaxParPage, $genre)
+    {
+        /* Récupère les BD sorties il y a moins de deux mois et selon un genre*/
+
+        $twoMonths = new \DateTime(date("Y-m-d H:i:s"));
+        $twoMonths->modify('-2 months');
+
+        $QueryBuilder = $this->createQueryBuilder("BD")
+            ->andWhere('BD.DateDeParution > :twoMonths')
+            ->andWhere('BD.Genre = :genre')
+            ->setParameter('twoMonths', $twoMonths)
+            ->setParameter('genre', $genre);
+
+        $BandeDessinees = $QueryBuilder->getQuery();
+
+        $premierResultat = ($page - 1) * $nbMaxParPage;
+        $BandeDessinees->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
+        $paginator = new Paginator($BandeDessinees);
+
+        if ( ($paginator->count() <= $premierResultat) && $page != 1) {
+            throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
+        }
+
+            return $paginator;
         }
 
     /**
-     * Récupère une liste d'articles triés et paginés.
+     * Récupère une liste d'articles triés et paginés pour un genre donné
      *
      * @param int $page Le numéro de la page
      * @param int $nbMaxParPage Nombre maximum d'article par page
@@ -54,7 +80,7 @@ class BandeDessineeRepository extends ServiceEntityRepository
      *
      * @return Paginator
      */
-    public function findAllPagineEtTrie($page, $nbMaxParPage)
+    public function findAllPagineEtTrieGenre($page, $nbMaxParPage, $genre)
     {
         if (!is_numeric($page)) {
             throw new InvalidArgumentException(
@@ -73,8 +99,9 @@ class BandeDessineeRepository extends ServiceEntityRepository
         }
 
         $qb = $this->createQueryBuilder('BD')
-            ->where('CURRENT_DATE() >= BD.DateDeParution')
-            ->orderBy('BD.DateDeParution', 'DESC');
+            ->where('BD.Genre = :genre')
+            ->orderBy('BD.DateDeParution', 'DESC')
+            ->setParameter('genre', $genre);
 
         $query = $qb->getQuery();
 

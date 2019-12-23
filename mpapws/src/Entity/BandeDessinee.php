@@ -237,4 +237,43 @@ class BandeDessinee
     {
         return '/data/' . $this->getId() . '/affiche.jpg';
     }
+
+    public function getNbCommentaires(){
+
+        /* Fonction qui récupère le nombre de commentaires pour une BD */
+
+        $Commentaires = $this->getSesCommentaires();
+        $nbCommentaires = 0;
+
+        foreach($Commentaires as $Commentaire)
+        {
+            $nbCommentaires += 1;
+        }
+
+        return $nbCommentaires;
+    }
+
+    public function getNoteMoyenne(){
+
+        /* Fonction qui récupère une note moyenne à partir d'une liste de notes */
+
+        $Notes = $this->getSesNotes();
+        $NoteMoyenne = 0;
+        $i = 0;
+
+        foreach($Notes as $Note)
+        {
+            $NoteMoyenne += $Note->getValeur();
+            $i++;
+        }
+        if ($i != 0){
+            $NoteMoyenne = $NoteMoyenne / $i;
+            $NoteMoyenne = number_format($NoteMoyenne, 2, ',', ' ');
+        }else $NoteMoyenne = null;
+
+
+
+        return array($NoteMoyenne, $i);
+    }
+
 }
