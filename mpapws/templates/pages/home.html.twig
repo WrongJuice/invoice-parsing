@@ -6,6 +6,7 @@
 
         <h2 class="home-title"> Tendances</h2>
 
+    {# Zone des BD Tendances #}
         <div class="tendance-zone">
             {% for  BDTendance in BDTendances%}
                 <div class="uneBdTendance">
@@ -15,11 +16,13 @@
                      <p class="bdtendance-author"> par {{ BDTendance.getAuteur() }}</p>
                 </div>
             {% endfor %}
-            {% if BDTendances != null %}
+
+            {% if BDTendances|length > 4 %}
             <button type="button" onclick="window.location.href='/listeBD/BD/Tendances/1'" class="bdtendance-voirplus">Voir plus</button>
             {% endif %}
         </div>
 
+    {# Zone des Mangas Tendances #}
     <div class="tendance-zone">
         {% for  MangaTendance in MangasTendances%}
             <div class="uneBdTendance">
@@ -29,11 +32,13 @@
                 <p class="bdtendance-author"> par {{ MangaTendance.getAuteur() }}</p>
             </div>
         {% endfor %}
-        {% if BDTendances != null %}
+
+        {% if MangasTendances|length > 4 %}
          <button type="button" onclick="window.location.href='/listeBD/Mangas/Tendances/1'" class="bdtendance-voirplus">Voir plus</button>
         {% endif %}
     </div>
 
+    {# Zone des Comics Tendances #}
     <div class="tendance-zone">
         {% for  ComicTendance in ComicsTendances%}
             <div class="uneBdTendance">
@@ -43,7 +48,8 @@
                 <p class="bdtendance-author"> par {{ ComicTendance.getAuteur() }}</p>
             </div>
         {% endfor %}
-        {% if BDTendances != null %}
+
+        {% if ComicsTendances|length > 4 %}
          <button type="button" onclick="window.location.href='/listeBD/Comics/Tendances/1'" class="bdtendance-voirplus">Voir plus</button>
         {% endif %}
     </div>

@@ -67,6 +67,7 @@ class BandeDessinee
     {
         $this->sesCommentaires = new ArrayCollection();
         $this->sesNotes = new ArrayCollection();
+        $this->setNoteMoyenne();
     }
 
     public function getId(): ?int
@@ -280,7 +281,8 @@ class BandeDessinee
 
 
 
-        return array($NoteMoyenne, $i);
+        $this->setNoteMoyenne();
+        return $this->NoteMoyenne;
     }
 
     public function setNoteMoyenne(): self
@@ -299,7 +301,8 @@ class BandeDessinee
         if ($i != 0){
             $NoteMoyenne = $NoteMoyenne / $i;
             $NoteMoyenne = number_format($NoteMoyenne, 2, ',', ' ');
-        }else $NoteMoyenne = null;
+        }
+        else $NoteMoyenne = -1;
 
         $this->NoteMoyenne = $NoteMoyenne;
 

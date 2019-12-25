@@ -41,7 +41,6 @@ class DetailController extends AbstractController{
         /*Récupère les infos de la BD */
 
         $Commentaires = $BandeDessinee->getSesCommentaires();
-        $Notes = $BandeDessinee->getSesNotes();
 
         /* Ajoute les planches seulement si elles existent */
 
@@ -67,7 +66,6 @@ class DetailController extends AbstractController{
             array_push($Planches, $BandeDessinee->getPlanche5());
         }
 
-        list($NoteMoyenne, $nbNotes) = $BandeDessinee->getNoteMoyenne(); /* Récupère la note moyenne d'une BD et son nombre de notes */
         $nbCommentaires = $BandeDessinee->getNbCommentaires();
 
         /* On s'occupe du formulaire d'envoi de commentaires */
@@ -120,12 +118,13 @@ class DetailController extends AbstractController{
 
             $entityManager->persist($Note);
             $entityManager->flush();
+            $BandeDessinee->setNoteMoyenne();
 
             return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $BandeDessinee->getId()]);
         }
 
         return $this->render('pages/BDDetaillee.html.twig', [
-            'formComment'=> $formComment->createView(), 'formNote'=> $formNote->createView(), 'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'nbCommentaires' => $nbCommentaires, 'Note' => $NoteMoyenne, 'nbNotes' => $nbNotes,'Planches' => $Planches
+            'formComment'=> $formComment->createView(), 'formNote'=> $formNote->createView(), 'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'nbCommentaires' => $nbCommentaires, 'Planches' => $Planches
         ]);
     }
 

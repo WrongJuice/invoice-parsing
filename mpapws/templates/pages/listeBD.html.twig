@@ -5,7 +5,7 @@
 
     {% if BandeDessinees is not empty %}
         <br/>
-        <h2 class="text-center liste-title"> Vous consultez la liste des {{ GenreConsulte }}</h2>
+        <h2 class="text-center liste-title"> Vous consultez la liste des {{ GenreToString }}</h2>
         <br/>
     {% endif %}
 
@@ -17,17 +17,14 @@
                 <a href="/BD/{{ BandeDessinee.getId() }}"> <img src="{{ BandeDessinee.getAffiche() }}" class="mr-3" style="height: 200px" alt="affiche_test.jpg"> </a>
                 <div class="media-body">
                     <a href="/BD/{{ BandeDessinee.getId() }}" class="BDlist-link"><h5 class="mt-0 mb-1">{{ BandeDessinee.getTitre() }}</h5></a>
-                    <p class="font-weight-bold">{{ BandeDessinee.getDateDeParution()|date("m/d/Y") }} •
+                    <p class="font-weight-bold">{{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} •
 
-                        {% if NotesMoyennes[i] != NULL %}
-                            {{ NotesMoyennes[i] }} / 5</p>
-                        {% endif %}
-
-                        {% if NotesMoyennes[i] == NULL %}
+                        {% if BandeDessinee.getSesNotes()|length != 0 %}
+                            {{ BandeDessinee.getNoteMoyenne() }} / 5</p>
+                        {% else  %}
                             Aucune note</p>
                         {% endif %}
 
-                    {% set i = i + 1 %}
                     <p>{{ BandeDessinee.getDescription() }}</p>
                 </div>
             </li>
@@ -36,6 +33,7 @@
     </ul>
 
 
+    {# Si jamais il n'y a pas de BD dans la liste #}
     {% if BandeDessinees is empty %}
             <div class="row justify-content-between align-items-center" style="width: 600px;">
                 <img src="/img/noresult.png" style="width: 200px;">

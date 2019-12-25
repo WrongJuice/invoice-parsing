@@ -9,6 +9,8 @@
         {% block stylesheets %} {% endblock %}
     </head>
     <body>
+
+    {# Header #}
     <nav class="navbar navbar-expand-lg navbar-light sticky-top header">
         <a class="navbar-brand text-light logo-biblio" href="http://mpapws.loc:9999/"><img src="/img/logo-biblio.svg" style="width: 80px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,8 +89,9 @@
         {% block body %}{% endblock %}
 
     {# Ajout d'une zone de pagination pour les pages si besoin est#}
-    {% if pagination.nbPages is defined %}
-        {% if 'Tendances' in GenreConsulte %}
+        {# 3 Types de redirection selon si c'est une liste Tendance, Sous-Genre ou Genre #}
+    {% if pagination.nbPages is defined and (( BandeDessinees is defined and BandeDessinees is not empty ) or ( BDTendances is defined and BDTendances is not empty )) %}
+        {% if 'Tendances' in GenreToString %}
             <ul class="pagination">
                 {% if pagination.page > 1 %}
                     <li>
@@ -169,17 +172,17 @@
                     </li>
                 {% endif %}
             </ul>
-        {% elseif GenreConsulte is defined %}
+        {% elseif GenreToString is defined %}
             <ul class="pagination">
                 {% if pagination.page > 1 %}
                     <li>
-                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1, 'genre': GenreConsulte })) }}">
+                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1, 'genre': GenreToString })) }}">
                             <<
                         </a>
                     </li>
                     <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': GenreConsulte })) }}">
+                            pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': GenreToString })) }}">
                             <
                         </a>
                     </li>
@@ -188,7 +191,7 @@
                 {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
                 {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
                     <li {% if p == pagination.page %}class="active"{% endif %}>
-                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': GenreConsulte})) }}">
+                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': GenreToString})) }}">
                             {{ p }}
                         </a>
                     </li>
@@ -197,13 +200,13 @@
                 {% if pagination.page < pagination.nbPages %}
                     <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': GenreConsulte })) }}">
+                            pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': GenreToString })) }}">
                             >
                         </a>
                     </li>
                     <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.nbPages, 'genre': GenreConsulte })) }}">
+                            pagination.paramsRoute|merge({'page': pagination.nbPages, 'genre': GenreToString })) }}">
                             >>
                         </a>
                     </li>
@@ -216,6 +219,8 @@
     </div>
 
     </br> </br> </br> </br>
+
+    {# Footer #}
     <footer id="sticky-footer" class="py-4 text-white-50">
         <div class="container text-center">
             <small>Biblio - Le site qui vous donnera envie de BD !</small>

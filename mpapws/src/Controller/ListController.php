@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 
 class ListController extends AbstractController{
@@ -41,6 +42,8 @@ class ListController extends AbstractController{
     {
         /* Récupère la liste des BD selon un genre */
 
+        /* Crée un système de pagination avec 5 BD par page */
+
         $nbArticlesParPage = 5;
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->getBDGenrePagination($page, $nbArticlesParPage, $genre);
@@ -52,19 +55,10 @@ class ListController extends AbstractController{
             'paramsRoute' => array()
         );
 
-        /* Récupère les notes moyennes des BD */
-        $notesMoyennes = [];
-        foreach ($BandeDessinees as $bandeDessinee) {
-            $notes = $bandeDessinee->getSesNotes();
-            list($noteMoyenne, $nbNotes) = $bandeDessinee->getNoteMoyenne();
-            array_push($notesMoyennes, $noteMoyenne);
-        }
-
-
 
         return $this->render('pages/listeBD.html.twig', [
             'BandeDessinees' => $BandeDessinees,
-            'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genre,
+            'GenreToString' => $genre,
             'pagination' => $pagination
         ]);
     }
@@ -75,21 +69,20 @@ class ListController extends AbstractController{
 
     public function listeBDTendances($genre, $page)
     {
-        /* Récupère la liste des BD tendances selon un genre */
+        /* Récupère la liste des BD Recentes selon un genre */
+
+        /* Crée un système de pagination avec 5 BD par page */
+
+        $nbMaxParPage = 5;
 
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-
         $nbArticlesParPage = 5;
         $BDRecentes = $repository->getBDRecentesPagination($page, $nbArticlesParPage, $genre); // Récupère les BD Récentes
 
         $BDTendances = [];
-        foreach ($BDRecentes as $BDRecente) // Récupère seulement les BD Récentes avec plus de 10 notes et une moyenne de note supérieure ou égale à 4
-        {
-            $Notes = $BDRecente->getSesNotes();
-            list($NoteMoyenne, $nbNotes) = $BDRecente->getNoteMoyenne();
-            if($NoteMoyenne >= 4 && $nbNotes > 10)
-            {
-                array_push($BDTendances,$BDRecente);
+        foreach($BDRecentes as $BDRecente){
+            if(count($BDRecente->getSesNotes()) > 10 && $BDRecente->getNoteMoyenne() >= 4.00){
+                array_push($BDTendances, $BDRecente);
             }
         }
 
@@ -101,21 +94,13 @@ class ListController extends AbstractController{
         );
 
 
-        /* Récupère la note moyenne des BD */
-        $notesMoyennes = [];
-        foreach ($BDRecentes as $bandeDessinee) { // Récupère les notes moyennes de chaque BD
-            $notes = $bandeDessinee->getSesNotes();
-            list($noteMoyenne, $nbNotes) = $bandeDessinee->getNoteMoyenne();
-            array_push($notesMoyennes, $noteMoyenne);
-        }
-
         // Permet d'afficher le genre consulté
-        $genreConsulté = $genre;
-        $genreConsulté .= ' Tendances';
+        $genreToString = $genre;
+        $genreToString .= ' Tendances';
 
 
         return $this->render('pages/listeBD.html.twig', [
-            'BandeDessinees' => $BDRecentes, 'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genreConsulté, 'genre' => $genre, 'pagination' => $pagination
+            'BandeDessinees' => $BDTendances, 'GenreToString' => $genreToString, 'genre' => $genre, 'pagination' => $pagination
         ]);
     }
 
@@ -127,25 +112,19 @@ class ListController extends AbstractController{
     {
         /* Récupère la liste des BD selon un genre et un sous genre */
 
+        /* Crée un système de pagination avec 5 BD par page */
+
         $nbArticlesParPage = 5;
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $BandeDessinees = $repository->getBDSousGenrePagination($page, $nbArticlesParPage, $genre, $sousGenre);
 
-        $notesMoyennes = [];
-
-        foreach ($BandeDessinees as $bandeDessinee) {
-            $notes = $bandeDessinee->getSesNotes();
-            list($noteMoyenne, $nbNotes) = $bandeDessinee->getNoteMoyenne();
-            array_push($notesMoyennes, $noteMoyenne);
-        }
-
         // Permet d'afficher le genre consulté
-        $genreConsulté = $genre;
-        $genreConsulté .= ' ';
-        $genreConsulté .= $sousGenre;
+        $genreToString = $genre;
+        $genreToString .= ' ';
+        $genreToString .= $sousGenre;
 
         return $this->render('pages/listeBD.html.twig', [
-            'BandeDessinees' => $BandeDessinees, 'NotesMoyennes' => $notesMoyennes, 'GenreConsulte' => $genreConsulté, 'genre' => $genre, 'sousGenre' => $sousGenre
+            'BandeDessinees' => $BandeDessinees, 'GenreToString' => $genreToString, 'genre' => $genre, 'sousGenre' => $sousGenre
         ]);
     }
 

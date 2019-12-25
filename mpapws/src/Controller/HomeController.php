@@ -35,57 +35,61 @@ class HomeController extends AbstractController{
 
     public function index():Response{
 
-        /* Récupère les BD récentes grâce au Repository */
-
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
 
-        $BDRecentes = $repository->getBDRecentesForHome('BD');
+        /* Récupère les BD Recentes grâce au Repository */
 
-        /* Récupère seulement les BD qui ont plus de 4 en note avec au moins 10 notes */
+        $BDTendances = $repository->getBDRecentesForHome('BD');
 
-        $BDTendances = [];
+        /* Récupère seulement les 5 premières BD et qui ont plus de 10 notes*/
+
+        $CinqBDTendances = [];
         $i = 0;
-        foreach ($BDRecentes as $BDRecente)
+        foreach ($BDTendances as $BDTendance)
         {
-            $Notes = $BDRecente->getSesNotes();
-            list($NoteMoyenne, $nbNotes) = $BDRecente->getNoteMoyenne();
-            if($NoteMoyenne >= 4 && $nbNotes > 10 && $i < 5)
+            if($i < 5 && count($BDTendance->getSesNotes()) > 10 && $BDTendance->getNoteMoyenne() >= 4.00)
             {
-                array_push($BDTendances,$BDRecente);
+                array_push($CinqBDTendances,$BDTendance);
                 $i = $i + 1;
             }
         }
 
-        $MangasRecents = $repository->getBDRecentesForHome('Mangas');
-        $MangasTendances = [];
+        /* Récupère les Mangas Tendances grâce au Repository */
+
+        $MangasTendances = $repository->getBDRecentesForHome('Mangas');
+
+        /* Récupère Seulement les 5 premiers Mangas ayant plus de 10 notes */
+
+        $CinqMangasTendances = [];
         $i = 0;
-        foreach ($MangasRecents as $MangaRecent)
+        foreach ($MangasTendances as $MangaTendance)
         {
-            $Notes = $MangaRecent->getSesNotes();
-            list($NoteMoyenne, $nbNotes) = $MangaRecent->getNoteMoyenne();
-            if($NoteMoyenne >= 4 && $nbNotes > 10 && $i < 5)
+
+            if($i < 5 && count($MangaTendance->getSesNotes()) > 10 && $MangaTendance->getNoteMoyenne() >= 4.00)
             {
-                array_push($MangasTendances, $MangaRecent);
+                array_push($CinqMangasTendances, $MangaTendance);
                 $i = $i + 1;
             }
         }
 
-        $ComicsRecents = $repository->getBDRecentesForHome('Comics');
-        $ComicsTendances = [];
+        /* Récupère les Comics Tendances grâce au Repository */
+
+        $ComicsTendances = $repository->getBDRecentesForHome('Comics');
+
+        /* Récupère seulement les 5 premiers Comics ayant plus de 10 notes*/
+        $CinqComicsTendances = [];
         $i = 0;
-        foreach ($ComicsRecents as $ComicRecent)
+        foreach ($ComicsTendances as $ComicTendance)
         {
-            $Notes = $ComicRecent->getSesNotes();
-            list($NoteMoyenne, $nbNotes) = $ComicRecent->getNoteMoyenne();
-            if($NoteMoyenne >= 4 && $nbNotes > 10 && $i < 5)
+            if($i < 5 && count($ComicTendance->getSesNotes()) > 10 && $ComicTendance->getNoteMoyenne() >= 4.00)
             {
-                array_push($ComicsTendances, $ComicRecent);
+                array_push($CinqComicsTendances, $ComicTendance);
                 $i = $i + 1;
             }
         }
 
         return $this->render('pages/home.html.twig', [
-            'BDTendances' => $BDTendances, 'MangasTendances' => $MangasTendances, 'ComicsTendances' => $ComicsTendances
+            'BDTendances' => $CinqBDTendances, 'MangasTendances' => $CinqMangasTendances, 'ComicsTendances' => $CinqComicsTendances
         ]);
     }
 

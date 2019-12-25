@@ -52,6 +52,7 @@ class Notes
     public function setSaBandeDessinee(?BandeDessinee $saBandeDessinee): self
     {
         $this->saBandeDessinee = $saBandeDessinee;
+        $saBandeDessinee->setNoteMoyenne();
         return $this;
     }
 }

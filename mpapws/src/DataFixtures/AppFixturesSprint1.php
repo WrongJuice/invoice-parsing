@@ -26,7 +26,7 @@ class AppFixturesSprint1 extends Fixture
             $BandeDessinees[0]->setGenre('BD');
             $BandeDessinees[0]->setSousGenre('Aventure');
 
-            $manager->persist($BandeDessinees[0]);
+           $manager->persist($BandeDessinees[0]);
 
               // Crée 3 commentaires pour la BD et les lie
             $commentaire= new Commentaire();
@@ -58,7 +58,6 @@ class AppFixturesSprint1 extends Fixture
                 $note->setSaBandeDessinee($BandeDessinees[0]);
                 $manager->persist($note);
             }
-
 
         // Crée 1 BD Fantasy trop vieille
         $BandeDessinees[1]= new BandeDessinee();
@@ -939,6 +938,8 @@ class AppFixturesSprint1 extends Fixture
         }
 
         $manager->flush();
+
+
 
         mkdir('public/data/' . $BandeDessinees[0]->getId(),755);
         copy('public/data_fixtures/affiche_BD1.jpg' , 'public/data/' . $BandeDessinees[0]->getId() . '/affiche.jpg');

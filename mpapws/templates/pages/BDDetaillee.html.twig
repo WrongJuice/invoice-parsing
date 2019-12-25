@@ -3,11 +3,13 @@
 {% block body  %}
     </br>
     <div class="row justify-content-between align-items-center">
+        {# Zone de gauche #}
         <div class="column">
             <img src="{{ BandeDessinee.getAffiche() }}" style="width: 200px;">
             <p class="ml-2">
-                Note :  {{ Note }} / 5 sur {{ nbNotes }} notes
-                {% if Note == NULL %}
+                {% if BandeDessinee.getSesNotes|length != 0%}
+                Note :  {{ BandeDessinee.getNoteMoyenne() }} / 5 sur {{ BandeDessinee.getSesNotes()|length }} notes
+                {% else %}
                     Aucune note
                 {% endif %}
             </p>
@@ -20,6 +22,7 @@
             {{ form_end(formNote) }}
 
         </div>
+        {# Zone de droite #}
         <div class="column mx-auto text-center">
             <p> AUTEUR {{ BandeDessinee.getAuteur() }} • PARUTION {{ BandeDessinee.getDateDeParution()|date("d/m/Y") }} • THEME {{ BandeDessinee.getGenre() }} {{ BandeDessinee.getSousGenre() }}</p>
             <h1 class="BD-title"> {{ BandeDessinee.getTitre() }} </h1>
@@ -33,6 +36,7 @@
 
     </div>
 
+    {# Zone des planches #}
     <div class="card mx-auto div-planche" style="margin-top: 20px;">
         <ul class="list-group list-group-horizontal-lg d-flex justify-content-around">
             {% for Planche in Planches %}
@@ -44,6 +48,7 @@
     </div>
 
 
+    {# Zone des Commentaires #}
     </br> </br>
     <div class="detailcomment-separator"> </div>
     </br>

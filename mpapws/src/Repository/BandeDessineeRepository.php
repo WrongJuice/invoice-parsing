@@ -35,6 +35,7 @@ class BandeDessineeRepository extends ServiceEntityRepository
         $QueryBuilder = $this->createQueryBuilder("BD")
             ->andWhere('BD.DateDeParution > :twoMonths')
             ->andWhere('BD.Genre = :genre')
+            ->orderBy('BD.NoteMoyenne', 'DESC')
             ->setParameter('twoMonths', $twoMonths)
             ->setParameter('genre', $genre);
 
@@ -50,9 +51,10 @@ class BandeDessineeRepository extends ServiceEntityRepository
         $twoMonths = new \DateTime(date("Y-m-d H:i:s"));
         $twoMonths->modify('-2 months');
 
-        $QueryBuilder = $this->createQueryBuilder("BD")
-            ->andWhere('BD.DateDeParution > :twoMonths')
+        $QueryBuilder = $this->createQueryBuilder('BD')
+            ->Where('BD.DateDeParution > :twoMonths')
             ->andWhere('BD.Genre = :genre')
+            ->orderBy('BD.NoteMoyenne', 'DESC')
             ->setParameter('twoMonths', $twoMonths)
             ->setParameter('genre', $genre);
 
@@ -82,32 +84,17 @@ class BandeDessineeRepository extends ServiceEntityRepository
      */
     public function getBDGenrePagination($page, $nbMaxParPage, $genre)
     {
-        if (!is_numeric($page)) {
-            throw new InvalidArgumentException(
-                'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
-            );
-        }
 
-        if ($page < 1) {
-            throw new NotFoundHttpException('La page demandée n\'existe pas');
-        }
-
-        if (!is_numeric($nbMaxParPage)) {
-            throw new InvalidArgumentException(
-                'La valeur de l\'argument $nbMaxParPage est incorrecte (valeur : ' . $nbMaxParPage . ').'
-            );
-        }
-
-        $qb = $this->createQueryBuilder('BD')
+        $QueryBuilder = $this->createQueryBuilder('BD')
             ->where('BD.Genre = :genre')
             ->orderBy('BD.DateDeParution', 'DESC')
             ->setParameter('genre', $genre);
 
-        $query = $qb->getQuery();
+        $BandeDessinees = $QueryBuilder->getQuery();
 
         $premierResultat = ($page - 1) * $nbMaxParPage;
-        $query->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
-        $paginator = new Paginator($query);
+        $BandeDessinees->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
+        $paginator = new Paginator($BandeDessinees);
 
         if ( ($paginator->count() <= $premierResultat) && $page != 1) {
             throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
@@ -118,34 +105,19 @@ class BandeDessineeRepository extends ServiceEntityRepository
 
     public function getBDSousGenrePagination($page, $nbMaxParPage, $genre, $sousGenre)
     {
-        if (!is_numeric($page)) {
-            throw new InvalidArgumentException(
-                'La valeur de l\'argument $page est incorrecte (valeur : ' . $page . ').'
-            );
-        }
 
-        if ($page < 1) {
-            throw new NotFoundHttpException('La page demandée n\'existe pas');
-        }
-
-        if (!is_numeric($nbMaxParPage)) {
-            throw new InvalidArgumentException(
-                'La valeur de l\'argument $nbMaxParPage est incorrecte (valeur : ' . $nbMaxParPage . ').'
-            );
-        }
-
-        $qb = $this->createQueryBuilder('BD')
+        $QueryBuilder = $this->createQueryBuilder('BD')
             ->where('BD.Genre = :genre')
             ->andWhere('BD.SousGenre = :sousGenre')
             ->orderBy('BD.DateDeParution', 'DESC')
             ->setParameter('genre', $genre)
             ->setParameter('sousGenre', $sousGenre);
 
-        $query = $qb->getQuery();
+        $BandeDessinees = $QueryBuilder->getQuery();
 
         $premierResultat = ($page - 1) * $nbMaxParPage;
-        $query->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
-        $paginator = new Paginator($query);
+        $BandeDessinees->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
+        $paginator = new Paginator($BandeDessinees);
 
         if ( ($paginator->count() <= $premierResultat) && $page != 1) {
             throw new NotFoundHttpException('La page demandée n\'existe pas.'); // page 404, sauf pour la première page
