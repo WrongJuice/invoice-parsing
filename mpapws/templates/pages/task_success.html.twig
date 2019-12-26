@@ -1,6 +1,7 @@
 {%  extends 'base.html.twig' %}
 
 {% block body  %}
+
     <div class="row justify-content-between align-items-center" style="width: 600px;">
         <img src="/img/success.png" style="width: 200px;">
         <div class=column">
@@ -10,5 +11,6 @@
     </div>
     <br/>
     <button type="button" class="btn button-download" onclick="window.location.href='http://mpapws.loc:9999/'"> Retour à la page d'accueil</button>
+    <button type="button" class="btn button-download" onclick="window.location.href='http://mpapws.loc:9999/{{ BandeDessinee.getGenre() }}/{{ BandeDessinee.getId() }}'"> Visionnez votre BD</button>
 
 {% endblock %}

@@ -33,48 +33,55 @@ class DetailController extends AbstractController{
     }
 
     /**
-     * @Route("/BD/{BandeDessinee}/", name="BDDetaillee")
+     * @Route("/{Genre}/{BandeDessinee}/", name="BDDetaillee")
      */
 
-    public function BDDetaillee(BandeDessinee $BandeDessinee, Request $request, EntityManagerInterface $entityManager, BandeDessineeRepository $repository)
+    public function BDDetaillee(BandeDessinee $bandeDessinee, Request $request, EntityManagerInterface $entityManager, bandeDessineeRepository $repository)
     {
         /*Récupère les infos de la BD */
 
-        $Commentaires = $BandeDessinee->getSesCommentaires();
 
         /* Ajoute les planches seulement si elles existent */
 
-        $Planches = [];
+        $planches = [];
 
-        if($BandeDessinee->getPlanche1()){
-            array_push($Planches, $BandeDessinee->getPlanche1());
+        if($bandeDessinee->getPlanche1()){
+            array_push($planches, $bandeDessinee->getPlanche1());
         }
 
-        if($BandeDessinee->getPlanche2()){
-            array_push($Planches, $BandeDessinee->getPlanche2());
+        if($bandeDessinee->getPlanche2()){
+            array_push($planches, $bandeDessinee->getPlanche2());
         }
 
-        if($BandeDessinee->getPlanche3()){
-            array_push($Planches, $BandeDessinee->getPlanche3());
+        if($bandeDessinee->getPlanche3()){
+            array_push($planches, $bandeDessinee->getPlanche3());
         }
 
-        if($BandeDessinee->getPlanche4()){
-            array_push($Planches, $BandeDessinee->getPlanche4());
+        if($bandeDessinee->getPlanche4()){
+            array_push($planches, $bandeDessinee->getPlanche4());
         }
 
-        if($BandeDessinee->getPlanche5()){
-            array_push($Planches, $BandeDessinee->getPlanche5());
+        if($bandeDessinee->getPlanche5()){
+            array_push($planches, $bandeDessinee->getPlanche5());
         }
 
-        $nbCommentaires = $BandeDessinee->getNbCommentaires();
+        /* Inverse les commentaire pour avoir les plus récents en premiers */
+        $commentaires = $bandeDessinee->getSesCommentaires();
+        $commentairesReverse = [];
+        foreach($commentaires as $commentaire){
+            array_unshift($commentairesReverse, $commentaire);
+        }
+
+        /* Récupère le nombre de commentaires */
+        $nbCommentaires = $bandeDessinee->getNbCommentaires();
 
         /* On s'occupe du formulaire d'envoi de commentaires */
 
-        $Commentaire = new Commentaire();
-        $Commentaire->setSaBandeDessinee($BandeDessinee);
-        $Commentaire->setDate(new \DateTime('now'));
+        $commentaire = new Commentaire();
+        $commentaire->setSabandeDessinee($bandeDessinee);
+        $commentaire->setDate(new \DateTime('now'));
 
-        $formComment = $this->createFormBuilder($Commentaire)
+        $formComment = $this->createFormBuilder($commentaire)
             ->add('Auteur', TextType::class,['attr' => ['placeholder' => 'Pseudonyme',]])
             ->add('Contenu', TextareaType::class, ['attr' => ['placeholder' => 'Ajouter un commentaire public...',]])
             ->add('save', SubmitType::class, ['label'  => 'Valider',])
@@ -86,21 +93,21 @@ class DetailController extends AbstractController{
         if ($formComment->isSubmitted() && $formComment->isValid()) {
 
 
-            $Commentaire = $formComment->getData();
-            dump($Commentaire);
+            $commentaire = $formComment->getData();
+            dump($commentaire);
 
-            $entityManager->persist($Commentaire);
+            $entityManager->persist($commentaire);
             $entityManager->flush();
 
-            return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $BandeDessinee->getId()]);
+            return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $bandeDessinee->getId(), 'Genre' => $bandeDessinee->getGenre()]);
         }
 
         /* On s'occupe du formulaire d'envoi de note */
 
-        $Note = new Notes();
-        $Note->setSaBandeDessinee($BandeDessinee);
+        $note = new Notes();
+        $note->setSabandeDessinee($bandeDessinee);
 
-        $formNote = $this->createFormBuilder($Note)
+        $formNote = $this->createFormBuilder($note)
             ->add('Valeur', ChoiceType::class, [
                 'choices' => [0 => '0', 1 => '1', 2 => '2', 3 => '3', 4 => '4',
                     5  =>'5'],],['choice-label' => 'Ajouter une note',], ['placeholder' => 'Salut'])
@@ -113,18 +120,18 @@ class DetailController extends AbstractController{
         if ($formNote->isSubmitted() && $formNote->isValid()) {
 
 
-            $Note = $formNote->getData();
-            dump($Note);
+            $note = $formNote->getData();
+            dump($note);
 
-            $entityManager->persist($Note);
+            $entityManager->persist($note);
             $entityManager->flush();
-            $BandeDessinee->setNoteMoyenne();
+            $bandeDessinee->setNoteMoyenne();
 
-            return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $BandeDessinee->getId()]);
+            return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $bandeDessinee->getId(), 'Genre' => $bandeDessinee->getGenre()]);
         }
 
-        return $this->render('pages/BDDetaillee.html.twig', [
-            'formComment'=> $formComment->createView(), 'formNote'=> $formNote->createView(), 'BandeDessinee' => $BandeDessinee, 'Commentaires' => $Commentaires, 'nbCommentaires' => $nbCommentaires, 'Planches' => $Planches
+        return $this->render('pages/bd_detaillee.html.twig', [
+            'formComment'=> $formComment->createView(), 'formNote'=> $formNote->createView(), 'BandeDessinee' => $bandeDessinee, 'Commentaires' => $commentairesReverse, 'nbCommentaires' => $nbCommentaires, 'Planches' => $planches
         ]);
     }
 

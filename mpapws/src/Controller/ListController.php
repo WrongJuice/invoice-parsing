@@ -35,7 +35,7 @@ class ListController extends AbstractController{
 
 
     /**
-     * @Route("/listeBD/{genre}/{page}", requirements={"page" = "\d+"}, name="listeBDGenre")
+     * @Route("/liste/{genre}/{page}", requirements={"page" = "\d+"}, name="listeBDGenre")
      */
 
     public function listeBDGenre($genre, $page)
@@ -46,25 +46,25 @@ class ListController extends AbstractController{
 
         $nbArticlesParPage = 5;
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $BandeDessinees = $repository->getBDGenrePagination($page, $nbArticlesParPage, $genre);
+        $bandeDessinees = $repository->getBDGenrePagination($page, $nbArticlesParPage, $genre);
 
         $pagination = array(
             'page' => $page,
-            'nbPages' => ceil(count($BandeDessinees) / $nbArticlesParPage),
+            'nbPages' => ceil(count($bandeDessinees) / $nbArticlesParPage),
             'nomRoute' => 'listeBDGenre',
             'paramsRoute' => array()
         );
 
 
-        return $this->render('pages/listeBD.html.twig', [
-            'BandeDessinees' => $BandeDessinees,
+        return $this->render('pages/liste_bd.html.twig', [
+            'BandeDessinees' => $bandeDessinees,
             'GenreToString' => $genre,
             'pagination' => $pagination
         ]);
     }
 
     /**
-     * @Route("/listeBD/{genre}/Tendances/{page}", name="listeBDTendances")
+     * @Route("/liste/{genre}/Tendances/{page}", name="listeBDTendances")
      */
 
     public function listeBDTendances($genre, $page)
@@ -99,13 +99,13 @@ class ListController extends AbstractController{
         $genreToString .= ' Tendances';
 
 
-        return $this->render('pages/listeBD.html.twig', [
+        return $this->render('pages/liste_bd.html.twig', [
             'BandeDessinees' => $BDTendances, 'GenreToString' => $genreToString, 'genre' => $genre, 'pagination' => $pagination
         ]);
     }
 
     /**
-     * @Route("/listeBD/{genre}/{sousGenre}/{page}", name="listeBDSousGenre")
+     * @Route("/liste/{genre}/{sousGenre}/{page}", name="listeBDSousGenre")
      */
 
     public function listeBDSousGenre($genre, $sousGenre, $page)
@@ -116,15 +116,15 @@ class ListController extends AbstractController{
 
         $nbArticlesParPage = 5;
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $BandeDessinees = $repository->getBDSousGenrePagination($page, $nbArticlesParPage, $genre, $sousGenre);
+        $bandeDessinees = $repository->getBDSousGenrePagination($page, $nbArticlesParPage, $genre, $sousGenre);
 
         // Permet d'afficher le genre consulté
         $genreToString = $genre;
         $genreToString .= ' ';
         $genreToString .= $sousGenre;
 
-        return $this->render('pages/listeBD.html.twig', [
-            'BandeDessinees' => $BandeDessinees, 'GenreToString' => $genreToString, 'genre' => $genre, 'sousGenre' => $sousGenre
+        return $this->render('pages/liste_bd.html.twig', [
+            'BandeDessinees' => $bandeDessinees, 'GenreToString' => $genreToString, 'genre' => $genre, 'sousGenre' => $sousGenre
         ]);
     }
 

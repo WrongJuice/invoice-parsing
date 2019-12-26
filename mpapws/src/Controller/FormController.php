@@ -85,7 +85,9 @@ class FormController extends AbstractController{
             $uploadedPDF->move($destination , $filename);
             rename('./data/' . $BD->getId() . '/' . $uploadedPDF->getClientOriginalName() , './data/' . $BD->getId() .'/livre.pdf');
             //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
-            return $this->render('pages/task_success.html.twig');
+            return $this->render('pages/task_success.html.twig', [
+                'BandeDessinee'=> $BD,
+            ]);
         }
         return $this->render('pages/formulaire.html.twig', [
             'form'=> $form->createView(),

@@ -116,7 +116,7 @@ html{
     transition: 0.5s;
 }
 
-.sousGenre{
+.sous-genre{
     background-color: #1089FF;
     color: white;
     border : solid 1px #1089FF;
@@ -131,7 +131,7 @@ html{
     justify-content: start;
 }
 
-.uneBdTendance{ /* La BD Tendance */
+.la-BD-tendance{ /* La BD Tendance */
     margin: 1.47em;
     width: 150px; /* Limite la taille d'une BD si il y en a moins de 5 */
 }

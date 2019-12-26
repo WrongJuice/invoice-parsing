@@ -43,53 +43,53 @@ class HomeController extends AbstractController{
 
         /* Récupère seulement les 5 premières BD et qui ont plus de 10 notes*/
 
-        $CinqBDTendances = [];
+        $cinqBDTendances = [];
         $i = 0;
         foreach ($BDTendances as $BDTendance)
         {
             if($i < 5 && count($BDTendance->getSesNotes()) > 10 && $BDTendance->getNoteMoyenne() >= 4.00)
             {
-                array_push($CinqBDTendances,$BDTendance);
+                array_push($cinqBDTendances,$BDTendance);
                 $i = $i + 1;
             }
         }
 
         /* Récupère les Mangas Tendances grâce au Repository */
 
-        $MangasTendances = $repository->getBDRecentesForHome('Mangas');
+        $mangasTendances = $repository->getBDRecentesForHome('Mangas');
 
         /* Récupère Seulement les 5 premiers Mangas ayant plus de 10 notes */
 
-        $CinqMangasTendances = [];
+        $cinqMangasTendances = [];
         $i = 0;
-        foreach ($MangasTendances as $MangaTendance)
+        foreach ($mangasTendances as $mangaTendance)
         {
 
-            if($i < 5 && count($MangaTendance->getSesNotes()) > 10 && $MangaTendance->getNoteMoyenne() >= 4.00)
+            if($i < 5 && count($mangaTendance->getSesNotes()) > 10 && $mangaTendance->getNoteMoyenne() >= 4.00)
             {
-                array_push($CinqMangasTendances, $MangaTendance);
+                array_push($cinqMangasTendances, $mangaTendance);
                 $i = $i + 1;
             }
         }
 
         /* Récupère les Comics Tendances grâce au Repository */
 
-        $ComicsTendances = $repository->getBDRecentesForHome('Comics');
+        $comicsTendances = $repository->getBDRecentesForHome('Comics');
 
         /* Récupère seulement les 5 premiers Comics ayant plus de 10 notes*/
-        $CinqComicsTendances = [];
+        $cinqComicsTendances = [];
         $i = 0;
-        foreach ($ComicsTendances as $ComicTendance)
+        foreach ($comicsTendances as $comicTendance)
         {
-            if($i < 5 && count($ComicTendance->getSesNotes()) > 10 && $ComicTendance->getNoteMoyenne() >= 4.00)
+            if($i < 5 && count($comicTendance->getSesNotes()) > 10 && $comicTendance->getNoteMoyenne() >= 4.00)
             {
-                array_push($CinqComicsTendances, $ComicTendance);
+                array_push($cinqComicsTendances, $comicTendance);
                 $i = $i + 1;
             }
         }
 
         return $this->render('pages/home.html.twig', [
-            'BDTendances' => $CinqBDTendances, 'MangasTendances' => $CinqMangasTendances, 'ComicsTendances' => $CinqComicsTendances
+            'BDTendances' => $cinqBDTendances, 'MangasTendances' => $cinqMangasTendances, 'ComicsTendances' => $cinqComicsTendances
         ]);
     }
 
