@@ -90,27 +90,22 @@
 
     {# Ajout d'une zone de pagination pour les pages si besoin est#}
         {# 3 Types de redirection selon si c'est une liste Tendance, Sous-Genre ou Genre #}
-    {% if pagination.nbPages is defined and (( BandeDessinees is defined and BandeDessinees is not empty ) or ( BDTendances is defined and BDTendances is not empty )) %}
+    {% if pagination.nbPages is defined and pagination.nbPages > 1 and (( BandeDessinees is defined and BandeDessinees is not empty ) or ( BDTendances is defined and BDTendances is not empty )) %}
         {% if 'Tendances' in GenreToString %}
-            <ul class="pagination">
+            <ul class="pagination justify-content-center">
                 {% if pagination.page > 1 %}
                     <li>
-                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1, 'genre': genre })) }}">
-                            <<
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': genre })) }}">
-                            <
+                            pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': genre })) }}" class="pagination-part pagination-arrow">
+                            Précedent
                         </a>
                     </li>
                 {% endif %}
 
                 {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
                 {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
-                    <li {% if p == pagination.page %}class="active"{% endif %}>
-                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': genre})) }}">
+                    <li {% if p == pagination.page %}class="pagination-active"{% endif %}>
+                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': genre})) }}" class="pagination-part">
                             {{ p }}
                         </a>
                     </li>
@@ -119,39 +114,28 @@
                 {% if pagination.page < pagination.nbPages %}
                     <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': genre })) }}">
-                            >
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.nbPages, 'genre': genre })) }}">
-                            >>
+                            pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': genre })) }}" class="pagination-part pagination-arrow">
+                            Suivant
                         </a>
                     </li>
                 {% endif %}
             </ul>
 
         {% elseif sousGenre is defined %}
-            <ul class="pagination">
+            <ul class="pagination justify-content-center">
                 {% if pagination.page > 1 %}
                     <li>
-                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1, 'genre': genre, 'sousGenre' : sousGenre })) }}">
-                            <<
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': genre, 'sousGenre' : sousGenre })) }}">
-                            <
+                            pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': genre, 'sousGenre' : sousGenre })) }}" class="pagination-part pagination-arrow">
+                            Précédent
                         </a>
                     </li>
                 {% endif %}
 
                 {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
                 {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
-                    <li {% if p == pagination.page %}class="active"{% endif %}>
-                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': genre, 'sousGenre' : sousGenre})) }}">
+                    <li {% if p == pagination.page %}class="pagination-active"{% endif %}>
+                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': genre, 'sousGenre' : sousGenre})) }}" class="pagination-part">
                             {{ p }}
                         </a>
                     </li>
@@ -160,38 +144,27 @@
                 {% if pagination.page < pagination.nbPages %}
                     <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': genre, 'sousGenre' : sousGenre })) }}">
-                            >
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.nbPages, 'genre': genre, 'sousGenre' : sousGenre })) }}">
-                            >>
+                            pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': genre, 'sousGenre' : sousGenre })) }}" class="pagination-part pagination-arrow">
+                            Suivant
                         </a>
                     </li>
                 {% endif %}
             </ul>
         {% elseif GenreToString is defined %}
-            <ul class="pagination">
+            <ul class="pagination justify-content-center">
                 {% if pagination.page > 1 %}
                     <li>
-                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': 1, 'genre': GenreToString })) }}">
-                            <<
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': GenreToString })) }}">
-                            <
+                            pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': GenreToString })) }}" class="pagination-part pagination-arrow">
+                            <img src="/img/back_pagination.png" alt="flèche retour">
                         </a>
                     </li>
                 {% endif %}
 
                 {# Affichage de toutes les pages entre p-4 et p+4 sauf si < 1 ou > nbPages #}
                 {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.nbPages)) %}
-                    <li {% if p == pagination.page %}class="active"{% endif %}>
-                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': GenreToString})) }}">
+                    <li {% if p == pagination.page %}class="pagination-active"{% endif %}>
+                        <a href="{{ path(pagination.nomRoute, pagination.paramsRoute|merge({'page': p, 'genre': GenreToString})) }}" class="pagination-part">
                             {{ p }}
                         </a>
                     </li>
@@ -200,14 +173,8 @@
                 {% if pagination.page < pagination.nbPages %}
                     <li>
                         <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': GenreToString })) }}">
-                            >
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path(pagination.nomRoute,
-                            pagination.paramsRoute|merge({'page': pagination.nbPages, 'genre': GenreToString })) }}">
-                            >>
+                            pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': GenreToString })) }}" class="pagination-part pagination-arrow">
+                            <img src="/img/next_pagination.png" alt="flèche suivant">
                         </a>
                     </li>
                 {% endif %}

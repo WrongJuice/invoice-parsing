@@ -55,6 +55,38 @@ html{
 
 
 
+
+
+/* ---------------------- PAGINATION -------------------------*/
+
+.pagination-part{ /* Chaque partie de la pagination '<' '1' '2' '3' etc... */
+    color: #1089FF;
+    margin-left: 10px;
+}
+
+.pagination-part:hover{ /* Chaque partie de la pagination '<' '1' '2' '3' etc... */
+}
+
+.pagination-arrows{ /* Flèches de la pagination '<<' '<' '>' '>>' */
+
+}
+
+.pagination-active .pagination-part{ /* Page active de la pagination ex: '1' si nous sommes à la page 1 */
+    font-weight: bold;
+    color: black;
+}
+.pagination-active .pagination-part:hover{
+    text-decoration: none;
+}
+
+
+/* ----------------------------------------------------------*/
+
+
+
+
+
+
 /* --------------------- FOOTER  ----------------------*/
 
 /* Colle le footer en bas de page */
