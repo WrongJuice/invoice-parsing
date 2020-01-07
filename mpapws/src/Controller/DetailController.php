@@ -33,13 +33,14 @@ class DetailController extends AbstractController{
     }
 
     /**
-     * @Route("/{Genre}/{BandeDessinee}/", name="BDDetaillee")
+     * @Route("/{Genre}/{id}/", name="BDDetaillee")
      */
 
-    public function BDDetaillee(BandeDessinee $bandeDessinee, Request $request, EntityManagerInterface $entityManager, bandeDessineeRepository $repository)
+    public function BDDetaillee($id, Request $request, EntityManagerInterface $entityManager, bandeDessineeRepository $repository)
     {
         /*Récupère les infos de la BD */
-
+        $repository = $this->getDoctrine()->getRepository('App\Entity\BandeDessinee');
+        $bandeDessinee = $repository->find($id);
 
         /* Ajoute les planches seulement si elles existent */
 
