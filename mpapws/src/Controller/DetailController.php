@@ -100,7 +100,7 @@ class DetailController extends AbstractController{
             $entityManager->persist($commentaire);
             $entityManager->flush();
 
-            return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $bandeDessinee->getId(), 'Genre' => $bandeDessinee->getGenre()]);
+            return $this->redirectToRoute('BDDetaillee', ['id' => $bandeDessinee->getId(), 'Genre' => $bandeDessinee->getGenre()]);
         }
 
         /* On s'occupe du formulaire d'envoi de note */
@@ -128,7 +128,7 @@ class DetailController extends AbstractController{
             $entityManager->flush();
             $bandeDessinee->setNoteMoyenne();
 
-            return $this->redirectToRoute('BDDetaillee', ['BandeDessinee' => $bandeDessinee->getId(), 'Genre' => $bandeDessinee->getGenre()]);
+            return $this->redirectToRoute('BDDetaillee', ['id' => $bandeDessinee->getId(), 'Genre' => $bandeDessinee->getGenre()]);
         }
 
         return $this->render('pages/bd_detaillee.html.twig', [
