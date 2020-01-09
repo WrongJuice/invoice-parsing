@@ -39,57 +39,18 @@ class HomeController extends AbstractController{
 
         /* Récupère les BD Recentes grâce au Repository */
 
-        $BDTendances = $repository->getBDRecentesForHome('BD');
-
-        /* Récupère seulement les 5 premières BD et qui ont plus de 10 notes*/
-
-        $cinqBDTendances = [];
-        $i = 0;
-        foreach ($BDTendances as $BDTendance)
-        {
-            if($i < 5 && count($BDTendance->getSesNotes()) > 10 && $BDTendance->getNoteMoyenne() >= 4.00)
-            {
-                array_push($cinqBDTendances,$BDTendance);
-                $i = $i + 1;
-            }
-        }
+        $BDTendances = $repository->getBDTendancesForHome('BD');
 
         /* Récupère les Mangas Tendances grâce au Repository */
 
-        $mangasTendances = $repository->getBDRecentesForHome('Mangas');
-
-        /* Récupère Seulement les 5 premiers Mangas ayant plus de 10 notes */
-
-        $cinqMangasTendances = [];
-        $i = 0;
-        foreach ($mangasTendances as $mangaTendance)
-        {
-
-            if($i < 5 && count($mangaTendance->getSesNotes()) > 10 && $mangaTendance->getNoteMoyenne() >= 4.00)
-            {
-                array_push($cinqMangasTendances, $mangaTendance);
-                $i = $i + 1;
-            }
-        }
+        $mangasTendances = $repository->getBDTendancesForHome('Mangas');
 
         /* Récupère les Comics Tendances grâce au Repository */
 
-        $comicsTendances = $repository->getBDRecentesForHome('Comics');
-
-        /* Récupère seulement les 5 premiers Comics ayant plus de 10 notes*/
-        $cinqComicsTendances = [];
-        $i = 0;
-        foreach ($comicsTendances as $comicTendance)
-        {
-            if($i < 5 && count($comicTendance->getSesNotes()) > 10 && $comicTendance->getNoteMoyenne() >= 4.00)
-            {
-                array_push($cinqComicsTendances, $comicTendance);
-                $i = $i + 1;
-            }
-        }
+        $comicsTendances = $repository->getBDTendancesForHome('Comics');
 
         return $this->render('pages/home.html.twig', [
-            'BDTendances' => $cinqBDTendances, 'MangasTendances' => $cinqMangasTendances, 'ComicsTendances' => $cinqComicsTendances
+            'BDTendances' => $BDTendances, 'MangasTendances' => $mangasTendances, 'ComicsTendances' => $comicsTendances
         ]);
     }
 

@@ -943,7 +943,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[0]->getId(),755);
         copy('public/data_fixtures/affiche_BD1.jpg' , 'public/data/' . $BandeDessinees[0]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[0]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[0]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_BD1.jpg' , 'public/data/' . $BandeDessinees[0]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_BD2.jpg' , 'public/data/' . $BandeDessinees[0]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_BD3.jpg' , 'public/data/' . $BandeDessinees[0]->getId() . '/p3.jpg');
@@ -952,7 +952,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[1]->getId(),755);
         copy('public/data_fixtures/affiche_BD2.jpg' , 'public/data/' . $BandeDessinees[1]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[1]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[1]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_BD1.jpg' , 'public/data/' . $BandeDessinees[1]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_BD2.jpg' , 'public/data/' . $BandeDessinees[1]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_BD3.jpg' , 'public/data/' . $BandeDessinees[1]->getId() . '/p3.jpg');
@@ -961,18 +961,18 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[2]->getId(),755);
         copy('public/data_fixtures/affiche_BD3.jpg' , 'public/data/' . $BandeDessinees[2]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[2]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[2]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_BD1.jpg' , 'public/data/' . $BandeDessinees[2]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_BD2.jpg' , 'public/data/' . $BandeDessinees[2]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_BD3.jpg' , 'public/data/' . $BandeDessinees[2]->getId() . '/p3.jpg');
 
         mkdir('public/data/' . $BandeDessinees[3]->getId(),755);
         copy('public/data_fixtures/affiche_BD4.jpg' , 'public/data/' . $BandeDessinees[3]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[3]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[3]->getId() . '/livre.pdf');
 
         mkdir('public/data/' . $BandeDessinees[4]->getId(),755);
         copy('public/data_fixtures/affiche_BD5.jpg' , 'public/data/' . $BandeDessinees[4]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[4]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[4]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_BD1.jpg' , 'public/data/' . $BandeDessinees[4]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_BD2.jpg' , 'public/data/' . $BandeDessinees[4]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_BD3.jpg' , 'public/data/' . $BandeDessinees[4]->getId() . '/p3.jpg');
@@ -980,7 +980,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[5]->getId(),755);
         copy('public/data_fixtures/affiche_BD6.jpg' , 'public/data/' . $BandeDessinees[5]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[5]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[5]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_BD1.jpg' , 'public/data/' . $BandeDessinees[5]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_BD2.jpg' , 'public/data/' . $BandeDessinees[5]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_BD3.jpg' , 'public/data/' . $BandeDessinees[5]->getId() . '/p3.jpg');
@@ -989,7 +989,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[6]->getId(),755);
         copy('public/data_fixtures/affiche_BD7.jpg' , 'public/data/' . $BandeDessinees[6]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[6]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[6]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_BD1.jpg' , 'public/data/' . $BandeDessinees[6]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_BD2.jpg' , 'public/data/' . $BandeDessinees[6]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_BD3.jpg' , 'public/data/' . $BandeDessinees[6]->getId() . '/p3.jpg');
@@ -998,7 +998,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[7]->getId(),755);
         copy('public/data_fixtures/affiche_BD8.jpg' , 'public/data/' . $BandeDessinees[7]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[7]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[7]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_BD1.jpg' , 'public/data/' . $BandeDessinees[7]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_BD2.jpg' , 'public/data/' . $BandeDessinees[7]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_BD3.jpg' , 'public/data/' . $BandeDessinees[7]->getId() . '/p3.jpg');
@@ -1007,7 +1007,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[8]->getId(),755);
         copy('public/data_fixtures/affiche_Manga1.jpg' , 'public/data/' . $BandeDessinees[8]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[8]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[8]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Manga1.jpg' , 'public/data/' . $BandeDessinees[8]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Manga2.jpg' , 'public/data/' . $BandeDessinees[8]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Manga3.jpg' , 'public/data/' . $BandeDessinees[8]->getId() . '/p3.jpg');
@@ -1016,7 +1016,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[9]->getId(),755);
         copy('public/data_fixtures/affiche_Manga2.jpg' , 'public/data/' . $BandeDessinees[9]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[9]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[9]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Manga1.jpg' , 'public/data/' . $BandeDessinees[9]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Manga2.jpg' , 'public/data/' . $BandeDessinees[9]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Manga3.jpg' , 'public/data/' . $BandeDessinees[9]->getId() . '/p3.jpg');
@@ -1025,18 +1025,18 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[10]->getId(),755);
         copy('public/data_fixtures/affiche_Manga3.jpg' , 'public/data/' . $BandeDessinees[10]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[10]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[10]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Manga1.jpg' , 'public/data/' . $BandeDessinees[10]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Manga2.jpg' , 'public/data/' . $BandeDessinees[10]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Manga3.jpg' , 'public/data/' . $BandeDessinees[10]->getId() . '/p3.jpg');
 
         mkdir('public/data/' . $BandeDessinees[11]->getId(),755);
         copy('public/data_fixtures/affiche_Manga4.jpg' , 'public/data/' . $BandeDessinees[11]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[11]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[11]->getId() . '/livre.pdf');
 
         mkdir('public/data/' . $BandeDessinees[12]->getId(),755);
         copy('public/data_fixtures/affiche_Manga5.jpg' , 'public/data/' . $BandeDessinees[12]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[12]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[12]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Manga1.jpg' , 'public/data/' . $BandeDessinees[12]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Manga2.jpg' , 'public/data/' . $BandeDessinees[12]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Manga3.jpg' , 'public/data/' . $BandeDessinees[12]->getId() . '/p3.jpg');
@@ -1044,7 +1044,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[13]->getId(),755);
         copy('public/data_fixtures/affiche_Manga6.jpg' , 'public/data/' . $BandeDessinees[13]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[13]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[13]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Manga1.jpg' , 'public/data/' . $BandeDessinees[13]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Manga2.jpg' , 'public/data/' . $BandeDessinees[13]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Manga3.jpg' , 'public/data/' . $BandeDessinees[13]->getId() . '/p3.jpg');
@@ -1053,7 +1053,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[14]->getId(),755);
         copy('public/data_fixtures/affiche_Manga7.jpg' , 'public/data/' . $BandeDessinees[14]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[14]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[14]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Manga1.jpg' , 'public/data/' . $BandeDessinees[14]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Manga2.jpg' , 'public/data/' . $BandeDessinees[14]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Manga3.jpg' , 'public/data/' . $BandeDessinees[14]->getId() . '/p3.jpg');
@@ -1062,7 +1062,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[15]->getId(),755);
         copy('public/data_fixtures/affiche_Manga8.jpg' , 'public/data/' . $BandeDessinees[15]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[15]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[15]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Manga1.jpg' , 'public/data/' . $BandeDessinees[15]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Manga2.jpg' , 'public/data/' . $BandeDessinees[15]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Manga3.jpg' , 'public/data/' . $BandeDessinees[15]->getId() . '/p3.jpg');
@@ -1071,7 +1071,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[16]->getId(),755);
         copy('public/data_fixtures/affiche_Comics1.jpg' , 'public/data/' . $BandeDessinees[16]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[16]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[16]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Comics1.jpg' , 'public/data/' . $BandeDessinees[16]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Comics2.jpg' , 'public/data/' . $BandeDessinees[16]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Comics3.jpg' , 'public/data/' . $BandeDessinees[16]->getId() . '/p3.jpg');
@@ -1080,7 +1080,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[17]->getId(),755);
         copy('public/data_fixtures/affiche_Comics2.jpg' , 'public/data/' . $BandeDessinees[17]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[17]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[17]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Comics1.jpg' , 'public/data/' . $BandeDessinees[17]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Comics2.jpg' , 'public/data/' . $BandeDessinees[17]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Comics3.jpg' , 'public/data/' . $BandeDessinees[17]->getId() . '/p3.jpg');
@@ -1089,18 +1089,18 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[18]->getId(),755);
         copy('public/data_fixtures/affiche_Comics3.jpg' , 'public/data/' . $BandeDessinees[18]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[18]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[18]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Comics1.jpg' , 'public/data/' . $BandeDessinees[18]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Comics2.jpg' , 'public/data/' . $BandeDessinees[18]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Comics3.jpg' , 'public/data/' . $BandeDessinees[18]->getId() . '/p3.jpg');
 
         mkdir('public/data/' . $BandeDessinees[19]->getId(),755);
         copy('public/data_fixtures/affiche_Comics4.jpg' , 'public/data/' . $BandeDessinees[19]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[19]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[19]->getId() . '/livre.pdf');
 
         mkdir('public/data/' . $BandeDessinees[20]->getId(),755);
         copy('public/data_fixtures/affiche_Comics5.jpg' , 'public/data/' . $BandeDessinees[20]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[20]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[20]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Comics1.jpg' , 'public/data/' . $BandeDessinees[20]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Comics2.jpg' , 'public/data/' . $BandeDessinees[20]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Comics3.jpg' , 'public/data/' . $BandeDessinees[20]->getId() . '/p3.jpg');
@@ -1108,7 +1108,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[21]->getId(),755);
         copy('public/data_fixtures/affiche_Comics7.jpg' , 'public/data/' . $BandeDessinees[21]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[21]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[21]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Comics1.jpg' , 'public/data/' . $BandeDessinees[21]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Comics2.jpg' , 'public/data/' . $BandeDessinees[21]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Comics3.jpg' , 'public/data/' . $BandeDessinees[21]->getId() . '/p3.jpg');
@@ -1117,7 +1117,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[22]->getId(),755);
         copy('public/data_fixtures/affiche_Comics8.jpg' , 'public/data/' . $BandeDessinees[22]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[22]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[22]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Comics1.jpg' , 'public/data/' . $BandeDessinees[22]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Comics2.jpg' , 'public/data/' . $BandeDessinees[22]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Comics3.jpg' , 'public/data/' . $BandeDessinees[22]->getId() . '/p3.jpg');
@@ -1126,7 +1126,7 @@ class AppFixturesSprint1 extends Fixture
 
         mkdir('public/data/' . $BandeDessinees[23]->getId(),755);
         copy('public/data_fixtures/affiche_Comics8.jpg' , 'public/data/' . $BandeDessinees[23]->getId() . '/affiche.jpg');
-        copy('public/data_fixtures/BD_Revue.pdf' , 'public/data/' . $BandeDessinees[23]->getId() . '/livre.pdf');
+        copy('public/data_fixtures/BD_test.pdf' , 'public/data/' . $BandeDessinees[23]->getId() . '/livre.pdf');
         copy('public/data_fixtures/planche_Comics1.jpg' , 'public/data/' . $BandeDessinees[23]->getId() . '/p1.jpg');
         copy('public/data_fixtures/planche_Comics2.jpg' , 'public/data/' . $BandeDessinees[23]->getId() . '/p2.jpg');
         copy('public/data_fixtures/planche_Comics3.jpg' , 'public/data/' . $BandeDessinees[23]->getId() . '/p3.jpg');

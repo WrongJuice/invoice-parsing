@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Domain\BDTendance\BDTendanceHandler;
+use App\Domain\BDTendance\BDTendanceQuery;
 use App\Entity\Commentaire;
 use App\Entity\Notes;
 use App\Entity\BandeDessinee;
@@ -67,24 +69,14 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/Tendances/{page}", name="listeBDTendances")
      */
 
-    public function listeBDTendances($genre, $page)
+    public function listeBDTendances($genre, $page, BDTendanceHandler $BDTendanceHandler)
     {
         /* Récupère la liste des BD Recentes selon un genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
-        $nbMaxParPage = 5;
-
-        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
         $nbArticlesParPage = 5;
-        $BDRecentes = $repository->getBDRecentesPagination($page, $nbArticlesParPage, $genre); // Récupère les BD Récentes
-
-        $BDTendances = [];
-        foreach($BDRecentes as $BDRecente){
-            if(count($BDRecente->getSesNotes()) > 10 && $BDRecente->getNoteMoyenne() >= 4.00){
-                array_push($BDTendances, $BDRecente);
-            }
-        }
+        $BDTendances = $BDTendanceHandler->handle(new BDTendanceQuery($page, $nbArticlesParPage, $genre)); // Récupère les BD Récentes
 
         $pagination = array(
             'page' => $page,
