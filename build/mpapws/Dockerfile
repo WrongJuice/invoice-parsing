@@ -6,6 +6,9 @@ LABEL Description="Apache2-Symfony4-PHP7.2"
 LABEL Version="octobre-2018"
 RUN rm /etc/apache2/sites-enabled/000-default.conf
 RUN rm /etc/apache2/sites-enabled/app.conf
+RUN apt-get update
+RUN apt install imagemagick -y
+RUN apt install php-imagick -y
 ####### vhosts activation 
 ADD vhosts /etc/apache2/sites-available
 

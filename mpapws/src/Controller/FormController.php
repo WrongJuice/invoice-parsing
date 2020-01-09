@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\File;
 
 
 class FormController extends AbstractController{
@@ -52,7 +53,15 @@ class FormController extends AbstractController{
             ->add('sousGenre', ChoiceType::class, [
                 'choices' => ['Aventure' => 'Aventure', 'Humour' => 'Humour', 'Super-Héros' => 'Super-Héros', 'Policier' => 'Policier', 'Science-Fiction' => 'Science-Fiction',
                     'Historique'=>'Historique', 'Fantaisy' => 'Fantaisy', 'Divers' => 'Divers' ],], ['label'  => 'Sous-genre',])
-            ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF', 'mapped' => false])
+            ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF (Taille maximum autorisée : 100mo)', 'mapped' => false, 'required' => false, 'constraints' => [
+                new File([
+                    'maxSize' => '100M',
+                    'mimeTypes' => [ 'application/pdf', 'application/x-pdf'],
+                    'mimeTypesMessage' => 'Nan mais sérieux quoi, veuillez uploader un fichier pdf valide !',
+                    'uploadIniSizeErrorMessage' => 'Votre BD dépasse la taille maximum autorisée, veuillez faire un tome 2 et uploader un fichier plus léger !',
+                    'uploadFormSizeErrorMessage' => 'Votre BD dépasse la taille maximum autorisée, veuillez faire un tome 2 et uploader un fichier plus léger !'])
+                ]
+            ])
             /*
             ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre','mapped' => false])
             ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)', 'required' => false, 'mapped' => false])
@@ -84,6 +93,7 @@ class FormController extends AbstractController{
             $filename = pathinfo($uploadedPDF->getClientOriginalName() . '.pdf' , PATHINFO_FILENAME);
             $uploadedPDF->move($destination , $filename);
             rename('./data/' . $BD->getId() . '/' . $uploadedPDF->getClientOriginalName() , './data/' . $BD->getId() .'/livre.pdf');
+            $imagick = new Imagick();
             //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
             return $this->render('pages/task_success.html.twig', [
                 'BandeDessinee'=> $BD,
