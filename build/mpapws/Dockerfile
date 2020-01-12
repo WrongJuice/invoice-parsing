@@ -10,6 +10,7 @@ RUN apt-get update
 RUN apt install imagemagick -y
 RUN apt install php-imagick -y
 COPY ressourceFiles/policy.xml /etc/ImageMagick-6/policy.xml
+
 ####### vhosts activation 
 ADD vhosts /etc/apache2/sites-available
 

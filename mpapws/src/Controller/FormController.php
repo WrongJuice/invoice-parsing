@@ -89,10 +89,6 @@ class FormController extends AbstractController{
             $uploadedPDF = ($form['LivrePDF']->getData());
             $destination = $this->getParameter('kernel.project_dir').'/public/data/' . $BD->getId();
 
-            $imagick = new Imagick();
-
-
-
             echo 'DEBUG -> id de la BD ajoutée ->' . $BD->getId() . ' + Le nom du fichier -> ' . $uploadedPDF->getClientOriginalName();
 
             $filename = pathinfo($uploadedPDF->getClientOriginalName() . '.pdf' , PATHINFO_FILENAME);
@@ -101,8 +97,9 @@ class FormController extends AbstractController{
 
             //Décomposition du pdf
             $imagick = new Imagick();
-            $bookPath = './data/' . $BD->getId() .'/livre.pdf';
-            $imagick->readImage($bookPath . '[0]');
+            $bookPath = './data/' . $BD->getId() .'/';
+            $imagick->readImage($bookPath . 'livre.pdf[0]');
+            $imagick->writeImages($bookPath . '' , false);
 
 
             //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
