@@ -1,9 +1,9 @@
 FROM registry.univ-lr.fr:81/iutlr-info/iutlr-info-devbox-apache-symfony4
 
-MAINTAINER Jamal Malki <jmalki@univ-lr.fr>
-LABEL Vendor="Jamal Malki"
+MAINTAINER Alfred Gaillard <alfred.gaillard@etudiant.univ-lr.fr>
+LABEL Vendor="Alfred Gaillard"
 LABEL Description="Apache2-Symfony4-PHP7.2"
-LABEL Version="octobre-2018"
+LABEL Version="janvier-2020"
 RUN rm /etc/apache2/sites-enabled/000-default.conf
 RUN rm /etc/apache2/sites-enabled/app.conf
 RUN apt-get update

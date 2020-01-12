@@ -8,6 +8,7 @@ use App\Entity\BandeDessinee;
 
 use App\Repository\BandeDessineeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Imagick;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -88,12 +89,21 @@ class FormController extends AbstractController{
             $uploadedPDF = ($form['LivrePDF']->getData());
             $destination = $this->getParameter('kernel.project_dir').'/public/data/' . $BD->getId();
 
+            $imagick = new Imagick();
+
+
+
             echo 'DEBUG -> id de la BD ajoutée ->' . $BD->getId() . ' + Le nom du fichier -> ' . $uploadedPDF->getClientOriginalName();
 
             $filename = pathinfo($uploadedPDF->getClientOriginalName() . '.pdf' , PATHINFO_FILENAME);
             $uploadedPDF->move($destination , $filename);
             rename('./data/' . $BD->getId() . '/' . $uploadedPDF->getClientOriginalName() , './data/' . $BD->getId() .'/livre.pdf');
+
+            //Décomposition du pdf
             $imagick = new Imagick();
+            $imagick.readImage('./data/' . $BD->getId() .'/livre.pdf[0]');
+
+
             //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
             return $this->render('pages/task_success.html.twig', [
                 'BandeDessinee'=> $BD,
