@@ -101,7 +101,8 @@ class FormController extends AbstractController{
 
             //Décomposition du pdf
             $imagick = new Imagick();
-            $imagick.readImage('./data/' . $BD->getId() .'/livre.pdf[0]');
+            $bookPath = './data/' . $BD->getId() .'/livre.pdf';
+            $imagick->readImage($bookPath . '[0]');
 
 
             //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
