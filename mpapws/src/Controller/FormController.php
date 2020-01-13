@@ -99,7 +99,15 @@ class FormController extends AbstractController{
             $imagick = new Imagick();
             $bookPath = './data/' . $BD->getId() .'/';
             $imagick->readImage($bookPath . 'livre.pdf[0]');
-            $imagick->writeImages($bookPath . '' , false);
+            $imagick->writeImage($bookPath . 'affiche.jpg');
+            $imagick->readImage($bookPath . 'livre.pdf');
+            $numberOfPage = $imagick->getNumberImages();
+            for ($i=1; $i!=5; $i++) {
+                if ($i<$numberOfPage){
+                    $imagick->readImage($bookPath . 'livre.pdf[' . $i . ']');
+                    $imagick->writeImage($bookPath . 'p' . (string)$i . '.jpg');
+                }
+            }
 
 
             //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';

@@ -8,6 +8,7 @@ use App\Entity\BandeDessinee;
 
 use App\Repository\BandeDessineeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Imagick;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -46,23 +47,28 @@ class DetailController extends AbstractController{
 
         $planches = [];
 
-        if($bandeDessinee->getPlanche1()){
+        $imagick = new Imagick();
+        $bookPath = './data/' . $bandeDessinee->getId() .'/';
+        $imagick->readImage($bookPath . 'livre.pdf');
+        $numberOfPage = $imagick->getNumberImages();
+
+        if($numberOfPage >= 2){
             array_push($planches, $bandeDessinee->getPlanche1());
         }
 
-        if($bandeDessinee->getPlanche2()){
+        if($numberOfPage >= 3){
             array_push($planches, $bandeDessinee->getPlanche2());
         }
 
-        if($bandeDessinee->getPlanche3()){
+        if($numberOfPage >= 4){
             array_push($planches, $bandeDessinee->getPlanche3());
         }
 
-        if($bandeDessinee->getPlanche4()){
+        if($numberOfPage >= 5){
             array_push($planches, $bandeDessinee->getPlanche4());
         }
 
-        if($bandeDessinee->getPlanche5()){
+        if($numberOfPage >= 6){
             array_push($planches, $bandeDessinee->getPlanche5());
         }
 
