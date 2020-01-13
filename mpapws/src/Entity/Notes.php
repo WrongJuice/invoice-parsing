@@ -53,6 +53,7 @@ class Notes
     {
         $this->saBandeDessinee = $saBandeDessinee;
         $saBandeDessinee->setNoteMoyenne();
+        $saBandeDessinee->verifieEstPopulaire();
         return $this;
     }
 }

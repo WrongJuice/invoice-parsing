@@ -97,7 +97,7 @@
                     <li>
                         <a href="{{ path(pagination.nomRoute,
                             pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': genre })) }}" class="pagination-part pagination-arrow">
-                            Précedent
+                            <img src="/img/back_pagination.png" alt="flèche retour">
                         </a>
                     </li>
                 {% endif %}
@@ -115,7 +115,7 @@
                     <li>
                         <a href="{{ path(pagination.nomRoute,
                             pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': genre })) }}" class="pagination-part pagination-arrow">
-                            Suivant
+                            <img src="/img/next_pagination.png" alt="flèche suivant">
                         </a>
                     </li>
                 {% endif %}
@@ -127,7 +127,7 @@
                     <li>
                         <a href="{{ path(pagination.nomRoute,
                             pagination.paramsRoute|merge({'page': pagination.page-1, 'genre': genre, 'sousGenre' : sousGenre })) }}" class="pagination-part pagination-arrow">
-                            Précédent
+                            <img src="/img/back_pagination.png" alt="flèche retour">
                         </a>
                     </li>
                 {% endif %}
@@ -145,7 +145,7 @@
                     <li>
                         <a href="{{ path(pagination.nomRoute,
                             pagination.paramsRoute|merge({'page': pagination.page+1, 'genre': genre, 'sousGenre' : sousGenre })) }}" class="pagination-part pagination-arrow">
-                            Suivant
+                            <img src="/img/next_pagination.png" alt="flèche suivant">
                         </a>
                     </li>
                 {% endif %}

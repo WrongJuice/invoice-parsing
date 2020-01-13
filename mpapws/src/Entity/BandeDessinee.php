@@ -63,11 +63,17 @@ class BandeDessinee
      */
     private $NoteMoyenne;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $estPopulaire;
+
     public function __construct()
     {
         $this->sesCommentaires = new ArrayCollection();
         $this->sesNotes = new ArrayCollection();
         $this->setNoteMoyenne();
+        $this->verifieEstPopulaire();
     }
 
     public function getId(): ?int
@@ -182,6 +188,7 @@ class BandeDessinee
         }
 
         $this->setNoteMoyenne();
+        $this->verifieEstPopulaire();
         return $this;
     }
 
@@ -261,6 +268,21 @@ class BandeDessinee
         return $nbCommentaires;
     }
 
+    public function getNbNotes(){
+
+        /* Fonction qui récupère le nombre de commentaires pour une BD */
+
+        $Notes = $this->getSesNotes();
+        $nbNotes = 0;
+
+        foreach($Notes as $Note)
+        {
+            $nbNotes += 1;
+        }
+
+        return $nbNotes;
+    }
+
     public function getNoteMoyenne(){
 
         /* Fonction qui récupère une note moyenne à partir d'une liste de notes */
@@ -307,6 +329,30 @@ class BandeDessinee
         $this->NoteMoyenne = $NoteMoyenne;
 
         return $this;
+    }
+
+    public function getEstPopulaire(): ?int
+    {
+        return $this->estPopulaire;
+    }
+
+    public function setEstPopulaire(int $estPopulaire): self
+    {
+        $this->estPopulaire = $estPopulaire;
+
+        return $this;
+    }
+
+    public function verifieEstPopulaire()
+    {
+        if($this->getNoteMoyenne() >= 4.00 && $this->getNbNotes() >= 10)
+        {
+            $this->setEstPopulaire(1);
+        }
+        else
+        {
+            $this->setEstPopulaire(0);
+        }
     }
 
 }

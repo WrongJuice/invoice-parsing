@@ -24,27 +24,8 @@ class BandeDessineeRepository extends ServiceEntityRepository
         parent::__construct($registry, BandeDessinee::class);
     }
 
-
-    public function getBDRecentesForHome(String $genre)
-    {
-        /* Récupère les BD sorties il y a moins de deux mois et selon un genre*/
-
-        $twoMonths = new \DateTime(date("Y-m-d H:i:s"));
-        $twoMonths->modify('-2 months');
-
-        $QueryBuilder = $this->createQueryBuilder("BD")
-            ->andWhere('BD.DateDeParution > :twoMonths')
-            ->andWhere('BD.Genre = :genre')
-            ->orderBy('BD.NoteMoyenne', 'DESC')
-            ->setParameter('twoMonths', $twoMonths)
-            ->setParameter('genre', $genre);
-
-        $BandeDessinees = $QueryBuilder->getQuery()->getResult();
-
-        return $BandeDessinees;
-    }
-
-    public function getBDRecentesPagination($page, $nbMaxParPage, $genre)
+    /* Repository Lié a la page d'accueil */
+    public function getBDTendancesForHome($genre)
     {
         /* Récupère les BD sorties il y a moins de deux mois et selon un genre*/
 
@@ -54,6 +35,28 @@ class BandeDessineeRepository extends ServiceEntityRepository
         $QueryBuilder = $this->createQueryBuilder('BD')
             ->Where('BD.DateDeParution > :twoMonths')
             ->andWhere('BD.Genre = :genre')
+            ->andWhere('BD.estPopulaire = 1')
+            ->orderBy('BD.NoteMoyenne', 'DESC')
+            ->setParameter('twoMonths', $twoMonths)
+            ->setParameter('genre', $genre);
+
+        $BandeDessinees = $QueryBuilder->getQuery()->setMaxResults(5)->getResult();
+
+        return $BandeDessinees;
+    }
+
+    /* Repository lié à la page toutes les BD Tendances */
+    public function getBDTendancesPagination($page, $nbMaxParPage, $genre)
+    {
+        /* Récupère les BD sorties il y a moins de deux mois et selon un genre*/
+
+        $twoMonths = new \DateTime(date("Y-m-d H:i:s"));
+        $twoMonths->modify('-2 months');
+
+        $QueryBuilder = $this->createQueryBuilder('BD')
+            ->Where('BD.DateDeParution > :twoMonths')
+            ->andWhere('BD.Genre = :genre')
+            ->andWhere('BD.estPopulaire = 1')
             ->orderBy('BD.NoteMoyenne', 'DESC')
             ->setParameter('twoMonths', $twoMonths)
             ->setParameter('genre', $genre);
@@ -71,17 +74,7 @@ class BandeDessineeRepository extends ServiceEntityRepository
             return $paginator;
         }
 
-    /**
-     * Récupère une liste d'articles triés et paginés pour un genre donné
-     *
-     * @param int $page Le numéro de la page
-     * @param int $nbMaxParPage Nombre maximum d'article par page
-     *
-     * @throws InvalidArgumentException
-     * @throws NotFoundHttpException
-     *
-     * @return Paginator
-     */
+        /*Repository lié à la page toutes les BD d'un genre */
     public function getBDGenrePagination($page, $nbMaxParPage, $genre)
     {
 
@@ -103,6 +96,7 @@ class BandeDessineeRepository extends ServiceEntityRepository
         return $paginator;
     }
 
+    /* Repository lié à la page toutes les BD d'un sous genre */
     public function getBDSousGenrePagination($page, $nbMaxParPage, $genre, $sousGenre)
     {
 
@@ -125,4 +119,5 @@ class BandeDessineeRepository extends ServiceEntityRepository
 
         return $paginator;
     }
+
 }

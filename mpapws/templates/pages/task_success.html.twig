@@ -11,6 +11,6 @@
     </div>
     <br/>
     <button type="button" class="btn button-download" onclick="window.location.href='http://mpapws.loc:9999/'"> Retour à la page d'accueil</button>
-    <button type="button" class="btn button-download" onclick="window.location.href='http://mpapws.loc:9999/{{ BandeDessinee.getGenre() }}/{{ BandeDessinee.getId() }}'"> Visionnez votre BD</button>
+    <button type="button" class="btn button-download" onclick="window.location.href='{{ path('BDDetaillee', {'id' : BandeDessinee.getId(), 'genre' : BandeDessinee.getGenre() }) }}'"> Visionnez votre BD</button>
 
 {% endblock %}
