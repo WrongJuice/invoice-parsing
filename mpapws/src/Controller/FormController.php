@@ -89,8 +89,6 @@ class FormController extends AbstractController{
             $uploadedPDF = ($form['LivrePDF']->getData());
             $destination = $this->getParameter('kernel.project_dir').'/public/data/' . $BD->getId();
 
-            echo 'DEBUG -> id de la BD ajoutée ->' . $BD->getId() . ' + Le nom du fichier -> ' . $uploadedPDF->getClientOriginalName();
-
             $filename = pathinfo($uploadedPDF->getClientOriginalName() . '.pdf' , PATHINFO_FILENAME);
             $uploadedPDF->move($destination , $filename);
             rename('./data/' . $BD->getId() . '/' . $uploadedPDF->getClientOriginalName() , './data/' . $BD->getId() .'/livre.pdf');
