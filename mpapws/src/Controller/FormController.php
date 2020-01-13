@@ -100,13 +100,14 @@ class FormController extends AbstractController{
             $imagick->writeImage($bookPath . 'affiche.jpg');
             $imagick->readImage($bookPath . 'livre.pdf');
             $numberOfPage = $imagick->getNumberImages();
-            for ($i=1; $i!=5; $i++) {
-                if ($i<$numberOfPage){
-                    $imagick->readImage($bookPath . 'livre.pdf[' . $i . ']');
-                    $imagick->writeImage($bookPath . 'p' . (string)$i . '.jpg');
+            if($numberOfPage>=2){
+                for ($i=1; $i!=6; $i++) {
+                    if (($i+1)<$numberOfPage){
+                        $imagick->readImage($bookPath . 'livre.pdf[' . $i . ']');
+                        $imagick->writeImage($bookPath . 'p' . (string)$i . '.jpg');
+                    }
                 }
             }
-
 
             //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
             return $this->render('pages/task_success.html.twig', [
