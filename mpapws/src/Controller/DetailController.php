@@ -39,7 +39,7 @@ class DetailController extends AbstractController{
      * @Route("/{genre}/{id}/", name="BDDetaillee")
      */
 
-    public function BDDetaillee($id, Request $request, EntityManagerInterface $entityManager, BDDetailHandler $BDDetailHandler)
+    public function BDDetaillee($id, Request $request, EntityManagerInterface $entityManager, BDDetailHandler $BDDetailHandler, $typesGenre, $typesSousGenre)
     {
         /*Récupère les infos de la BD */
         $repository = $this->getDoctrine()->getRepository('App\Entity\BandeDessinee');
@@ -133,11 +133,18 @@ class DetailController extends AbstractController{
             $entityManager->flush();
             $bandeDessinee->setNoteMoyenne();
 
-            return $this->redirectToRoute('BDDetaillee', ['id' => $bandeDessinee->getId(), 'genre' => $bandeDessinee->getGenre()]);
+            return $this->redirectToRoute('BDDetaillee', ['id' => $bandeDessinee->getId(), 'genre' => $bandeDessinee->getGenre() ]);
         }
 
         return $this->render('pages/bd_detaillee.html.twig', [
-            'formComment'=> $formComment->createView(), 'formNote'=> $formNote->createView(), 'BandeDessinee' => $bandeDessinee, 'Commentaires' => $commentairesReverse, 'nbCommentaires' => $nbCommentaires, 'Planches' => $planches
+            'formComment'=> $formComment->createView(),
+            'formNote'=> $formNote->createView(),
+            'BandeDessinee' => $bandeDessinee,
+            'Commentaires' => $commentairesReverse,
+            'nbCommentaires' => $nbCommentaires,
+            'Planches' => $planches,
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
     }
 

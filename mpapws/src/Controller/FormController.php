@@ -38,7 +38,7 @@ class FormController extends AbstractController{
      * @Route("/formulaire", name="formulaire")
      */
 
-    public function formulaire(Request $request, EntityManagerInterface $entityManager){
+    public function formulaire(Request $request, EntityManagerInterface $entityManager, $typesGenre, $typesSousGenre){
 
         // On créé notre BD
         $BD = new BandeDessinee();
@@ -112,10 +112,14 @@ class FormController extends AbstractController{
             //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
             return $this->render('pages/task_success.html.twig', [
                 'BandeDessinee'=> $BD,
+                'typesGenre' => $typesGenre,
+                'typesSousGenre' => $typesSousGenre
             ]);
         }
         return $this->render('pages/formulaire.html.twig', [
             'form'=> $form->createView(),
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
 
     }

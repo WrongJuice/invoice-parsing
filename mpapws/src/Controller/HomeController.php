@@ -33,7 +33,7 @@ class HomeController extends AbstractController{
     }
 
 
-    public function index():Response{
+    public function index($typesGenre, $typesSousGenre):Response{
 
         $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
 
@@ -50,7 +50,11 @@ class HomeController extends AbstractController{
         $comicsTendances = $repository->getBDTendancesForHome('Comics');
 
         return $this->render('pages/home.html.twig', [
-            'BDTendances' => $BDTendances, 'MangasTendances' => $mangasTendances, 'ComicsTendances' => $comicsTendances
+            'BDTendances' => $BDTendances,
+            'MangasTendances' => $mangasTendances,
+            'ComicsTendances' => $comicsTendances,
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
     }
 

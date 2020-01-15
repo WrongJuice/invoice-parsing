@@ -46,7 +46,7 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/{page}", requirements={"page" = "\d+"}, name="listeBDGenre")
      */
 
-    public function listeBDGenre($genre, $page, BDGenreHandler $BDGenreHandler, $nbArticlesParPage)
+    public function listeBDGenre($genre, $page, BDGenreHandler $BDGenreHandler, $nbArticlesParPage, $typesGenre, $typesSousGenre)
     {
         /* Récupère la liste des BD selon un genre */
 
@@ -66,7 +66,9 @@ class ListController extends AbstractController{
         return $this->render('pages/liste_bd.html.twig', [
             'BandeDessinees' => $bandeDessinees,
             'GenreToString' => $genre,
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
     }
 
@@ -74,13 +76,12 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/Tendances/{page}", name="listeBDTendances")
      */
 
-    public function listeBDTendances($genre, $page, BDTendanceHandler $BDTendanceHandler)
+    public function listeBDTendances($genre, $page, BDTendanceHandler $BDTendanceHandler, $nbArticlesParPage, $typesGenre, $typesSousGenre)
     {
         /* Récupère la liste des BD Recentes selon un genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
-        $nbArticlesParPage = 5;
         $BDTendances = $BDTendanceHandler->handle(new BDTendanceQuery($page, $nbArticlesParPage, $genre)); // Récupère les BD Récentes
 
         $pagination = array(
@@ -97,7 +98,12 @@ class ListController extends AbstractController{
 
 
         return $this->render('pages/liste_bd.html.twig', [
-            'BandeDessinees' => $BDTendances, 'GenreToString' => $genreToString, 'genre' => $genre, 'pagination' => $pagination
+            'BandeDessinees' => $BDTendances,
+            'GenreToString' => $genreToString,
+            'genre' => $genre,
+            'pagination' => $pagination,
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
     }
 
@@ -105,13 +111,12 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/{sousGenre}/{page}", name="listeBDSousGenre")
      */
 
-    public function listeBDSousGenre($genre, $sousGenre, $page, BDSousGenreHandler $BDSousGenreHandler)
+    public function listeBDSousGenre($genre, $sousGenre, $page, BDSousGenreHandler $BDSousGenreHandler, $nbArticlesParPage, $typesGenre, $typesSousGenre)
     {
         /* Récupère la liste des BD selon un genre et un sous genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
-        $nbArticlesParPage = 5;
         $bandeDessinees = $BDSousGenreHandler->handle(new BDSousGenreQuery($page, $nbArticlesParPage, $genre, $sousGenre)); // Récupère les BD
 
         // Permet d'afficher le genre consulté
@@ -120,7 +125,12 @@ class ListController extends AbstractController{
         $genreToString .= $sousGenre;
 
         return $this->render('pages/liste_bd.html.twig', [
-            'BandeDessinees' => $bandeDessinees, 'GenreToString' => $genreToString, 'genre' => $genre, 'sousGenre' => $sousGenre
+            'BandeDessinees' => $bandeDessinees,
+            'GenreToString' => $genreToString,
+            'genre' => $genre,
+            'sousGenre' => $sousGenre,
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
     }
 
