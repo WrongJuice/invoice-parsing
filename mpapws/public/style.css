@@ -381,6 +381,7 @@ html{
     background: orange;
 }
 
+
 .comment .text:before {
     top: 18px;
     left: 78px;
@@ -394,13 +395,19 @@ html{
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
-}​
+ }
+
 
 /* ----------------------------------------------------------*/
 
 
 /*------------------------FORMULAIRE AJOUTER BD-------------------*/
 
-#form-container{
-    margin: 100px;
- }
+
+.custom-file-label::after{
+    content: "Sélectionner votre BD";
+}
+
+input#form_description.form-control{
+    height: 10em;
+}

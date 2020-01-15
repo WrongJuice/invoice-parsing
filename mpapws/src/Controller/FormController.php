@@ -48,7 +48,9 @@ class FormController extends AbstractController{
         $form = $this->createFormBuilder($BD)
             ->add('titre', TextType::class,['label'  => 'Titre du livre',])
             ->add('auteur', TextType::class, ['label'  => 'Auteur',])
-            ->add('description', TextType::class,['label'  => 'Description',])
+            ->add('description', TextareaType::class,['label'  => 'Description' , 'attr' => [
+                'size' => "100"]
+            ])
             ->add('genre', ChoiceType::class, [
                 'choices' => ['Bande dessinée' => 'BD', 'Comic' => 'Comics', 'Manga' => 'Mangas'],], ['label'  => 'Genre',])
             ->add('sousGenre', ChoiceType::class, [
@@ -61,9 +63,6 @@ class FormController extends AbstractController{
                     'mimeTypesMessage' => 'Nan mais sérieux quoi, veuillez uploader un fichier pdf valide !',
                     'uploadIniSizeErrorMessage' => 'Votre BD dépasse la taille maximum autorisée, veuillez faire un tome 2 et uploader un fichier plus léger !',
                     'uploadFormSizeErrorMessage' => 'Votre BD dépasse la taille maximum autorisée, veuillez faire un tome 2 et uploader un fichier plus léger !'])
-                ],
-                'attr' => [
-                    'style' => ''
                 ]
             ])
             ->add('save', SubmitType::class, [

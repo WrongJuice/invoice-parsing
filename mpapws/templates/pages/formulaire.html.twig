@@ -11,7 +11,9 @@
                         <br>
                         {{ form_row(form.auteur) }}
                         <br>
-                        {{ form_row(form.description) }}
+                        <div class="description-UploadFichier" style=".custom-file::after{content: 'blabla';}">
+                                {{ form_row(form.description) }}
+                        </div>
                 </div>
                 <div class="form-droite col-sm-6">
                         {{ form_row(form.genre) }}
