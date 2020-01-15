@@ -19,62 +19,21 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                {% for typeGenre in typesGenre %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Bandes dessinées
+                        {{ typeGenre }}
                     </a>
                     <div class="dropdown-menu header-sousmenu" aria-labelledby="navbarDropdown" >
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Aventure/1" >Aventure</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Humour/1">Humour</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Super-Heros/1">Super-Héros</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Policier/1" >Policier</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Science-Fiction/1">Science-Fiction</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Historique/1">Historique</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Fantasy/1" >Fantasy</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Divers/1">Divers</a>
+                        {% for typeSousGenre in typesSousGenre %}
+                        <a class="dropdown-item text-light" href="{{ path('listeBDSousGenre', {'genre' : typeGenre, 'sousGenre' : typeSousGenre, 'page' : '1' }) }}" >{{ typeSousGenre }}</a>
+                        {% endfor %}
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/Tendances/1">Les tendances </a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/BD/1">Voir tout </a>
+                        <a class="dropdown-item text-light" href="{{ path('listeBDTendances', {'genre' : typeGenre, 'page' : '1' }) }}">Les tendances </a>
+                        <a class="dropdown-item text-light" href="{{ path('listeBDGenre', {'genre' : typeGenre, 'page' : '1' }) }}">Voir tout </a>
                     </div>
                 </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Mangas
-                    </a>
-                    <div class="dropdown-menu header-sousmenu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Aventure/1" >Aventure</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Humour/1">Humour</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Super-Heros/1">Super-Héros</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Policier/1" >Policier</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Science-Fiction/1">Science-Fiction</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Historique/1">Historique</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Fantasy/1" >Fantasy</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Divers/1">Divers</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/Tendances/1">Les tendances </a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Mangas/1">Voir tout </a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Comics
-                    </a>
-                    <div class="dropdown-menu header-sousmenu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Aventure/1" >Aventure</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Humour/1">Humour</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Super-Heros/1">Super-Héros</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Policier/1" >Policier</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Science-Fiction/1">Science-Fiction</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Historique/1">Historique</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Fantasy/1" >Fantasy</a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Divers/1">Divers</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/Tendances/1">Les tendances </a>
-                        <a class="dropdown-item text-light" href="http://mpapws.loc:9999/liste/Comics/1">Voir tout </a>
-                    </div>
-                </li>
+                {% endfor %}
 
             </ul>
             <button type="button" class="btn btn-light" style="margin-right: 30px;"><a href="http://mpapws.loc:9999/formulaire" class="bd-ajouter">Ajouter votre BD</a></button>

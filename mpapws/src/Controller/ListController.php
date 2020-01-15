@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
+use App\Domain\BDGenre\BDGenreHandler;
+use App\Domain\BDGenre\BDGenreQuery;
+use App\Domain\BDSousGenre\BDSousGenreHandler;
+use App\Domain\BDSousGenre\BDSousGenreQuery;
 use App\Domain\BDTendance\BDTendanceHandler;
 use App\Domain\BDTendance\BDTendanceQuery;
+
 use App\Entity\Commentaire;
 use App\Entity\Notes;
 use App\Entity\BandeDessinee;
@@ -15,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,15 +46,13 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/{page}", requirements={"page" = "\d+"}, name="listeBDGenre")
      */
 
-    public function listeBDGenre($genre, $page)
+    public function listeBDGenre($genre, $page, BDGenreHandler $BDGenreHandler, $nbArticlesParPage, $typesGenre, $typesSousGenre)
     {
         /* Récupère la liste des BD selon un genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
-        $nbArticlesParPage = 5;
-        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $bandeDessinees = $repository->getBDGenrePagination($page, $nbArticlesParPage, $genre);
+        $bandeDessinees = $BDGenreHandler->handle(new BDGenreQuery($page, $nbArticlesParPage, $genre)); // Récupère les BD
 
         $pagination = array(
             'page' => $page,
@@ -56,12 +60,15 @@ class ListController extends AbstractController{
             'nomRoute' => 'listeBDGenre',
             'paramsRoute' => array()
         );
+        //throw new NotFoundHttpException();
 
 
         return $this->render('pages/liste_bd.html.twig', [
             'BandeDessinees' => $bandeDessinees,
             'GenreToString' => $genre,
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
     }
 
@@ -69,13 +76,12 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/Tendances/{page}", name="listeBDTendances")
      */
 
-    public function listeBDTendances($genre, $page, BDTendanceHandler $BDTendanceHandler)
+    public function listeBDTendances($genre, $page, BDTendanceHandler $BDTendanceHandler, $nbArticlesParPage, $typesGenre, $typesSousGenre)
     {
         /* Récupère la liste des BD Recentes selon un genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
-        $nbArticlesParPage = 5;
         $BDTendances = $BDTendanceHandler->handle(new BDTendanceQuery($page, $nbArticlesParPage, $genre)); // Récupère les BD Récentes
 
         $pagination = array(
@@ -92,7 +98,12 @@ class ListController extends AbstractController{
 
 
         return $this->render('pages/liste_bd.html.twig', [
-            'BandeDessinees' => $BDTendances, 'GenreToString' => $genreToString, 'genre' => $genre, 'pagination' => $pagination
+            'BandeDessinees' => $BDTendances,
+            'GenreToString' => $genreToString,
+            'genre' => $genre,
+            'pagination' => $pagination,
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
     }
 
@@ -100,15 +111,13 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/{sousGenre}/{page}", name="listeBDSousGenre")
      */
 
-    public function listeBDSousGenre($genre, $sousGenre, $page)
+    public function listeBDSousGenre($genre, $sousGenre, $page, BDSousGenreHandler $BDSousGenreHandler, $nbArticlesParPage, $typesGenre, $typesSousGenre)
     {
         /* Récupère la liste des BD selon un genre et un sous genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
-        $nbArticlesParPage = 5;
-        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $bandeDessinees = $repository->getBDSousGenrePagination($page, $nbArticlesParPage, $genre, $sousGenre);
+        $bandeDessinees = $BDSousGenreHandler->handle(new BDSousGenreQuery($page, $nbArticlesParPage, $genre, $sousGenre)); // Récupère les BD
 
         // Permet d'afficher le genre consulté
         $genreToString = $genre;
@@ -116,7 +125,12 @@ class ListController extends AbstractController{
         $genreToString .= $sousGenre;
 
         return $this->render('pages/liste_bd.html.twig', [
-            'BandeDessinees' => $bandeDessinees, 'GenreToString' => $genreToString, 'genre' => $genre, 'sousGenre' => $sousGenre
+            'BandeDessinees' => $bandeDessinees,
+            'GenreToString' => $genreToString,
+            'genre' => $genre,
+            'sousGenre' => $sousGenre,
+            'typesGenre' => $typesGenre,
+            'typesSousGenre' => $typesSousGenre
         ]);
     }
 
