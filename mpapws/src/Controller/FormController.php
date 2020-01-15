@@ -44,16 +44,28 @@ class FormController extends AbstractController{
         $BD = new BandeDessinee();
         $BD->setDateDeParution(new \DateTime('now'));
 
+
+        $typesGenreTab = [];
+        $typesSousGenreTab= [];
+
+            foreach( $typesGenre as $typeGenre){
+                array_push($typesGenreTab, [$typeGenre => $typeGenre]);
+        }
+        foreach( $typesSousGenre as $typeSousGenre){
+            array_push($typesSousGenreTab, [$typeSousGenre => $typeSousGenre]);
+        }
+
         // On créé notre FormBuilder et on lui ajoute directement les champs
         $form = $this->createFormBuilder($BD)
             ->add('titre', TextType::class,['label'  => 'Titre du livre',])
             ->add('auteur', TextType::class, ['label'  => 'Auteur',])
             ->add('description', TextType::class,['label'  => 'Description',])
             ->add('genre', ChoiceType::class, [
-                'choices' => ['Bande dessinée' => 'BD', 'Comic' => 'Comics', 'Manga' => 'Mangas'],], ['label'  => 'Genre',])
+                'choices' => $typesGenreTab,]
+                , ['label'  => 'Genre',])
             ->add('sousGenre', ChoiceType::class, [
-                'choices' => ['Aventure' => 'Aventure', 'Humour' => 'Humour', 'Super-Héros' => 'Super-Héros', 'Policier' => 'Policier', 'Science-Fiction' => 'Science-Fiction',
-                    'Historique'=>'Historique', 'Fantaisy' => 'Fantaisy', 'Divers' => 'Divers' ],], ['label'  => 'Sous-genre',])
+                'choices' => $typesSousGenreTab,
+                ], ['label'  => 'Sous-genre',])
             ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF (Taille maximum autorisée : 100mo)', 'mapped' => false, 'required' => false, 'constraints' => [
                 new File([
                     'maxSize' => '100M',
@@ -63,15 +75,6 @@ class FormController extends AbstractController{
                     'uploadFormSizeErrorMessage' => 'Votre BD dépasse la taille maximum autorisée, veuillez faire un tome 2 et uploader un fichier plus léger !'])
                 ]
             ])
-            /*
-            ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre','mapped' => false])
-            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false, 'mapped' => false])
-            */
             ->add('save', SubmitType::class, ['label'  => 'Envoyer !',])
             ->getForm();
 

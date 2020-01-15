@@ -33,18 +33,6 @@
     </ul>
 
 
-    {# Si jamais il n'y a pas de BD dans la liste #}
-    {% if BandeDessinees is empty %}
-            <div class="row justify-content-between align-items-center" style="width: 600px;">
-                <img src="/img/noresult.png" style="width: 200px;">
-                <div class=column">
-                    <h1 class="noresult-title"> OOPS ! </h1>
-                    <h3> Aucun résultat trouvé</h3>
-                </div>
-            </div>
-            <br/>
-            <button type="button" class="btn button-download" onclick="window.location.href='http://mpapws.loc:9999/'"> Retour à la page d'accueil</button>
-        {% endif %}
 
 
 {% endblock %}

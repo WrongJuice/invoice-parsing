@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Domain\BDTendanceHome\BDTendanceHomeHandler;
+use App\Domain\BDTendanceHome\BDTendanceHomeQuery;
+
 use App\Entity\Commentaire;
 use App\Entity\Notes;
 use App\Entity\BandeDessinee;
@@ -33,21 +36,19 @@ class HomeController extends AbstractController{
     }
 
 
-    public function index($typesGenre, $typesSousGenre):Response{
+    public function index($typesGenre, $typesSousGenre, BDTendanceHomeHandler $BDTendanceHomeHandler):Response{
 
-        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
+        /* Récupère les BD Recentes grâce au Handler */
 
-        /* Récupère les BD Recentes grâce au Repository */
+        $BDTendances = $BDTendanceHomeHandler->handle(new BDTendanceHomeQuery('BD')); // Récupère les BD Tendances
 
-        $BDTendances = $repository->getBDTendancesForHome('BD');
+        /* Récupère les Mangas Tendances grâce au Handler */
 
-        /* Récupère les Mangas Tendances grâce au Repository */
+        $mangasTendances = $BDTendanceHomeHandler->handle(new BDTendanceHomeQuery('Mangas')); // Récupère les Mangas Tendances
 
-        $mangasTendances = $repository->getBDTendancesForHome('Mangas');
+        /* Récupère les Comics Tendances grâce au Handler */
 
-        /* Récupère les Comics Tendances grâce au Repository */
-
-        $comicsTendances = $repository->getBDTendancesForHome('Comics');
+        $comicsTendances = $BDTendanceHomeHandler->handle(new BDTendanceHomeQuery('Comics')); // Récupère les Comics Tendances
 
         return $this->render('pages/home.html.twig', [
             'BDTendances' => $BDTendances,

@@ -60,7 +60,22 @@ class ListController extends AbstractController{
             'nomRoute' => 'listeBDGenre',
             'paramsRoute' => array()
         );
-        //throw new NotFoundHttpException();
+
+        // Si mauvais paramètre de route : 404
+        if(!in_array($genre, $typesGenre))
+        {
+            throw new NotFoundHttpException();
+        }
+
+
+        // Si il n'y à pas de BD : Retourne sur la page no_result
+        if (count($bandeDessinees) == 0)
+        {
+            return $this->render('pages/no_result.html.twig', [
+                'typesGenre' => $typesGenre,
+                'typesSousGenre' => $typesSousGenre
+            ]);
+        }
 
 
         return $this->render('pages/liste_bd.html.twig', [
@@ -96,6 +111,21 @@ class ListController extends AbstractController{
         $genreToString = $genre;
         $genreToString .= ' Tendances';
 
+        // Si mauvais paramètre de route : 404
+        if(!in_array($genre, $typesGenre))
+        {
+            throw new NotFoundHttpException();
+        }
+
+        // Si il n'y à pas de BD : Retourne sur la page no_result
+        if (count($BDTendances) == 0)
+        {
+            return $this->render('pages/no_result.html.twig', [
+                'typesGenre' => $typesGenre,
+                'typesSousGenre' => $typesSousGenre
+            ]);
+        }
+
 
         return $this->render('pages/liste_bd.html.twig', [
             'BandeDessinees' => $BDTendances,
@@ -124,6 +154,22 @@ class ListController extends AbstractController{
         $genreToString .= ' ';
         $genreToString .= $sousGenre;
 
+        // Si mauvais paramètre de route : 404
+        if(!in_array($genre, $typesGenre) or !in_array($sousGenre, $typesSousGenre))
+        {
+            throw new NotFoundHttpException();
+        }
+
+        // Si il n'y à pas de BD : Retourne sur la page no_result
+        if (count($bandeDessinees) == 0)
+        {
+            return $this->render('pages/no_result.html.twig', [
+                'typesGenre' => $typesGenre,
+                'typesSousGenre' => $typesSousGenre
+            ]);
+        }
+
+        // Si il y une BD : Retourne sur la page liste_bd
         return $this->render('pages/liste_bd.html.twig', [
             'BandeDessinees' => $bandeDessinees,
             'GenreToString' => $genreToString,

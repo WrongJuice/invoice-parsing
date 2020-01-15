@@ -6,7 +6,7 @@
 parameters:
     nbArticlesParPage: 5
     typesGenre: ['BD', 'Mangas', 'Comics']
-    typesSousGenre: ['Aventure', 'Humour', 'SuperHéros', 'Policier', 'Science-Fiction', 'Historique', 'Fantasy', 'Divers']
+    typesSousGenre: ['Aventure', 'Humour', 'Super-Héros', 'Policier', 'Science-Fiction', 'Historique', 'Fantasy', 'Divers']
 
 services:
     # default configuration for services in *this* file
