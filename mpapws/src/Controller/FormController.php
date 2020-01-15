@@ -54,30 +54,25 @@ class FormController extends AbstractController{
             ->add('sousGenre', ChoiceType::class, [
                 'choices' => ['Aventure' => 'Aventure', 'Humour' => 'Humour', 'Super-Héros' => 'Super-Héros', 'Policier' => 'Policier', 'Science-Fiction' => 'Science-Fiction',
                     'Historique'=>'Historique', 'Fantaisy' => 'Fantaisy', 'Divers' => 'Divers' ],], ['label'  => 'Sous-genre',])
-            ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF (Taille maximum autorisée : 100mo)', 'mapped' => false, 'required' => false, 'constraints' => [
+            ->add('LivrePDF', FileType::class, ['label'  => 'Livre au format PDF (Taille maximum autorisée : 100 mo)', 'mapped' => false, 'required' => false, 'constraints' => [
                 new File([
                     'maxSize' => '100M',
                     'mimeTypes' => [ 'application/pdf', 'application/x-pdf'],
                     'mimeTypesMessage' => 'Nan mais sérieux quoi, veuillez uploader un fichier pdf valide !',
                     'uploadIniSizeErrorMessage' => 'Votre BD dépasse la taille maximum autorisée, veuillez faire un tome 2 et uploader un fichier plus léger !',
                     'uploadFormSizeErrorMessage' => 'Votre BD dépasse la taille maximum autorisée, veuillez faire un tome 2 et uploader un fichier plus léger !'])
+                ],
+                'attr' => [
+                    'style' => ''
                 ]
             ])
-            /*
-            ->add('Affiche', FileType::class, ['label'  => 'Affiche du livre','mapped' => false])
-            ->add('Planche1', FileType::class, ['label'  => 'Planche 1 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche2', FileType::class, ['label'  => 'Planche 2 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche3', FileType::class, ['label'  => 'Planche 3 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche4', FileType::class, ['label'  => 'Planche 4 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false, 'mapped' => false])
-            ->add('Planche5', FileType::class, ['label'  => 'Planche 5 (Optionnel)', 'required' => false, 'mapped' => false])
-            */
-            ->add('save', SubmitType::class, ['label'  => 'Envoyer !',])
+            ->add('save', SubmitType::class, [
+                'label'  => 'Envoyer'
+            ])
             ->getForm();
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
 
             $BD = $form->getData();
 
@@ -109,7 +104,6 @@ class FormController extends AbstractController{
                 }
             }
 
-            //exec("convert './data/' . $BD->getId() .'/livre.pdf'[0] './data/' . $BD->getId() .'/affiche.jpg';
             return $this->render('pages/task_success.html.twig', [
                 'BandeDessinee'=> $BD,
             ]);
