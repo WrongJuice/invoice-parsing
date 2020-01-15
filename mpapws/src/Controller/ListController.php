@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Domain\BDGenre\BDGenreHandler;
+use App\Domain\BDGenre\BDGenreQuery;
 use App\Domain\BDTendance\BDTendanceHandler;
 use App\Domain\BDTendance\BDTendanceQuery;
+
 use App\Entity\Commentaire;
 use App\Entity\Notes;
 use App\Entity\BandeDessinee;
@@ -40,15 +43,14 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/{page}", requirements={"page" = "\d+"}, name="listeBDGenre")
      */
 
-    public function listeBDGenre($genre, $page)
+    public function listeBDGenre($genre, $page, BDGenreHandler $BDGenreHandler)
     {
         /* Récupère la liste des BD selon un genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
         $nbArticlesParPage = 5;
-        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $bandeDessinees = $repository->getBDGenrePagination($page, $nbArticlesParPage, $genre);
+        $bandeDessinees = $BDGenreHandler->handle(new BDGenreQuery($page, $nbArticlesParPage, $genre)); // Récupère les BD Récentes
 
         $pagination = array(
             'page' => $page,
