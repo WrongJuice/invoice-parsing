@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Domain\BDGenre\BDGenreHandler;
 use App\Domain\BDGenre\BDGenreQuery;
+use App\Domain\BDSousGenre\BDSousGenreHandler;
+use App\Domain\BDSousGenre\BDSousGenreQuery;
 use App\Domain\BDTendance\BDTendanceHandler;
 use App\Domain\BDTendance\BDTendanceQuery;
 
@@ -50,7 +52,7 @@ class ListController extends AbstractController{
         /* Crée un système de pagination avec 5 BD par page */
 
         $nbArticlesParPage = 5;
-        $bandeDessinees = $BDGenreHandler->handle(new BDGenreQuery($page, $nbArticlesParPage, $genre)); // Récupère les BD Récentes
+        $bandeDessinees = $BDGenreHandler->handle(new BDGenreQuery($page, $nbArticlesParPage, $genre)); // Récupère les BD
 
         $pagination = array(
             'page' => $page,
@@ -102,15 +104,14 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/{sousGenre}/{page}", name="listeBDSousGenre")
      */
 
-    public function listeBDSousGenre($genre, $sousGenre, $page)
+    public function listeBDSousGenre($genre, $sousGenre, $page, BDSousGenreHandler $BDSousGenreHandler)
     {
         /* Récupère la liste des BD selon un genre et un sous genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
         $nbArticlesParPage = 5;
-        $repository = $this->getDoctrine()->getManager()->getRepository('App\Entity\BandeDessinee');
-        $bandeDessinees = $repository->getBDSousGenrePagination($page, $nbArticlesParPage, $genre, $sousGenre);
+        $bandeDessinees = $BDSousGenreHandler->handle(new BDSousGenreQuery($page, $nbArticlesParPage, $genre, $sousGenre)); // Récupère les BD
 
         // Permet d'afficher le genre consulté
         $genreToString = $genre;

@@ -36,15 +36,15 @@ class BDGenreTest extends TestCase
         $Query = new BDGenreQuery($page, $nbPage, $genre);
         $Handler = new BDGenreHandler($Repository);
 
-        $bandeDessinees = $Handler->handle(new BDGenreQuery($page, $nbPage, $genre)); // Récupère les BD Récentes
+        $bandeDessinees = $Handler->handle($Query); // Récupère les BD Récentes
 
         $estTrue = true;
 
         foreach ($bandeDessinees as $bandeDessinee)
         {
-            //if ($bandeDessinee->getGenre() != 'BD') $estTrue = false;
+            if ($bandeDessinee->getGenre() != 'BD') $estTrue = false;
         }
 
-        //self::assertTrue($estTrue);
+        self::assertTrue($estTrue);
     }
 }
