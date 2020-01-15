@@ -6,6 +6,9 @@ use App\Entity\Commentaire;
 use App\Entity\Notes;
 use App\Entity\BandeDessinee;
 
+use App\Domain\BDDetail\BDDetailHandler;
+use App\Domain\BDDetail\BDDetailQuery;
+
 use App\Repository\BandeDessineeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
@@ -36,11 +39,11 @@ class DetailController extends AbstractController{
      * @Route("/{genre}/{id}/", name="BDDetaillee")
      */
 
-    public function BDDetaillee($id, Request $request, EntityManagerInterface $entityManager, bandeDessineeRepository $repository)
+    public function BDDetaillee($id, Request $request, EntityManagerInterface $entityManager, BDDetailHandler $BDDetailHandler)
     {
         /*Récupère les infos de la BD */
         $repository = $this->getDoctrine()->getRepository('App\Entity\BandeDessinee');
-        $bandeDessinee = $repository->find($id);
+        $bandeDessinee = $BDDetailHandler->handle(new BDDetailQuery($id));
 
         /* Ajoute les planches seulement si elles existent */
 

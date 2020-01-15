@@ -20,6 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,13 +46,12 @@ class ListController extends AbstractController{
      * @Route("/liste/{genre}/{page}", requirements={"page" = "\d+"}, name="listeBDGenre")
      */
 
-    public function listeBDGenre($genre, $page, BDGenreHandler $BDGenreHandler)
+    public function listeBDGenre($genre, $page, BDGenreHandler $BDGenreHandler, $nbArticlesParPage)
     {
         /* Récupère la liste des BD selon un genre */
 
         /* Crée un système de pagination avec 5 BD par page */
 
-        $nbArticlesParPage = 5;
         $bandeDessinees = $BDGenreHandler->handle(new BDGenreQuery($page, $nbArticlesParPage, $genre)); // Récupère les BD
 
         $pagination = array(
@@ -60,6 +60,7 @@ class ListController extends AbstractController{
             'nomRoute' => 'listeBDGenre',
             'paramsRoute' => array()
         );
+        //throw new NotFoundHttpException();
 
 
         return $this->render('pages/liste_bd.html.twig', [
